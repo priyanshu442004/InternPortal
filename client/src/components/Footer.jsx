@@ -3,11 +3,11 @@ import Logo from '../assets/Logo.png';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 py-8 px-4 flex items-center justify-center border border-t-blue-200 border-[0.2vw]">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-8 md:space-y-0">
+    <footer className="bg-gray-100 py-8 px-4 flex items-center justify-center border border-t-[#BFD1E4] border-[0.2vw]">
+      <div className="flex flex-col md:flex-row justify-between md:items-center space-y-8 md:space-y-0">
         
         
-        <div className="flex flex-col justify-center items-center mr-[10%]">
+        <div className="flex flex-col justify-center text-center md:text-start items-center mr-[10%]">
           <img src={Logo} alt="DOC-Q Logo" className="h-[10vw] md:h-[10vw]" />
           <p className="text-black text-sm mt-2 w-[90%] w-full">
             © 2024 DOC-Q INTERN PORTAL. <br /> All rights reserved.

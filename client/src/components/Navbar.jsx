@@ -46,9 +46,9 @@ const Navbar = () => {
           </div>
           <ul className="flex space-x-8 items-center">
             <li>
-              <a href="#" className="text-black font-semibold hover:underline">
+              <Link to="/" className="text-black font-semibold hover:underline">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#" className="text-black font-semibold hover:underline">
@@ -56,9 +56,9 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a href="#" className="text-black font-semibold hover:underline">
+              <Link to="/Validate-certificate" className="text-black font-semibold hover:underline">
                 Validation
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#" className="text-black font-semibold hover:underline">
@@ -129,7 +129,7 @@ const Navbar = () => {
           <ul className="flex flex-col items-center space-y-4">
             <li>
               <Link
-                to="/practice-tests"
+                to="/"
                 className="text-gray-700 hover:text-blue-600 transition duration-300"
               >
                 Home
@@ -145,7 +145,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/ai-assistant"
+                to="/Validate-Certificate"
                 className="text-gray-700 hover:text-blue-600 transition duration-300"
               >
                 Validation
