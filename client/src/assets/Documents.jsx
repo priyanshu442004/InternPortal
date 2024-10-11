@@ -20,11 +20,11 @@ in one place for quick reference and verification."
                 </div>
         </div>
 
-        <div className='flex flex-row justify-center items-center mt-[7%] gap-[10%] ml-[5%] mr-[5%]'>
+        <div className='flex flex-row justify-center items-center mt-[7%] gap-[7%] ml-[5%] mr-[5%]'>
         {/* {First div} */}
-            <div className='bg-[#186cec] p-4 pr-10 pl-6 pb-6 rounded-[25px] border border-black w-[30%]'>
+            <div className='bg-[#186cec] p-4 pr-10 pl-6 pb-6 rounded-[25px] border border-black w-[25%]'>
                 <div className='flex flex-col '>
-                <h1 className='text-white font-bold text-4xl text-start w-[70%]'>
+                <h1 className='text-white font-bold text-2xl text-start'>
                 Your Offer 
                 Letter
                 </h1>
@@ -36,7 +36,7 @@ in one place for quick reference and verification."
                     <img src={offerLetterImg} alt="" className='w-[20vw] h-[20vw]'/>
                 </div>
                 </div>
-                <div className='mt-[4%] flex flex-row gap-[40%] ml-[4%]'>
+                <div className='mt-[4%] flex flex-row gap-[35%] ml-[4%]'>
                     <button className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
                         View
                     </button>
@@ -47,25 +47,25 @@ in one place for quick reference and verification."
                
             </div>
 {/* {Second div} */}
-            <div className='bg-[#186cec] p-4 pr-8 pl-4 pb-6 rounded-[25px] border border-black w-[30%]'>
+            <div className='bg-[#186cec] p-4 pr-8 pl-4 pb-6 rounded-[25px] border border-black w-[25%]'>
                 <div className='flex flex-col '>
-                <h1 className='text-white font-bold text-4xl text-start w-[70%]'>
+                <h1 className='text-white font-bold text-2xl text-start '>
                 Letter Of 
 Recommendation
                 </h1>
-                <p className='text-white mt-[4%] text-start'>
+                <p className='text-white mt-[4%] text-start w-full text-sm'>
                 Click Below to View Or Download
 Letter Of Recommendation
                 </p>
                 <div className='flex justify-center items-center mt-4 flex-col'>
-                    <img src={lorImg} alt="" className='w-[15vw] h-[19vw]'/>
-                    <p className='text-white mt-[2%]'>
+                    <img src={lorImg} alt="" className='w-[15vw] h-[15vw]'/>
+                    <p className='text-white mt-[2%] text-sm'>
                     Here Belongs Your Letter 
                     Of Recommendation
                     </p>
                 </div>
                 </div>
-                <div className='mt-[4%] flex flex-row gap-[40%] ml-[4%]'>
+                <div className='mt-[2.3vw] flex flex-row gap-[35%] ml-[4%]'>
                     <button className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
                         View
                     </button>
@@ -77,9 +77,9 @@ Letter Of Recommendation
             </div>
 
             {/* {Third div} */}
-            <div className='bg-[#186cec] p-4 pr-10 pl-6 pb-6 rounded-[25px] border border-black w-[30%]'>
+            <div className='bg-[#186cec] p-4 pr-10 pl-6 pb-6 rounded-[25px] border border-black w-[25%]'>
                 <div className='flex flex-col '>
-                <h1 className='text-white font-bold text-4xl text-start w-[70%]'>
+                <h1 className='text-white font-bold text-2xl text-start w-[70%]'>
                 Your Offer 
                 Letter
                 </h1>
@@ -91,7 +91,7 @@ Letter Of Recommendation
                     <img src={offerLetterImg} alt="" className='w-[20vw] h-[20vw]'/>
                 </div>
                 </div>
-                <div className='mt-[4%] flex flex-row gap-[40%] ml-[4%]'>
+                <div className='mt-[4%] flex flex-row gap-[35%] ml-[4%]'>
                     <button className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
                         View
                     </button>
