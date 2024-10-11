@@ -5,7 +5,7 @@ import CertificateValidationMessage from './CertificateValidationMessage';
 const Validate = () => {
   return (
     // top part
-    <div className="flex items-center justify-center min-w-screen flex-col overflow-x-hidden md:h-auto">
+    <div className="flex items-center justify-center min-w-screen flex-col overflow-x-hidden md:h-auto mt-[20px] md:mt-[0px]">
         <div className="overflow-x-hidden border border-b-[#BFD1E4] border-b-[0.2vw] border-t-transparent">
         <div className="flex flex-col md:flex-row mt-[10%]">
           <div className="flex flex-col gap-[7vw] md:gap-[10%] ml-[5%] md:w-[50%]">

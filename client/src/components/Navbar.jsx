@@ -31,7 +31,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="flex justify-between items-center p-3 flex-col">
+    <nav className="bg-[#f7fbff] fixed top-0 left-0 w-full z-10 flex justify-between items-center p-3 flex-col">
       <div className='container mx-auto px-1 flex justify-between items-center'>
         <img
           onClick={goToHome}
@@ -125,7 +125,7 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden h-[180px]">
+        <div className="md:hidden h-[200px]">
           <ul className="flex flex-col items-center space-y-4">
             <li>
               <Link

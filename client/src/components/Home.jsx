@@ -10,7 +10,7 @@ import ReviewsSection from "./ReviewSection";
 
 const Home = () => {
   return (
-    <div className="flex items-center justify-center min-w-screen flex-col overflow-x-hidden">
+    <div className="flex items-center justify-center min-w-screen flex-col overflow-x-hidden mt-[23px] md:mt-0">
       {/* {Top portion} */}
 
       <div className="overflow-x-hidden">
