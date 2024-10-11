@@ -41,10 +41,19 @@ const Settings = () => {
 
   return (
     <>
-    <div>
-        <div>
-            
+    <div className='overflow-x-hidden'>
+    <div className='w-screen h-full flex justify-center items-center flex-col'>
+        <div className='bg-gradient-to-r from-[#015bbb] via-[#6d9cf5] to-[#72a0f8] p-3 mt-[12%] font-bold text-2xl text-black rounded-full'>
+        Manage Account Settings and Notifications
         </div>
+        <br />
+        <div className='w-screen flex items-center justify-center'>
+        <p className='text-gray-600 text-sm w-[35%] text-center'>
+        Manage personal information, change passwords, and set
+        notification preferences for email, SMS, and in-app alerts.
+        </p>
+        </div>
+        
     </div>
     <div className="min-h-screen flex justify-center items-center bg-[#f7fbff] p-10">
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-[7%]">
@@ -147,6 +156,7 @@ const Settings = () => {
           <h3 className="text-3xl font-bold text-center">COMING SOON</h3>
         </div>
       </div>
+    </div>
     </div>
     </>
   );

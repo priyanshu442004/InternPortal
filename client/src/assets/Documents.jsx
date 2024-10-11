@@ -101,6 +101,25 @@ Letter Of Recommendation
                 </div>
                
             </div>
+            
+        </div>
+        <div className='text-gray-500 text-md flex text-start flex-col pl-[10%] mt-[5%]'>
+            <p>
+                Note
+            </p>
+            <br />
+
+            <p className='w-[50%]'>
+             
+If you notice any discrepancies in your documents, please reach out to us 
+at  support@docq.in . We’re here to assist you and will resolve the issue 
+as quickly as possible.
+            </p>
+        </div>
+        <div className='w-screen flex items-center justify-center mt-[7%]'>
+            <button className='bg-[#186cec] w-[12vw] p-2 rounded-[10px] border border-black text-white'>
+                Need Help?  
+            </button>
         </div>
     </div>
   )

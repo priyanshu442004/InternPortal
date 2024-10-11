@@ -31,7 +31,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-[#f7fbff] fixed top-0 left-0 w-full z-10 flex justify-between items-center p-3 flex-col">
+    <nav className=" bg-[#f7fbff] fixed top-0 left-0 w-full z-10 flex justify-between items-center p-3 flex-col">
       <div className='container mx-auto px-1 flex justify-between items-center'>
         <img
           onClick={goToHome}
@@ -105,7 +105,7 @@ const Navbar = () => {
                 </li>
                 <li className="flex items-center space-x-2">
                   <i className="fas fa-cog text-xl"></i>
-                  <a href="#" className=" hover:underline">Settings</a>
+                  <Link to="/Settings" className=" hover:underline">Settings</Link>
                 </li>
                 <li className="flex items-center space-x-2">
                   <i className="fas fa-question-circle text-xl"></i>
@@ -186,7 +186,7 @@ const Navbar = () => {
                 </li>
                 <li className="flex items-center space-x-2">
                   <i className="fas fa-cog text-xl"></i>
-                  <a href="#" className=" hover:underline">Settings</a>
+                  <Link to="/Settings" className=" hover:underline">Settings</Link>
                 </li>
                 <li className="flex items-center space-x-2">
                   <i className="fas fa-question-circle text-xl"></i>
