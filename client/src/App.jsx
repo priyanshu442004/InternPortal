@@ -4,6 +4,10 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Validate from "./components/Validate";
+import ContactUs from "./components/ContactUs";
+import Documents from "./assets/Documents";
+import Profile from "./components/Profile";
+import Settings from "./components/Settings";
 
 function App() {
 
@@ -14,6 +18,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Validate-Certificate" element={<Validate />} />
+        <Route path="/Documents" element={<Documents />} />
+        <Route path="/Contact-us" element={<ContactUs />} />
+        <Route path="/Profile" element={<Profile />} />
+        <Route path="/Settings" element={<Settings />} />
       </Routes>
       <Footer />
     </BrowserRouter>

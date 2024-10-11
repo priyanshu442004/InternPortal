@@ -61,9 +61,9 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <a href="#" className="text-black font-semibold hover:underline">
+              <Link to='/documents' className="text-black font-semibold hover:underline">
                 Documents
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -101,7 +101,7 @@ const Navbar = () => {
               <ul className="flex flex-col space-y-3 px-[20%] py-3 font-semibold text-black">
                 <li className="flex items-center space-x-2">
                   <i className="fas fa-user text-xl"></i>
-                  <a href="#" className=" hover:underline">Profile</a>
+                  <Link to="/profile" className=" hover:underline">Profile</Link>
                 </li>
                 <li className="flex items-center space-x-2">
                   <i className="fas fa-cog text-xl"></i>
@@ -153,7 +153,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/pricing"
+                to="/documents"
                 className="text-gray-700 hover:text-blue-600 transition duration-300"
               >
                 Documents
@@ -182,7 +182,7 @@ const Navbar = () => {
               <ul className="flex flex-col space-y-3 px-[20%] py-3 font-semibold text-black">
                 <li className="flex items-center space-x-2">
                   <i className="fas fa-user text-xl"></i>
-                  <a href="#" className=" hover:underline">Profile</a>
+                  <Link to="/profile" className=" hover:underline">Profile</Link>
                 </li>
                 <li className="flex items-center space-x-2">
                   <i className="fas fa-cog text-xl"></i>
