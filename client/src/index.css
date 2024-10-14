@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kantumruy:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,4 +23,8 @@
 
 .icon-shadow {
   box-shadow: 0 6px 4px rgba(0, 0, 0, 0.4); 
+}
+
+.bg-gradient-to-t {
+  background-image: linear-gradient(to top, #131722, #1E222D);
 }

@@ -51,7 +51,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <a href="#" className="text-black font-semibold hover:underline">
+              <a href="/intern-performance" className="text-black font-semibold hover:underline">
                 Performance
               </a>
             </li>
@@ -137,7 +137,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/progress"
+                to="/intern-performance"
                 className="text-gray-700 hover:text-blue-600 transition duration-300"
               >
                 Performance
