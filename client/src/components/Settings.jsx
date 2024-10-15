@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ToggleCheckbox from '../ToggleCheckbox';
 
 const Settings = () => {
   const [passwordData, setPasswordData] = useState({
@@ -22,11 +23,13 @@ const Settings = () => {
   };
 
   const handleToggle = (e) => {
+    setIsChecked(!isChecked);
     const { name } = e.target;
     setNotifications({
       ...notifications,
       [name]: !notifications[name],
     });
+    console.log({name})
   };
 
   const handlePasswordSave = (e) => {
@@ -43,12 +46,12 @@ const Settings = () => {
     <>
     <div className='overflow-x-hidden'>
     <div className='w-screen h-full flex justify-center items-center flex-col'>
-        <div className='bg-gradient-to-r from-[#015bbb] via-[#6d9cf5] to-[#72a0f8] p-3 mt-[12%] font-bold text-2xl text-black rounded-full'>
+        <div className='bg-gradient-to-r from-[#015bbb] via-[#6d9cf5] to-[#72a0f8] p-2 md:p-3 mt-[20%] md:mt-[12%] font-bold text-md md:text-2xl text-black rounded-full text-center'>
         Manage Account Settings and Notifications
         </div>
         <br />
         <div className='w-screen flex items-center justify-center'>
-        <p className='text-gray-600 text-sm w-[35%] text-center'>
+        <p className='text-gray-600 text-sm md:w-[35%] text-center'>
         Manage personal information, change passwords, and set
         notification preferences for email, SMS, and in-app alerts.
         </p>
@@ -56,7 +59,7 @@ const Settings = () => {
         
     </div>
     <div className="min-h-screen flex justify-center items-center bg-[#f7fbff] p-10">
-      <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-[7%]">
+      <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-[7%]">
         {/* Change Password Section */}
         <div className="bg-[#76a2f8] p-6 rounded-[50px] shadow-lg">
           <h3 className="text-2xl  font-semibold text-center mb-4">Change Password</h3>
@@ -110,33 +113,23 @@ const Settings = () => {
           <form onSubmit={handleNotificationsSave} className="space-y-6 font-bold text-lg">
             <div className="flex items-center justify-between mt-[3vw]">
               <label>Email Notifications</label>
-              <input
-                type="checkbox"
-                name="email"
+
+              <ToggleCheckbox name="email"
                 checked={notifications.email}
-                onChange={handleToggle}
-                className="toggle-checkbox"
-              />
+                onChange={handleToggle}/>
             </div>
+
             <div className="flex items-center justify-between">
               <label>SMS Notifications</label>
-              <input
-                type="checkbox"
-                name="sms"
-                checked={notifications.sms}
-                onChange={handleToggle}
-                className="toggle-checkbox"
-              />
+              <ToggleCheckbox name="email"
+                checked={notifications.email}
+                onChange={handleToggle}/>
             </div>
             <div className="flex items-center justify-between">
               <label>Alerts</label>
-              <input
-                type="checkbox"
-                name="alerts"
-                checked={notifications.alerts}
-                onChange={handleToggle}
-                className="toggle-checkbox"
-              />
+              <ToggleCheckbox name="email"
+                checked={notifications.email}
+                onChange={handleToggle}/>
             </div>
             <p className="text-center text-gray-400 w-full text-sm mt-4">These preferences can be changed anytime</p>
             <div className='w-full flex justify-center items-center'>

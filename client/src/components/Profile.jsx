@@ -75,7 +75,7 @@ const Profile = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-[15%]">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[20%]">
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-[20%]">
             <div>
               <label className="block text-gray-600">Name</label>
               <input
@@ -156,7 +156,7 @@ const Profile = () => {
           {/* Address Section */}
           <div className="">
             <h3 className="text-lg font-semibold mb-4">Address</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[20%]">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-[20%]">
               <div>
                 <label className="block text-gray-600">House No. / Street Name / Area</label>
                 <input

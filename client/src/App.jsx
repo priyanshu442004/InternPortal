@@ -8,6 +8,7 @@ import ContactUs from "./components/ContactUs";
 import Documents from "./assets/Documents";
 import Profile from "./components/Profile";
 import Settings from "./components/Settings";
+import ToggleCheckbox from "./ToggleCheckbox";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/Contact-us" element={<ContactUs />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Settings" element={<Settings />} />
+        <Route path="/check" element={<ToggleCheckbox />} />
       </Routes>
       <Footer />
     </BrowserRouter>
