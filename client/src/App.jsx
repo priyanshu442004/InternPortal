@@ -9,6 +9,8 @@ import Documents from "./components/Documents";
 import Profile from "./components/Profile";
 import Settings from "./components/Settings";
 import ToggleCheckbox from "./ToggleCheckbox";
+import Performance from "./components/Performance";
+import PerformanceLoginMesage from "./components/PerformanceLoginMessage";
 
 function App() {
 
@@ -18,12 +20,14 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/intern-performance" element={<Performance />} />
         <Route path="/Validate-Certificate" element={<Validate />} />
         <Route path="/Documents" element={<Documents />} />
         <Route path="/Contact-us" element={<ContactUs />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Settings" element={<Settings />} />
-        <Route path="/check" element={<ToggleCheckbox />} />
+        
+        <Route path="/not-login" element={<PerformanceLoginMesage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

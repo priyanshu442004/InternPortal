@@ -5,7 +5,25 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        geologica: ['Geologica', 'sans-serif'],
+        kantumruy: ['Kantumruy', 'sans-serif'],
+      },
+      colors: {
+        customGray: '#767782',
+      },
+      fontSize: {
+        'custom-41': '41px',
+        'custom-33' : '33px',
+      },
+      lineHeight: {
+        'custom-74': '74.07px',
+      },
+      boxShadow: {
+        'y-4': '0 4px 8px rgba(0, 0, 0, 0.1)', // Example shadow
+      },
+    },
   },
   plugins: [],
 }

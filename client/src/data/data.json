@@ -1,0 +1,53 @@
+{
+    "internsPerformance": [
+      {
+        "month": "January",
+        "performance": 75
+      },
+      {
+        "month": "February",
+        "performance": 88
+      },
+      {
+        "month": "March",
+        "performance": 92
+      },
+      {
+        "month": "April",
+        "performance": 85
+      },
+      {
+        "month": "May",
+        "performance": 90
+      },
+      {
+        "month": "June",
+        "performance": 95
+      },
+      {
+        "month": "July",
+        "performance": 80
+      },
+      {
+        "month": "August",
+        "performance": 85
+      },
+      {
+        "month": "September",
+        "performance": 87
+      },
+      {
+        "month": "October",
+        "performance": 93
+      },
+      {
+        "month": "November",
+        "performance": 89
+      },
+      {
+        "month": "December",
+        "performance": 91
+      }
+    ]
+  }
+  
