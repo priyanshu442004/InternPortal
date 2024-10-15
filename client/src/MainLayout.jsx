@@ -17,7 +17,7 @@ const MainLayout = () => {
   const isAdminRoute = location.pathname.startsWith("/admin");
 
   return (
-    <div>
+    <div className="bg-[#f7fbff]">
       {!isAdminRoute && <Navbar />}
 
       <Routes>

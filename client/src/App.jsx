@@ -5,7 +5,7 @@ import AdminLayout from "./AdminLayout";
 
 function App() {
   return (
-    <div className="bg-[#f7fbff]">
+    <div>
       <BrowserRouter>
         <Routes>
           {/* User routes */}
