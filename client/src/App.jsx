@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Validate from "./components/Validate";
 import ContactUs from "./components/ContactUs";
-import Documents from "./assets/Documents";
+import Documents from "./components/Documents";
 import Profile from "./components/Profile";
 import Settings from "./components/Settings";
 import ToggleCheckbox from "./ToggleCheckbox";
