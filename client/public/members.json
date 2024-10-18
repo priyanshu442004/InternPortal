@@ -1,0 +1,9 @@
+{
+    "members": [
+      { "name": "John Doe", "role": "Team Lead" },
+      { "name": "Jane Smith", "role": "Backend Developer" },
+      { "name": "Alice Johnson", "role": "Frontend Developer" },
+      { "name": "Bob Brown", "role": "UI/UX Designer" }
+    ]
+  }
+  

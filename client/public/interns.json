@@ -1,0 +1,327 @@
+{
+    "interns": [
+      {
+        "name": "Mary Joseph",
+        "role": "Web Developer",
+        "status": "Working",
+        "joiningDate": "20/10/2022",
+        "completionDate": "1/12/2022"
+      },
+      {
+        "name": "Amala Jones",
+        "role": "Web Developer",
+        "status": "Left",
+        "joiningDate": "11/10/2022",
+        "completionDate": "1/12/2022"
+      },
+      {
+        "name": "Damilola Oyin",
+        "role": "App Developer",
+        "status": "Terminated",
+        "joiningDate": "9/10/2022",
+        "completionDate": "1/11/2022"
+      },
+      {
+        "name": "Selim Jubril",
+        "role": "Web Developer",
+        "status": "On Leave",
+        "joiningDate": "12/10/2022",
+        "completionDate": "2/12/2022"
+      },
+      {
+        "name": "Paul Christian",
+        "role": "Python Developer",
+        "status": "Terminated",
+        "joiningDate": "22/10/2022",
+        "completionDate": "3/12/2022"
+      },
+      {
+        "name": "Rosabel Briggs",
+        "role": "App Developer",
+        "status": "Working",
+        "joiningDate": "23/10/2022",
+        "completionDate": "4/12/2022"
+      },
+      {
+        "name": "Tina Adekeye",
+        "role": "Web Developer",
+        "status": "Working",
+        "joiningDate": "19/10/2022",
+        "completionDate": "5/12/2022"
+      },
+      {
+        "name": "Mark Bossman",
+        "role": "Web Developer",
+        "status": "Working",
+        "joiningDate": "17/10/2022",
+        "completionDate": "2/12/2022"
+      },
+      {
+        "name": "John Doe",
+        "role": "Data Scientist",
+        "status": "Working",
+        "joiningDate": "15/09/2022",
+        "completionDate": "1/11/2022"
+      },
+      {
+        "name": "Anna Smith",
+        "role": "Web Developer",
+        "status": "Left",
+        "joiningDate": "10/09/2022",
+        "completionDate": "1/12/2022"
+      },
+      {
+        "name": "Robert Miles",
+        "role": "Java Developer",
+        "status": "Terminated",
+        "joiningDate": "5/09/2022",
+        "completionDate": "1/10/2022"
+      },
+      {
+        "name": "Cynthia Stone",
+        "role": "Python Developer",
+        "status": "On Leave",
+        "joiningDate": "12/09/2022",
+        "completionDate": "2/11/2022"
+      },
+      {
+        "name": "Derrick McCarthy",
+        "role": "App Developer",
+        "status": "Working",
+        "joiningDate": "20/09/2022",
+        "completionDate": "3/12/2022"
+      },
+      {
+        "name": "Monica Lewinski",
+        "role": "Web Developer",
+        "status": "Working",
+        "joiningDate": "18/08/2022",
+        "completionDate": "3/11/2022"
+      },
+      {
+        "name": "Steven Black",
+        "role": "Web Developer",
+        "status": "Working",
+        "joiningDate": "25/08/2022",
+        "completionDate": "3/11/2022"
+      },
+      {
+        "name": "Joan Rivers",
+        "role": "App Developer",
+        "status": "Working",
+        "joiningDate": "5/08/2022",
+        "completionDate": "4/12/2022"
+      },
+      {
+        "name": "Hannah Jane",
+        "role": "Python Developer",
+        "status": "Terminated",
+        "joiningDate": "30/07/2022",
+        "completionDate": "1/10/2022"
+      },
+      {
+        "name": "Chris Walker",
+        "role": "Web Developer",
+        "status": "On Leave",
+        "joiningDate": "2/08/2022",
+        "completionDate": "2/11/2022"
+      },
+      {
+        "name": "Grace Lewis",
+        "role": "App Developer",
+        "status": "Working",
+        "joiningDate": "12/08/2022",
+        "completionDate": "1/12/2022"
+      },
+      {
+        "name": "Henry Ford",
+        "role": "Web Developer",
+        "status": "Left",
+        "joiningDate": "1/09/2022",
+        "completionDate": "3/12/2022"
+      },
+      {
+        "name": "Nina Parker",
+        "role": "Python Developer",
+        "status": "Working",
+        "joiningDate": "19/08/2022",
+        "completionDate": "4/12/2022"
+      },
+      {
+        "name": "Olivia Garcia",
+        "role": "Web Developer",
+        "status": "Working",
+        "joiningDate": "27/09/2022",
+        "completionDate": "1/12/2022"
+      },
+      {
+        "name": "Jacob Flynn",
+        "role": "Java Developer",
+        "status": "Working",
+        "joiningDate": "2/09/2022",
+        "completionDate": "5/12/2022"
+      },
+      {
+        "name": "Sophia White",
+        "role": "App Developer",
+        "status": "On Leave",
+        "joiningDate": "15/09/2022",
+        "completionDate": "1/12/2022"
+      },
+      {
+        "name": "Ethan Clark",
+        "role": "Python Developer",
+        "status": "Terminated",
+        "joiningDate": "8/10/2022",
+        "completionDate": "2/12/2022"
+      },
+      {
+        "name": "Lily Adams",
+        "role": "Web Developer",
+        "status": "Working",
+        "joiningDate": "10/10/2022",
+        "completionDate": "2/12/2022"
+      },
+      {
+        "name": "Nathan Evans",
+        "role": "App Developer",
+        "status": "Left",
+        "joiningDate": "5/09/2022",
+        "completionDate": "1/12/2022"
+      },
+      {
+        "name": "Emma Scott",
+        "role": "Web Developer",
+        "status": "Working",
+        "joiningDate": "15/10/2022",
+        "completionDate": "1/12/2022"
+      },
+      {
+        "name": "James Moore",
+        "role": "Java Developer",
+        "status": "On Leave",
+        "joiningDate": "20/09/2022",
+        "completionDate": "5/12/2022"
+      },
+      {
+        "name": "Isabella Lee",
+        "role": "Python Developer",
+        "status": "Terminated",
+        "joiningDate": "7/08/2022",
+        "completionDate": "4/12/2022"
+      },
+      {
+        "name": "Aiden Parker",
+        "role": "Web Developer",
+        "status": "Working",
+        "joiningDate": "9/10/2022",
+        "completionDate": "3/12/2022"
+      },
+      {
+        "name": "Mia Green",
+        "role": "App Developer",
+        "status": "Left",
+        "joiningDate": "20/09/2022",
+        "completionDate": "5/12/2022"
+      },
+      {
+        "name": "Alexander Taylor",
+        "role": "Python Developer",
+        "status": "Working",
+        "joiningDate": "25/09/2022",
+        "completionDate": "4/12/2022"
+      },
+      {
+        "name": "Harper Murphy",
+        "role": "Web Developer",
+        "status": "On Leave",
+        "joiningDate": "29/09/2022",
+        "completionDate": "1/12/2022"
+      },
+      {
+        "name": "Logan Sanchez",
+        "role": "App Developer",
+        "status": "Terminated",
+        "joiningDate": "14/10/2022",
+        "completionDate": "5/12/2022"
+      },
+      {
+        "name": "Aria Rivera",
+        "role": "Java Developer",
+        "status": "Working",
+        "joiningDate": "10/10/2022",
+        "completionDate": "2/12/2022"
+      },
+      {
+        "name": "Benjamin Cooper",
+        "role": "Python Developer",
+        "status": "Working",
+        "joiningDate": "15/10/2022",
+        "completionDate": "4/12/2022"
+      },
+      {
+        "name": "Liam Edwards",
+        "role": "App Developer",
+        "status": "Left",
+        "joiningDate": "9/09/2022",
+        "completionDate": "1/12/2022"
+      },
+      {
+        "name": "Emily Ward",
+        "role": "Web Developer",
+        "status": "Working",
+        "joiningDate": "22/09/2022",
+        "completionDate": "3/12/2022"
+      },
+      {
+        "name": "Oliver Hughes",
+        "role": "Python Developer",
+        "status": "Terminated",
+        "joiningDate": "30/09/2022",
+        "completionDate": "5/12/2022"
+      },
+      {
+        "name": "Ava Foster",
+        "role": "App Developer",
+        "status": "Working",
+        "joiningDate": "12/09/2022",
+        "completionDate": "4/12/2022"
+      },
+      {
+        "name": "Lucas Powell",
+        "role": "Web Developer",
+        "status": "Working",
+        "joiningDate": "19/09/2022",
+        "completionDate": "5/12/2022"
+      },
+      {
+        "name": "Mason Baker",
+        "role": "Python Developer",
+        "status": "On Leave",
+        "joiningDate": "8/10/2022",
+        "completionDate": "1/12/2022"
+      },
+      {
+        "name": "Ella Griffin",
+        "role": "App Developer",
+        "status": "Terminated",
+        "joiningDate": "25/09/2022",
+        "completionDate": "3/12/2022"
+      },
+      {
+        "name": "Jackson Butler",
+        "role": "Java Developer",
+        "status": "Working",
+        "joiningDate": "10/09/2022",
+        "completionDate": "5/12/2022"
+      },
+      {
+        "name": "Charlotte Sanders",
+        "role": "Web Developer",
+        "status": "Working",
+        "joiningDate": "1/09/2022",
+        "completionDate": "1/12/2022"
+      }
+    ]
+  }
+  
