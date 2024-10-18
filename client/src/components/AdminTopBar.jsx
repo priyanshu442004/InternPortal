@@ -1,52 +1,55 @@
-import React from 'react';
+import React from "react";
+import logo from "../assets/logo.png";
+import { FaSearch, FaEnvelope, FaBell } from "react-icons/fa";
+import logoutIcon from "../assets/logout-icon.png";
 
 const Navbar = () => {
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
-    <nav className="flex items-center justify-between px-6 py-2 bg-white shadow-md">
-      {/* Left section (Logo and Search bar) */}
+    <nav className="flex items-center justify-between px-6 py-2 bg-white border">
       <div className="flex items-center space-x-6">
-        {/* Logo */}
         <div>
-          <img
-            src="" // Add logo source here
-            alt="logo"
-            className="h-8"
-          />
+          <img src={logo} alt="logo" className="h-[4.5vw] w-[10vw]" />
         </div>
 
-        {/* Search Bar */}
-        <div>
+        <div className="relative pl-[6vw]">
           <input
             type="text"
             placeholder="Search"
-            className="border border-gray-300 rounded-full py-1 px-4 outline-none focus:ring focus:ring-blue-400"
+            className="border border-gray-300 rounded-lg py-1 pl-4 pr-10 outline-none focus:ring focus:ring-blue-400 w-[40vw]"
           />
+          <FaSearch className="absolute right-3 top-2.5 text-gray-500" />
         </div>
       </div>
 
-      {/* Right section (Admin, Date, Icons) */}
-      <div className="flex items-center space-x-4">
-        {/* Admin */}
+      <div className="flex items-center space-x-[3vw]">
         <div className="font-medium">Admin</div>
 
-        {/* Date */}
-        <div className="font-light text-gray-600">26 October 2023</div>
+        <div className="text-black text-sm border rounded-lg px-2 py-1">
+          {formattedDate}
+        </div>
 
-        {/* Icons */}
-        <div className="flex space-x-3 items-center">
-          {/* Mail Icon */}
+        <div className="flex space-x-[2vw] items-center">
           <div>
-            <i className="far fa-envelope text-gray-600"></i> {/* Font Awesome Icon */}
+            <FaEnvelope className="text-gray-600 hover:cursor-pointer" />
           </div>
 
-          {/* Notification Icon */}
           <div>
-            <i className="far fa-bell text-gray-600"></i> {/* Font Awesome Icon */}
+            <FaBell className="text-gray-600 hover:cursor-pointer" />
           </div>
 
-          {/* Profile Icon */}
           <div>
-            <i className="far fa-user-circle text-gray-600"></i> {/* Font Awesome Icon */}
+            <img
+              src={logoutIcon}
+              alt="Logout"
+              className="h-6 w-6 hover:cursor-pointer"
+            />
           </div>
         </div>
       </div>
