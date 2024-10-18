@@ -1,15 +1,20 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { FaPlus, FaUserFriends, FaInbox, FaChartBar, FaCog } from 'react-icons/fa'; 
-import { HiOutlineViewGrid } from 'react-icons/hi';
-import { MdOutlineEdit } from 'react-icons/md';
+import { NavLink } from 'react-router-dom'; 
+import { BsClipboard2Check } from "react-icons/bs";
+import { BsPeople } from "react-icons/bs";
+import { RxEnvelopeClosed } from "react-icons/rx";
+import { SlChart } from "react-icons/sl";
+import { IoSettingsOutline } from "react-icons/io5";
+
+import { FiPlus } from "react-icons/fi";
+import { MdOutlineSpaceDashboard } from 'react-icons/md';
 
 const Sidebar = () => {
   return (
     <div className="w-[20%] min-h-screen bg-white shadow-lg flex flex-col pt-6 pr-6">
       {/* MENU Section */}
       <div className="mb-8">
-        <h3 className="text-gray-500 uppercase text-sm mb-4">Menu</h3>
+        <h3 className="text-gray-500 uppercase text-sm mb-4 ml-2">Menu</h3>
         <ul className="space-y-4 pt-2">
           <li>
             <NavLink
@@ -20,7 +25,7 @@ const Sidebar = () => {
                   : 'flex items-center border-l-4 border-transparent text-gray-600 hover:text-blue-800  py-2 pl-4'
               }
             >
-              <HiOutlineViewGrid className="mr-3 text-lg" />
+              <MdOutlineSpaceDashboard className="mr-3 text-2xl" />
               Dashboard
             </NavLink>
           </li>
@@ -34,7 +39,7 @@ const Sidebar = () => {
                   : 'flex items-center border-l-4 border-transparent text-gray-600 hover:text-blue-800  py-2 pl-4'
               }
             >
-              <FaPlus className="mr-3 text-lg" />
+              <FiPlus className="mr-3 text-2xl" />
               Edit Interns
             </NavLink>
           </li>
@@ -48,7 +53,7 @@ const Sidebar = () => {
                   : 'flex items-center border-l-4 border-transparent text-gray-600 hover:text-blue-800  py-2 pl-4'
               }
             >
-              <FaUserFriends className="mr-3 text-lg" />
+              <BsClipboard2Check className="mr-3 text-2xl" />
               Interns
             </NavLink>
           </li>
@@ -62,7 +67,7 @@ const Sidebar = () => {
                   : 'flex items-center border-l-4 border-transparent text-gray-600 hover:text-blue-800  py-2 pl-4'
               }
             >
-              <FaPlus className="mr-3 text-lg" />Add Intern
+              <BsPeople className="mr-3 text-2xl" />Add Intern
             </NavLink>
           </li>
 
@@ -75,7 +80,7 @@ const Sidebar = () => {
                   : 'flex items-center border-l-4 border-transparent text-gray-600 hover:text-blue-800  py-2 pl-4 relative'
               }
             >
-              <FaInbox className="mr-3 text-lg" />
+              <RxEnvelopeClosed className="mr-3 text-2xl" />
               Messages
               {/* Notification Badge */}
               <span className="absolute right-0 bg-red-500 text-white rounded-full text-xs px-2 py-1">2</span>
@@ -91,7 +96,7 @@ const Sidebar = () => {
                   : 'flex items-center border-l-4 border-transparent text-gray-400 py-2 line-through pl-4'
               }
             >
-              <FaChartBar className="mr-3 text-lg" />
+              <SlChart className="mr-3 text-2xl" />
               Analytics
             </NavLink>
           </li>
@@ -103,7 +108,7 @@ const Sidebar = () => {
       </div>
       {/* GENERAL Section */}
       <div className='pt-6 mb-[10vw]'>
-        <h3 className="text-gray-500 uppercase text-sm mb-4">General</h3>
+        <h3 className="text-gray-500 uppercase text-sm mb-4 ml-2">General</h3>
         <ul>
           <li>
             <NavLink
@@ -114,7 +119,7 @@ const Sidebar = () => {
                   : 'flex items-center border-l-4 border-transparent text-gray-600 hover:text-blue-800  py-2 pl-4'
               }
             >
-              <FaCog className="mr-3 text-lg" />
+              <IoSettingsOutline className="mr-3 text-2xl" />
               Settings
             </NavLink>
           </li>
