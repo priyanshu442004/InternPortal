@@ -8,7 +8,7 @@ import questionicon from "@/assets/questionicon.png"
 const InternsDashboard = () => {
   const [interns, setInterns] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [internsPerPage] = useState(5); // Number of interns per page
+  const [internsPerPage] = useState(8); // Number of interns per page
   const [loading, setLoading] = useState(true); // Track loading state
 
   useEffect(() => {
@@ -151,7 +151,7 @@ const InternsDashboard = () => {
   if (loading) return <div>Loading interns data...</div>;
 
   return (
-    <div className="p-6 bg-slate-50 rounded-lg shadow-md">
+    <div className="w-full p-6 bg-slate-50 rounded-lg shadow-md">
       <h2 className="font-mukta text-xl font-normal mb-4">Interns Data</h2>
 
       <div className="flex md:flex-row flex-col h-auto md:h-16 justify-between bg-white items-center mb-4">

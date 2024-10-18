@@ -6,20 +6,25 @@ import AdminInternList from './components/AdminInternList'
 import AdminDashboard from './components/AdminDashboard'
 import AdminSupportTickets from './components/AdminSupportTickets'
 import AdminInternStats from './components/AdminInternStats'
-
+import Navbar from './components/AdminTopBar'
+import AdminSidebar from './components/AdminSideBar'
+import Settings from './components/AdminSettings'
 
 const AdminLayout = () => {
   return (
-    <div>
-      
+    <div className='flex flex-col'>
+      <Navbar />
+      <div className='flex flex-row'>
+
+      <AdminSidebar />
       <Routes>
         <Route path="/" element={<AdminLogin />} />
         <Route path="/add-intern" element={<AddminAddIntern />} />
         <Route path="/interns-list" element={<AdminInternList />} />
         <Route path="/dashboard" element={<AdminDashboard />} />
-        <Route path="/support" element={<AdminSupportTickets/>}/>
-        <Route path="/cards" element={<AdminInternStats/>}/>
+        <Route path="/Settings" element={<Settings />} />
       </Routes>
+      </div>
     </div>
   )
 }
