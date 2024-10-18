@@ -12,7 +12,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 w-[80%]">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 w-screen md:w-[80%]">
         <div className='w-full flex justify-start'>
   <p className='w-full font-semibold text-gray-900 text-md text-left'>
       Messages
