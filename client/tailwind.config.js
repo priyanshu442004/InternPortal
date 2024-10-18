@@ -9,6 +9,8 @@ export default {
       fontFamily: {
         geologica: ['Geologica', 'sans-serif'],
         kantumruy: ['Kantumruy', 'sans-serif'],
+        mukta: ['Mukta','sans-serif'],
+        inter: ['Inter', 'sans-serif'],
       },
       colors: {
         customGray: '#767782',
