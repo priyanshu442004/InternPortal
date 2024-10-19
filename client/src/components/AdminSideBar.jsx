@@ -59,7 +59,7 @@ const Sidebar = () => {
 
             <li onClick={toggleSidebar}>
               <NavLink
-                to="./interns"
+                to="./interns-list"
                 className={({ isActive }) =>
                   isActive
                     ? 'flex items-center text-blue-800 py-2 border-l-4 border-blue-800 pl-4'

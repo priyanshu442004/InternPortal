@@ -153,7 +153,7 @@ const AdminSupportTickets = () => {
 
   return (
     <div className="p-4 rounded-lg w-max">
-        <div className='flex flex-row ml-4 gap-4'> 
+        <div className='flex flex-row ml-7 gap-5'> 
             <div className='h-[107px] w-[90px] bg-[#E7E9F6] rounded-xl'>
                 <div className='flex-col flex'>
                     <h1 className='text-xs mt-2 ml-2 font-mukta font-semibold'>Total Support Tickets <span className='text-slate-700'> ({totalTickets}) </span> </h1>
@@ -176,7 +176,7 @@ const AdminSupportTickets = () => {
                 </div>
             </div>
         </div>
-    <div className='border-black min-h-[450px] h-auto w-[283px] mt-4 border-solid border-[1px] rounded-xl overflow-x-auto'> 
+    <div className='border-black min-h-[450px] h-auto w-[300px] mt-4 border-solid border-[1px] rounded-xl overflow-x-auto'> 
         <h3 className="text-lg font-semibold mt-4 ml-4">Support Tickets</h3>
         <div className='flex flex-row mr-3 gap-5 justify-end'>
             <div className='bg-[#a0ccff] rounded-full w-[22px] h-[10px] text-center text-white text-[6px]'> Date </div>
