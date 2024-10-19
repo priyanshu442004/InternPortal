@@ -31,12 +31,16 @@ function AdminDashboard() {
           {`Dashboard>Overview`}
         </h2>
       </div>
-      <div className="flex ml-16 mr-16 flex-row w-[850px] h-auto justify-end shadow-2xl bg-white mb-4">
-        <div className='flex flex-col mt-4 ml-16'>
-            <AdminInternStats interns={interns} />
-            <AdminMembersList members={members} />
+      <div className="flex  ml-16 mr-16 flex-row h-auto justify-end shadow-2xl bg-white mb-4">
+        <div className='flex flex-col mt-8 ml-6  w-3/4'>
+            <div>
+                <AdminInternStats interns={interns} />
+            </div>
+            <div className='mt-8'>
+                <AdminMembersList members={members} />
+            </div> 
         </div>
-        <div className='w-96'>
+        <div className='w-1/4 mr-28 mt-4 mb-4'>
         <AdminSupportTickets tickets={tickets} />
         </div>
         
