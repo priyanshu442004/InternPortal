@@ -34,7 +34,7 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="relative w-full flex items-center justify-center min-h-screen bg-[#c6cddd]">
+    <div className="relative flex items-center justify-center min-h-screen bg-[#c6cddd]">
       <img
         src={loginBackground}
         alt="Background"
