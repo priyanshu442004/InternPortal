@@ -7,7 +7,6 @@ const Settings = () => {
 
   const handlePasswordChange = (e) => {
     e.preventDefault();
-    // Add logic to handle password change here
     console.log('Password changed');
   };
 
