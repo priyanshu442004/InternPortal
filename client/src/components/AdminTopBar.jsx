@@ -5,6 +5,7 @@ import logoutIcon from "../assets/logout-icon.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate= useNavigate();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -18,11 +19,14 @@ const Navbar = () => {
   });
 
   return (
+    
     <nav className="flex items-center justify-between px-6 py-2 bg-white border w-full">
       {/* Logo and Search */}
       <div className="flex items-center space-x-6">
         <div>
-          <img src={logo} alt="logo" className="h-[10vw] md:h-[4.5vw] md:w-[10vw]" />
+          <img onClick={()=>{
+            
+          }} src={logo} alt="logo" className="h-[10vw] md:h-[4.5vw] md:w-[10vw]" />
         </div>
 
         {/* Search box will be hidden on small screens */}

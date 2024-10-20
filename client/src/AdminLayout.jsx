@@ -8,6 +8,7 @@ import Navbar from './components/AdminTopBar'
 import AdminSidebar from './components/AdminSideBar'
 import Settings from './components/AdminSettings'
 import AdminEditIntern from './components/AdminEditIntern'
+import AdminMessages from './components/AdminMessages'
 
 const AdminLayout = () => {
   return (
@@ -22,6 +23,7 @@ const AdminLayout = () => {
         <Route path="/interns-list" element={<AdminInternList />} />
         <Route path="/dashboard" element={<AdminDashboard />} />
         <Route path="/Settings" element={<Settings />} />
+        <Route path="/Messages" element={<AdminMessages />} />
         <Route path="/Edit-Interns" element={<AdminEditIntern />} />
       </Routes>
       </div>

@@ -11,7 +11,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 w-screen md:w-[80%]">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-slate-50 p-4 w-screen md:w-[80%]">
         <div className='w-full flex justify-start'>
   <p className='w-full font-semibold text-gray-900 text-md text-left'>
       Messages
@@ -19,7 +19,7 @@ const Settings = () => {
 </div>
 
       {/* Change Password Section */}
-      <div className="bg-white shadow-lg pr-[15%] pl-[15%] pt-6 pb-6 mb-8 w-full max-w-md">
+      <div className="bg-white shadow-lg pr-[10%] pl-[10%] pt-6 pb-6 mb-8 w-full max-w-md">
         <h2 className="text-center text-xl font-semibold mb-6">Change Password</h2>
         <form onSubmit={handlePasswordChange}>
           <div className="mb-4">
