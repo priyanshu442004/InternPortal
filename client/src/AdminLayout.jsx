@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import AdminLogin from './components/AdminLogin'
 import AddminAddIntern from './components/AddminAddIntern'
 import AdminInternList from './components/AdminInternList'
@@ -11,12 +11,17 @@ import AdminEditIntern from './components/AdminEditIntern'
 import AdminMessages from './components/AdminMessages'
 
 const AdminLayout = () => {
+  const location = useLocation();
+
+  const isLoginPage = location.pathname === "/admin";
+
+
   return (
     <div className='flex flex-col'>
-      <Navbar />
+      {!isLoginPage && <Navbar />}
       <div className='flex flex-row'>
 
-      <AdminSidebar />
+      {!isLoginPage && <AdminSidebar />}
       <Routes>
         <Route path="/" element={<AdminLogin />} />
         <Route path="/add-intern" element={<AddminAddIntern />} />

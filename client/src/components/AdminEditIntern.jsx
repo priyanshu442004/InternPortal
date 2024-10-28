@@ -13,9 +13,6 @@ import { format } from "date-fns"
 const AdminEditIntern = () => {
   const [date, setDate] = useState<Date>('')
   return (
-<<<<<<< HEAD
-    <div>AdminEditIntern</div>
-=======
     
     <div className="min-h-screen bg-gray-100 p-4">
       <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
@@ -124,7 +121,6 @@ const AdminEditIntern = () => {
         </div>
       </div>
     </div>
->>>>>>> 5dc81ef46ad04cd0f823dd12b719335f5420fe70
   )
 }
 
