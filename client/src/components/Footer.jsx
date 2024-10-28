@@ -4,18 +4,16 @@ import Logo from '../assets/Logo.png';
 const Footer = () => {
   return (
     <footer className="bg-gray-100 py-8 px-4 flex items-center justify-center border border-t-[#BFD1E4] border-[0.2vw]">
-      <div className="flex flex-col md:flex-row justify-between md:items-center space-y-8 md:space-y-0">
+      <div className="flex flex-col md:flex-row justify-between md:items-center space-y-8 md:space-y-0 w-full">
         
-        
-        <div className="flex flex-col justify-center text-center md:text-start items-center mr-[10%]">
+        <div className="flex flex-col justify-center text-center md:text-start items-center md:mr-[10%]">
           <img src={Logo} alt="DOC-Q Logo" className="h-[10vw] md:h-[10vw]" />
           <p className="text-black text-sm mt-2 w-[90%] w-full">
             © 2024 DOC-Q INTERN PORTAL. <br /> All rights reserved.
           </p>
         </div>
         
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-center md:text-left">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 text-center md:text-left w-full">
           
           <div>
             <h4 className="font-bold text-gray-600 mb-3">Quick Links</h4>
@@ -37,7 +35,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          
           <div>
             <h4 className="font-bold text-gray-600 mb-3">Explore</h4>
             <ul className="space-y-2">
@@ -47,16 +44,15 @@ const Footer = () => {
               <li><a href="#" className="text-black hover:text-blue-500">Learning & Development</a></li>
             </ul>
           </div>
-        </div>
 
-        
-        <div className="text-center md:text-right ml-[7%]">
-          <h4 className="font-bold text-2xl text-gray-600 mb-3">Contact Us</h4>
-          <p className="text-black">#7, 6th cross Vinayaka nagar<br />
-            5th phase JP Nagar<br />
-            Bangalore 560078
-          </p>
-          <p className="text-black mt-2">support@docq.in</p>
+          <div className="text-center md:text-right">
+            <h4 className="font-bold text-2xl text-gray-600 mb-3">Contact Us</h4>
+            <p className="text-black">#7, 6th cross Vinayaka nagar<br />
+              5th phase JP Nagar<br />
+              Bangalore 560078
+            </p>
+            <p className="text-black mt-2">support@docq.in</p>
+          </div>
         </div>
       </div>
     </footer>

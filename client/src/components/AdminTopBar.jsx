@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { FaSearch, FaEnvelope, FaBell, FaBars } from "react-icons/fa";
 import logoutIcon from "../assets/logout-icon.png";

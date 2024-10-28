@@ -7,7 +7,7 @@ import star from '../assets/star.png'
 
 const ReviewCard = ({ profileSrc, name, review, rating, cardStyle, isRightAligned }) => {
   return (
-    <div className={`relative bg-blue-600 text-white rounded-lg p1 pr-[3%] md:w-[300px] md:h-[11vw] flex flex-col space-y-4 border border-black ${cardStyle}`}>
+    <div className={`relative bg-blue-600 text-white rounded-lg p1 pr-[3%] md:w-[300px] md:h-[10vw] flex flex-col space-y-4 border border-black ${cardStyle} pt-[1vw]`}>
       
       {isRightAligned ? (
         <div className="absolute -right-[15%] top-1/2 transform translate-x-3/4 -translate-y-1/2">
@@ -23,11 +23,11 @@ const ReviewCard = ({ profileSrc, name, review, rating, cardStyle, isRightAligne
       <div className={`flex flex-col ${isRightAligned ? 'items-end pr-[20%]' : 'items-start pl-[10%]'} ml-8`}>
         <h3 className="text-xl font-semibold">{name}</h3>
         <p className={`md:pb-0 text-sm md:w-[90%] ${isRightAligned ? 'text-right' : 'text-left'}`}>{review}</p>
-        <div className="flex space-x-1 mt-2">
+        {/* <div className="flex space-x-1 mt-2">
           {Array.from({ length: rating }).map((_, index) => (
             <span key={index} className="pb-1 md:pb-0 text-yellow-400"><img src={star} alt="" className='h-4 md:h-[2vw]'/></span>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -68,7 +68,7 @@ const ReviewsSection = () => {
   return (
     <div className="flex flex-col items-start p-8">
       
-      <div className="mb-4 md:absolute md:translate-y-[36vw] -translate-x-[3vw]">
+      <div className="mb-4 md:hidden md:translate-y-[36vw] -translate-x-[3vw]">
         <h2 className="text-4xl text-gray-800 font-bold">Reviews</h2>
         <div className="flex space-x-1 mt-1">
           {Array.from({ length: 5 }).map((_, index) => (

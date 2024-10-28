@@ -109,7 +109,7 @@ const Navbar = () => {
                 </li>
                 <li className="flex items-center space-x-2">
                   <i className="fas fa-question-circle text-xl"></i>
-                  <a href="#" className=" hover:underline">Support</a>
+                  <Link to="/contact-us" className=" hover:underline">Support</Link>
                 </li>
                 <li className="flex items-center space-x-2">
                   <i className="fas fa-globe text-xl"></i>
@@ -190,7 +190,7 @@ const Navbar = () => {
                 </li>
                 <li className="flex items-center space-x-2">
                   <i className="fas fa-question-circle text-xl"></i>
-                  <a href="#" className=" hover:underline">Support</a>
+                  <Link to="/contact-us" className=" hover:underline">Support</Link>
                 </li>
                 <li className="flex items-center space-x-2">
                   <i className="fas fa-globe text-xl"></i>
