@@ -13,7 +13,7 @@ const Login = () => {
   };
 
   const handleAdminRedirect = () => {
-    navigate('/admin-login');
+    navigate('/admin');
   };
 
   const clearInput = (setter) => {

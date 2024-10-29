@@ -1,8 +1,11 @@
 import React from 'react'
 import offerLetterImg from '../assets/offerLetterImg.jpg';
 import lorImg from '../assets/LOR.jpg'
+import { useNavigate } from 'react-router-dom';
 
 const Documents = () => {
+    const navigate=useNavigate();
+
   return (
     <div className='w-screen text-center flex flex-col justify-center items-center p-4'>
         <div className='mt-[18%] md:mt-[12%]'>
@@ -117,7 +120,9 @@ as quickly as possible.
             </p>
         </div>
         <div className='w-screen flex items-center justify-center mt-[7%]'>
-            <button className='bg-[#186cec] md:w-[12vw] p-2 rounded-[10px] border border-black text-white'>
+            <button onClick={()=>{
+                navigate('../contact-us')
+            }} className='bg-[#186cec] md:w-[12vw] p-2 rounded-[10px] border border-black text-white'>
                 Need Help?  
             </button>
         </div>

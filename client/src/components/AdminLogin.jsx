@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import loginBackground from "@/assets/adminLoginBackground.png";
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
@@ -8,10 +10,10 @@ const AdminLogin = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate =useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent form from refreshing the page
+  const handleSubmit = async(e) => {
+    e.preventDefault();
 
-    // Basic validation (check if fields are not empty)
+    // Basic validation
     if (!username || !password) {
       setErrorMessage('Username and Password are required');
       return;
@@ -19,19 +21,24 @@ const AdminLogin = () => {
 
     // Clear any previous error message
     setErrorMessage('');
-
-    // Add form submission logic here
-    // For example, send data to the backend
-    const loginData = { username, password };
-
-    console.log('Form Submitted', loginData);
-
-    // Example: Simulating login success or failure
-    if (username === 'admin' && password === 'admin123') {
-      alert('Login Successful!');
-    } else {
-      alert('Invalid credentials!');
-    }
+    try {
+      const response=await axios.post('http://localhost:8080/api/v1/adminLogin',{
+        username:username,
+        password:password
+      })
+        if(response.data.success){
+          toast.success(response.data.message)
+          localStorage.setItem('isAdmin', 'true');
+          navigate('./dashboard');
+        }
+        else{
+          toast.error("There was some problem, try again..")
+        }
+        
+      } catch (error) {
+        toast.error(error.response.data.message)
+      }
+    
   };
 
   return (

@@ -49,7 +49,7 @@ we are always here to help. Your satisfaction and seamless experience are our to
               </p>
             </div>
             <div>
-              <button className="bg-blue-600 text-white p-2 md:w-[13vw] rounded-md">
+              <button  onClick={() => document.getElementById("contactForm").scrollIntoView({ behavior: "smooth" })} className="bg-blue-600 text-white p-2 md:w-[13vw] rounded-md">
               Contact Us!
               </button>
             </div>
@@ -62,14 +62,14 @@ we are always here to help. Your satisfaction and seamless experience are our to
       </div>
 
       {/* Section 2: Contact Form */}
-      <section className="flex flex-col items-center py-12">
+      <section className="flex flex-col items-center py-12" id='contactForm'>
         <h2 className="text-3xl font-bold mb-6 text-gray-900">CONTACT US</h2>
         <p className="text-center text-gray-600 mb-8">
           "Fill out the form below to reach us directly—we're here to assist you!"
         </p>
 
         <div className="w-full max-w-md bg-white p-[5%] rounded-[25px] shadow-lg">
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" >
             {/* Name Field */}
             <div>
               <label className="block text-gray-700" htmlFor="name">

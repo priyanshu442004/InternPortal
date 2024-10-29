@@ -56,7 +56,7 @@ const Validate = () => {
               </p>
             </div>
             <div>
-              <button className="bg-blue-600 text-white p-2 md:w-[13vw] rounded-md">
+              <button onClick={() => document.getElementById("form").scrollIntoView({ behavior: "smooth" })} className="bg-blue-600 text-white p-2 md:w-[13vw] rounded-md">
                 Check Now
               </button>
             </div>
@@ -70,7 +70,7 @@ const Validate = () => {
 
     {/* second part */}
     <div className="flex flex-col mt-[10%] md:mt-[7%] md:h-[50vw]">
-    <div className="min-w-screen flex flex-col items-center justify-center">
+    <div className="min-w-screen flex flex-col items-center justify-center" id='form'>
           <h1 className="text-3xl md:text-4xl font-semibold text-gray-800 w-[90%] md:w-[40%] text-center">
           Validate Your Certificate
 with Us !

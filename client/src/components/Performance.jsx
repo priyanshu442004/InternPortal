@@ -9,8 +9,11 @@ import LineChart from "./LineChart";
 import CandleStickChart from "./CandleStickChart";
 import PerformanceBarChart from "./PerformanceBarGraph";
 import GradientLineChart from "./GradientLineChart";
+import { useNavigate } from "react-router-dom";
 
 const Performance = () => {
+  const navigate=useNavigate();
+
     return (
       <div className="flex items-center justify-center min-w-screen flex-col overflow-x-hidden mt-[23px] md:mt-0">
       {/* {Top portion} */}
@@ -32,7 +35,7 @@ const Performance = () => {
               </p>
             </div>
             <div>
-              <button className="bg-blue-600 text-white p-2 max-w-max px-2 py-2 md:w-[230px] md:h-[50px] rounded-md mt-1 md:mt-2 border-x border-y border-black">
+              <button onClick={() => document.getElementById("performance").scrollIntoView({ behavior: "smooth" })}  className="bg-blue-600 text-white p-2 max-w-max px-2 py-2 md:w-[230px] md:h-[50px] rounded-md mt-1 md:mt-2 border-x border-y border-black">
                 Check Performance
               </button>
             </div>
@@ -43,7 +46,7 @@ const Performance = () => {
           </div>
         </div>
       </div>
-      <div className="mt-0 md:mt-0 lg:mt-[4%]">
+      <div className="mt-0 md:mt-0 lg:mt-[4%]" id="performance">
         <h1 className="text-custom-33 md:text-5xl font-semibold text-gray-800 w-screen flex items-center justify-center">
           Performance  Overview
         </h1>
@@ -81,7 +84,10 @@ const Performance = () => {
               This is your overall performance. If you notice any discrepancies or need assistance, please feel free to connect with us regarding your concerns. We're here to help!
               </h1>
 
-              <button className="bg-white shadow-y-4 underline text-black px-4 py-2 rounded-[70px] mt-4">
+              <button onClick={()=>{
+                navigate('../contact-us')
+            }} 
+            className="bg-white shadow-y-4 underline text-black px-4 py-2 rounded-[70px] mt-4">
                 Support Box
               </button>
         </div>

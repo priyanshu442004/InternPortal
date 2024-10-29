@@ -12,11 +12,7 @@ const Settings = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-50 p-4 w-screen md:w-[80%]">
-        <div className='w-full flex justify-start'>
-  <p className='w-full font-semibold text-gray-900 text-md text-left'>
-      Messages
-  </p>
-</div>
+        
 
       {/* Change Password Section */}
       <div className="bg-white shadow-lg pr-[10%] pl-[10%] pt-6 pb-6 mb-8 w-full max-w-md">
