@@ -3,7 +3,7 @@ import logo from '../assets/Logo.png'
 
 const CertificateValidationMessage = () => {
   return (
-    <div className="flex justify-center items-center mt-[10%] bg-gray-50">
+    <div className="flex justify-center items-center mt-[4%] bg-gray-50">
       <div className="w-[500px] bg-white rounded-[50px]  p-8 relative inner-shadow"> 
         <div className="icon-shadow w-[7vw] h-[7.5vw] bg-white absolute top-[-40px] left-1/2 transform -translate-x-1/2 rounded-full shadow-lg">
           <img

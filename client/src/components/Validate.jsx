@@ -1,8 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import validateImg from '../assets/validateImg.png'
 import CertificateValidationMessage from './CertificateValidationMessage';
+import axios from 'axios';
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom';
+
 
 const Validate = () => {
+  const navigate=useNavigate()
+  const [valid, setValid] = useState(false);
+  const [certificateID, setCertificateID] = useState("");
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    if (!certificateID) {
+      toast.error("Please enter certificate ID");
+    } else {
+      try {
+        const response = await axios.post("http://localhost:8080/api/v1/validateCertificate", {
+          id: certificateID,
+        },{ withCredentials: true });
+        if (response.data.success) {
+          toast.success("Validation successfull")
+          setValid(true);
+        } else {
+          setValid(false);
+        }
+      } catch (error) {
+        setValid(false);
+        toast.error(error.response.data.message)
+      }
+    }
+  };
+
   return (
     // top part
     <div className="flex items-center justify-center min-w-screen flex-col overflow-x-hidden md:h-auto mt-[20px] md:mt-[0px]">
@@ -52,8 +82,8 @@ with Us !
         </div>
     {/* {Form} */}
         <div className="flex justify-center items-center mt-[4%] bg-gray-50 flex-col">
-      <div className="flex flex-col items-center space-y-4 p-6 w-[300px]">
-        <form className="flex flex-col items-center space-y-4 w-full">
+      <div className={`${valid?'hidden':''} flex flex-col items-center space-y-4 p-6 w-[300px]`}>
+        <form onSubmit={submitHandler} className={`${valid?'hidden':''} flex flex-col items-center space-y-4 w-full`}>
           
           <div className="flex flex-col items-start w-full">
             <label htmlFor="certificate-id" className="text-gray-700 font-medium mb-2">
@@ -61,6 +91,8 @@ with Us !
             </label>
             <input
               id="certificate-id"
+              value={certificateID}
+              onChange={(event)=>{setCertificateID(event.target.value)}}
               type="text"
               placeholder="husbdh-uhd-3ta1"
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -76,9 +108,12 @@ with Us !
           </button>
         </form>
 
-        <a href="#" className="w-full text-start text-md text-gray-700  underline hover:text-blue-500">
+        <button onClick={(event)=>{
+          event.preventDefault();
+          navigate('/contact-us')
+        }} className="w-full text-start text-md text-gray-700  underline hover:text-blue-500">
           Need Help?
-        </a>
+        </button>
        
       </div>
 
@@ -86,7 +121,7 @@ with Us !
     </div>
 
     {/* {Validate or not} */}
-    <div className='hidden'>
+    <div className={`${valid?'':'hidden'}`}>
     <CertificateValidationMessage />
 
     </div>
