@@ -10,18 +10,20 @@ import Profile from "./components/Profile";
 import Settings from "./components/Settings";
 import Performance from "./components/Performance";
 import PerformanceLoginMessage from "./components/PerformanceLoginMessage";
+import Login from "./components/Internlogin";
 
 const MainLayout = () => {
   const location = useLocation();
 
-  const isAdminRoute = location.pathname.startsWith("/admin");
+  const isLoginPage = location.pathname === '/login';
 
   return (
     <div className="bg-[#f7fbff]">
-      {!isAdminRoute && <Navbar />}
+      {!isLoginPage && <Navbar />}
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/intern-performance" element={<Performance />} />
         <Route path="/Validate-Certificate" element={<Validate />} />
         <Route path="/Documents" element={<Documents />} />
@@ -31,7 +33,7 @@ const MainLayout = () => {
         <Route path="/not-login" element={<PerformanceLoginMessage />} />
       </Routes>
 
-      {!isAdminRoute && <Footer />}
+      {!isLoginPage && <Footer />}
     </div>
   );
 };
