@@ -9,6 +9,7 @@ const EditIntern = () => {
     email: '',
     gender: '',
     status: '',
+    performance: '',
   });
   const [documents, setDocuments] = useState({
     offerLetter: null,
@@ -37,6 +38,7 @@ const EditIntern = () => {
         email: data.email || '',
         gender: data.gender || '',
         status: data.status || '',
+        performance: data.performance || '',
       });
       
       // Update documents if they exist
@@ -74,6 +76,14 @@ const EditIntern = () => {
     }));
   };
 
+  // Handler for performance selection
+  const handlePerformanceSelect = (performance) => {
+    setFormData(prev => ({
+      ...prev,
+      performance
+    }));
+  };
+
   // Handler for file uploads
   const handleFileUpload = (documentType) => (e) => {
     const file = e.target.files?.[0];
@@ -105,7 +115,7 @@ const EditIntern = () => {
   const handleSave = async () => {
     try {
       // Validate required fields
-      const requiredFields = ['forename', 'email', 'gender', 'status'];
+      const requiredFields = ['forename', 'email', 'gender', 'status', 'performance'];
       const missingFields = requiredFields.filter(field => !formData[field]);
       
       if (missingFields.length > 0) {
@@ -151,7 +161,6 @@ const EditIntern = () => {
 
   // Handler for canceling/resetting form
   const handleCancel = () => {
-    // Reset all form states to initial values
     setInternId('');
     setFormData({
       forename: '',
@@ -159,6 +168,7 @@ const EditIntern = () => {
       email: '',
       gender: '',
       status: '',
+      performance: '',
     });
     setDocuments({
       offerLetter: null,
@@ -269,6 +279,32 @@ const EditIntern = () => {
                     onClick={() => handleStatusSelect(value)}
                     className={`px-4 py-1 rounded text-sm transition-colors
                       ${formData.status === value 
+                        ? `bg-${bgColor}-200` 
+                        : `bg-${bgColor}-100 hover:bg-${bgColor}-200`
+                      }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-center">
+              <label className="w-48 text-sm">Performance</label>
+              <div className="flex gap-2">
+                {[
+                  { label: 'NA', value: 'na', bgColor: 'gray' },
+                  { label: 'Bad', value: 'bad', bgColor: 'red' },
+                  { label: 'Average', value: 'average', bgColor: 'yellow' },
+                  { label: 'Good', value: 'good', bgColor: 'blue' },
+                  { label: 'Perfect', value: 'perfect', bgColor: 'green' }
+                ].map(({ label, value, bgColor }) => (
+                  <button 
+                    type="button"
+                    key={value}
+                    onClick={() => handlePerformanceSelect(value)}
+                    className={`px-4 py-1 rounded text-sm transition-colors
+                      ${formData.performance === value 
                         ? `bg-${bgColor}-200` 
                         : `bg-${bgColor}-100 hover:bg-${bgColor}-200`
                       }`}
