@@ -117,7 +117,7 @@ const Navbar = () => {
                 </li>
               </ul>
               <div className="text-center mt-2 flex-start">
-                <button className="bg-gray-200 text-gray-700 px-1 rounded hover:bg-gray-300">Login/Signout</button>
+                <Link to="../login" className="bg-gray-200 text-gray-700 px-1 rounded hover:bg-gray-300">Login/Signout</Link>
               </div>
             </div>
           )}
@@ -198,7 +198,7 @@ const Navbar = () => {
                 </li>
               </ul>
               <div className="text-center mt-2 flex-start">
-                <button className="bg-gray-200 text-gray-700 px-1 rounded hover:bg-gray-300">Login/Signout</button>
+                <Link to="../login" className="bg-gray-200 text-gray-700 px-1 rounded hover:bg-gray-300">Login/Signout</Link>
               </div>
             </div>
           )}

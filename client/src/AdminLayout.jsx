@@ -9,6 +9,7 @@ import AdminSidebar from './components/AdminSideBar'
 import Settings from './components/AdminSettings'
 import AdminEditIntern from './components/AdminEditIntern'
 import AdminMessages from './components/AdminMessages'
+import AdminCareer from './components/AdminCareer'
 
 const AdminLayout = () => {
   const location = useLocation();
@@ -30,6 +31,7 @@ const AdminLayout = () => {
         <Route path="/Settings" element={<Settings />} />
         <Route path="/Messages" element={<AdminMessages />} />
         <Route path="/Edit-Interns" element={<AdminEditIntern />} />
+        <Route path="/Career" element={<AdminCareer />} />
       </Routes>
       </div>
     </div>

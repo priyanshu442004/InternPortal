@@ -1,105 +1,398 @@
-"use client";
-import React from 'react'
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { CalendarIcon, Upload } from "lucide-react"
-import { format } from "date-fns"
-
+import { Calendar, X, Upload, Check, AlertCircle } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import axios from 'axios';
 
 const AddminAddIntern = () => {
-  const [date, setDate] = useState<Date>('')
+  const [formData, setFormData] = useState({
+    internID: '',
+    password: '',
+    forename: '',
+    contactNo: '',
+    email: '',
+    dateOfJoining: '',
+    gender: '',
+    performance: '',
+    documents: {
+      offerLetter: null,
+      certificate: null,
+      recommendation: null
+    }
+  });
+
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+    performance: ''
+  });
+
+  const offerLetterRef = useRef(null);
+  const certificateRef = useRef(null);
+  const recommendationRef = useRef(null);
+
+  const [uploadedFiles, setUploadedFiles] = useState({
+    offerLetter: '',
+    certificate: '',
+    recommendation: ''
+  });
+
+  const performanceOptions = [
+    { value: 'NA', label: 'NA', bgColor: 'bg-gray-200' },
+    { value: 'Bad', label: 'Bad', bgColor: 'bg-red-200' },
+    { value: 'Average', label: 'Average', bgColor: 'bg-yellow-200' },
+    { value: 'Good', label: 'Good', bgColor: 'bg-blue-200' },
+    { value: 'Perfect', label: 'Perfect', bgColor: 'bg-green-200' }
+  ];
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!email) {
+      setErrors(prev => ({ ...prev, email: 'Email is required' }));
+      return false;
+    }
+    if (!emailRegex.test(email)) {
+      setErrors(prev => ({ ...prev, email: 'Please enter a valid email address' }));
+      return false;
+    }
+    setErrors(prev => ({ ...prev, email: '' }));
+    return true;
+  };
+
+
+
+  const handlePerformanceSelect = (value) => {
+    setFormData(prev => ({ ...prev, performance: value }));
+    if (!value) {
+      setErrors(prev => ({ ...prev, performance: 'Performance rating is required' }));
+    } else {
+      setErrors(prev => ({ ...prev, performance: '' }));
+    }
+  };
+
+  const handleFileUpload = (type, e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size should not exceed 5MB');
+        return;
+      }
+      setFormData(prev => ({
+        ...prev,
+        documents: {
+          ...prev.documents,
+          [type]: file
+        }
+      }));
+      setUploadedFiles(prev => ({
+        ...prev,
+        [type]: file.name
+      }));
+    }
+  };
+
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // Validate email, password strength, and performance
+  const isEmailValid = validateEmail(formData.email);
+  const isPerformanceValid = !!formData.performance;
+
+  if (!isPerformanceValid) {
+    setErrors((prev) => ({ ...prev, performance: 'Performance rating is required' }));
+  }
+
+  
+  if (isEmailValid && isPerformanceValid) {
+    try {
+      
+      const response = await axios.post('http://localhost:8080/api/v1/addIntern', formData);
+      
+      console.log('Form submitted:', response.data);
+
+      
+      setErrors({});
+     
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setErrors((prev) => ({ ...prev, api: 'Failed to submit form. Please try again later.' }));
+    }
+  } else {
+    console.log('Form has errors');
+  }
+};
+
+
+  const resetForm = () => {
+    setFormData({
+      internID: '',
+      password: '',
+      forename: '',
+      contactNo: '',
+      email: '',
+      dateOfJoining: '',
+      gender: '',
+      performance: '',
+      documents: {
+        offerLetter: null,
+        certificate: null,
+        recommendation: null
+      }
+    });
+    setErrors({
+      email: '',
+      password: '',
+      performance: ''
+    });
+    setUploadedFiles({
+      offerLetter: '',
+      certificate: '',
+      recommendation: ''
+    });
+  };
+
+  const triggerFileInput = (ref) => {
+    ref.current.click();
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold">Add New Intern</h1>
-          <div className="space-x-2">
-            <Button variant="outline">Cancel</Button>
-            <Button>Save</Button>
+    <div className="w-screen mx-auto p-6 bg-slate-50 flex jstify-center items-center flex-col">
+      <div className="flex justify-between items-center mb-6 w-[90%] bg-white p-2">
+        <h1 className="text-xl font-semibold">Add New Intern</h1>
+        <div className="space-x-2">
+          <button
+            type="button"
+            className="px-4 py-2 border rounded hover:bg-gray-50"
+            onClick={resetForm}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800"
+            onClick={handleSubmit}
+          >
+            Save
+          </button>
+        </div>
+      </div>
+
+      <form className="space-y-6 bg-white rounded-lg p-6 shadow-sm" onSubmit={handleSubmit}>
+        <div className="grid grid-cols-2 gap-6">
+          {/* Intern ID */}
+          <div className="flex items-center space-x-4">
+            <label className="w-24 text-sm font-medium">Intern ID</label>
+            <input
+              type="text"
+              className="flex-1 border rounded p-2"
+              value={formData.internID}
+              onChange={(e) => setFormData({ ...formData, internID: e.target.value })}
+            />
+          </div>
+
+          {/* Password */}
+          <div className="flex items-center space-x-4">
+            <label className="w-24 text-sm font-medium">Password</label>
+            <div className="flex-1">
+              <input
+                type="password"
+                className={`w-full border rounded p-2 ${errors.password ? 'border-red-500' : ''}`}
+                value={formData.password}
+                onChange={(e) => {
+                  setFormData({ ...formData, password: e.target.value });
+                }}
+              />
+              
+            </div>
           </div>
         </div>
 
-        <form className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="internId">Intern ID</Label>
-            <Input id="internId" required />
+        {/* Forename */}
+        <div className="flex items-center space-x-4">
+          <label className="w-24 text-sm font-medium">Forename</label>
+          <div className="flex-1 relative">
+            <input
+              type="text"
+              className="w-[70%] border rounded p-2 pr-8"
+              value={formData.forename}
+              onChange={(e) => setFormData({ ...formData, forename: e.target.value })}
+            />
+            {formData.forename && (
+              <button
+                type="button"
+                className="absolute right-2 top-2.5 text-gray-400 hover:text-gray-600"
+                onClick={() => setFormData({ ...formData, forename: '' })}
+              >
+                <X size={16} />
+              </button>
+            )}
           </div>
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="forename">Forename</Label>
-            <Input id="forename" required />
+        {/* Contact No */}
+        <div className="flex items-center space-x-4">
+          <label className="w-24 text-sm font-medium">Contact No</label>
+          <div className="flex-1 relative">
+            <input
+              type="tel"
+              className="w-[70%]  border rounded p-2 pr-8"
+              value={formData.contactNo}
+              onChange={(e) => setFormData({ ...formData, contactNo: e.target.value })}
+            />
+            {formData.contactNo && (
+              <button
+                type="button"
+                className="absolute right-2 top-2.5 text-gray-400 hover:text-gray-600"
+                onClick={() => setFormData({ ...formData, contactNo: '' })}
+              >
+                <X size={16} />
+              </button>
+            )}
           </div>
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="contactNo">Contact No</Label>
-            <Input id="contactNo" required />
+        {/* Email */}
+        <div className="flex items-center space-x-4">
+          <label className="w-24 text-sm font-medium">Email</label>
+          <div className="flex-1">
+            <input
+              type="email"
+              className={`w-[60%]  border rounded p-2 ${errors.email ? 'border-red-500' : ''}`}
+              value={formData.email}
+              onChange={(e) => {
+                setFormData({ ...formData, email: e.target.value });
+                validateEmail(e.target.value);
+              }}
+              onBlur={(e) => validateEmail(e.target.value)}
+            />
+            {errors.email && (
+              <div className="text-red-500 text-sm mt-1 flex items-center">
+                <AlertCircle size={16} className="mr-1" />
+                {errors.email}
+              </div>
+            )}
           </div>
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" required />
+        {/* Date of Joining */}
+        <div className="flex items-center space-x-4">
+          <label className="w-24 text-sm font-medium">Date of Joi ning</label>
+          <div className="flex-1 relative">
+            <input
+              type="date"
+              className="w-full border rounded p-2 cursor-pointer"
+              value={formData.dateOfJoining}
+              onChange={(e) => setFormData({ ...formData, dateOfJoining: e.target.value })}
+            />
+            <Calendar className="absolute right-2 top-2.5 text-gray-400 pointer-events-none" size={20} />
           </div>
+        </div>
 
-          <div className="space-y-2">
-            <Label>Date of Joining</Label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className={`w-full justify-start text-left font-normal ${!date ? "text-muted-foreground" : ""}`}
+        {/* Gender */}
+        <div className="flex items-center space-x-4">
+          <label className="w-24 text-sm font-medium">Gender</label>
+          <div className="flex-1">
+            <div className="space-x-2">
+              {['male', 'female'].map((gender) => (
+                <button
+                  key={gender}
+                  type="button"
+                  className={`px-4 py-2 rounded ${formData.gender === gender
+                      ? 'bg-gray-200'
+                      : 'bg-gray-100 hover:bg-gray-200'
+                    }`}
+                  onClick={() => setFormData({ ...formData, gender })}
                 >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {date ? format(date, "PPP") : "Pick a date"}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  mode="single"
-                  selected={date}
-                  onSelect={setDate}
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
-          </div>
-
-          <div className="space-y-2">
-            <Label>Gender</Label>
-            <RadioGroup defaultValue="male" className="flex space-x-4">
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="male" id="male" />
-                <Label htmlFor="male">Male</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="female" id="female" />
-                <Label htmlFor="female">Female</Label>
-              </div>
-            </RadioGroup>
-          </div>
-
-          <div className="space-y-2">
-            <Label>Upload Documents</Label>
-            <div className="space-y-2">
-              {["Offer Letter", "Certificate", "Letter Of Recommendation"].map((doc) => (
-                <div key={doc} className="flex items-center justify-between">
-                  <span>{doc}</span>
-                  <Button variant="outline" size="sm">
-                    <Upload className="h-4 w-4 mr-2" />
-                    Upload Documents
-                  </Button>
-                </div>
+                  {gender.charAt(0).toUpperCase() + gender.slice(1)}
+                </button>
               ))}
             </div>
           </div>
-        </form>
-      </div>
-    </div>
-  )
-}
+        </div>
 
-export default AddminAddIntern
+        {/* Performance Rating */}
+        <div className="flex items-center space-x-4">
+          <label className="w-24 text-sm font-medium">Performance</label>
+          <div className="flex-1">
+            <div className="flex space-x-2">
+              {performanceOptions.map(({ value, label, bgColor }) => (
+                <button
+                  key={value}
+                  type="button"
+                  className={`px-4 py-2 rounded transition-colors ${bgColor} ${formData.performance === value
+                      ? 'ring-2 ring-offset-2 ring-blue-500'
+                      : 'hover:opacity-80'
+                    }`}
+                  onClick={() => handlePerformanceSelect(value)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            {errors.performance && (
+              <div className="text-red-500 text-sm mt-1 flex items-center">
+                <AlertCircle size={16} className="mr-1" />
+                {errors.performance}
+              </div>
+            )}
+          </div>
+        </div>
+
+        
+        {/* Documents Section */}
+        <div className="space-y-4">
+          <h3 className="font-medium">Upload Documents</h3>
+
+          <div className="space-y-3">
+            <input
+              type="file"
+              ref={offerLetterRef}
+              className="hidden"
+              onChange={(e) => handleFileUpload('offerLetter', e)}
+              accept=".pdf,.doc,.docx"
+            />
+            <input
+              type="file"
+              ref={certificateRef}
+              className="hidden"
+              onChange={(e) => handleFileUpload('certificate', e)}
+              accept=".pdf,.doc,.docx"
+            />
+            <input
+              type="file"
+              ref={recommendationRef}
+              className="hidden"
+              onChange={(e) => handleFileUpload('recommendation', e)}
+              accept=".pdf,.doc,.docx"
+            />
+
+            {[
+              { label: 'Offer Letter', ref: offerLetterRef, key: 'offerLetter' },
+              { label: 'Certificate', ref: certificateRef, key: 'certificate' },
+              { label: 'Letter Of Recommendation', ref: recommendationRef, key: 'recommendation' }
+            ].map((doc) => (
+              <div key={doc.key} className="flex items-center space-x-4">
+                <span className="w-24 text-sm font-medium">{doc.label}</span>
+                <div className="flex-1">
+                  <button
+                    type="button"
+                    onClick={() => triggerFileInput(doc.ref)}
+                    className="flex items-center space-x-2 ml-3 px-4 py-2 border rounded text-sm hover:bg-gray-50 w-[20vw]"
+                  >
+                    <span className="flex-1 text-left">
+                      {uploadedFiles[doc.key] || 'Upload Documents'}
+                    </span>
+                    <Upload size={16} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default AddminAddIntern;
