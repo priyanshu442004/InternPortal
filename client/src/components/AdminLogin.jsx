@@ -27,6 +27,7 @@ const AdminLogin = () => {
         password:password
       })
         if(response.data.success){
+          localStorage.setItem('admin',username)
           toast.success(response.data.message)
           localStorage.setItem('isAdmin', 'true');
           navigate('./dashboard');

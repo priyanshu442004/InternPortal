@@ -14,7 +14,8 @@ import AdminCareer from './components/AdminCareer'
 const AdminLayout = () => {
   const location = useLocation();
 
-  const isLoginPage = location.pathname === "/admin";
+  const isLoginPage = location.pathname === "/admin" ||location.pathname === "/admin/";
+
 
 
   return (
