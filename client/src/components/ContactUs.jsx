@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import documentImg from '../assets/document.png'
+import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
     email: '',
-    message: '',
+    subject:'',
+    message: ''
   });
 
   const [responseMessage, setResponseMessage] = useState('');
@@ -23,8 +26,27 @@ const ContactUs = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    
+    try {
+      // Send data to the backend using axios
+      const response = await axios.post('http://localhost:8080/api/v1/createTicket', formData);
+      
+      // Display success message from the server response
+      setResponseMessage(response.data.message);
+      toast.success("Ticket created")
+      
+      // Clear form fields
+      setFormData({
+        name: '',
+        surname: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+    } catch (error) {
+      toast.error("Error. Please try again")
+      console.error("Error submitting the support ticket:", error);
+      setResponseMessage("Failed to submit the support ticket. Please try again.");
+    }
   };
 
   return (
@@ -112,6 +134,22 @@ we are always here to help. Your satisfaction and seamless experience are our to
                 id="email"
                 name="email"
                 value={formData.email}
+                onChange={handleChange}
+                required
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            {/* {Subject} */}
+            <div>
+              <label className="block text-gray-700" htmlFor="email">
+                Subject:
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                value={formData.subject}
                 onChange={handleChange}
                 required
                 className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"

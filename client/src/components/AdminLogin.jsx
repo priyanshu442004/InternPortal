@@ -100,7 +100,7 @@ const AdminLogin = () => {
             Only Admins Can Login
           </p>
           <p className="text-center text-sm mt-2">
-          <Link to="/#" className="text-gray-500 text-sm underline">
+          <Link to="/login" className="text-gray-500 text-sm underline">
             Not An Admin?
           </Link>
         </p>
