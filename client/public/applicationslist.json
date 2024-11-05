@@ -1,0 +1,123 @@
+[
+    {
+      "name": "Rudresh Patel",
+      "email": "rudreshpateliiitbh@gmail.com",
+      "contact_no": "6307934948",
+      "education": "Graduation",
+      "profession": "Software Developer/Engineer",
+      "skills": ["C++", "Kotlin", "Jetpack Compose", "Retrofit", "coraldraw", "C"],
+      "cover_letter": "",
+      "availability": "Available",
+      "resume_link": "#",
+      "cv_link": "#"
+    },
+    {
+      "name": "Anika Sharma",
+      "email": "anikasharma@example.com",
+      "contact_no": "9876543210",
+      "education": "Masters in Computer Science",
+      "profession": "Frontend Developer",
+      "skills": ["React", "JavaScript", "HTML", "CSS", "Redux"],
+      "cover_letter": "I am passionate about building intuitive user interfaces.",
+      "availability": "Available",
+      "resume_link": "#",
+      "cv_link": "#"
+    },
+    {
+      "name": "Rahul Mehta",
+      "email": "rahulmehta@example.com",
+      "contact_no": "9123456789",
+      "education": "Bachelor's in IT",
+      "profession": "Backend Developer",
+      "skills": ["Node.js", "Express", "MongoDB", "SQL", "Python"],
+      "cover_letter": "Skilled in backend development and database management.",
+      "availability": "Available",
+      "resume_link": "#",
+      "cv_link": "#"
+    },
+    {
+      "name": "Sara Khan",
+      "email": "sarakhan@example.com",
+      "contact_no": "9234567890",
+      "education": "Bachelor's in Software Engineering",
+      "profession": "Full-Stack Developer",
+      "skills": ["React", "Node.js", "GraphQL", "SQL", "AWS"],
+      "cover_letter": "Experienced in building full-stack applications.",
+      "availability": "Available",
+      "resume_link": "#",
+      "cv_link": "#"
+    },
+    {
+      "name": "Mohit Singh",
+      "email": "mohitsingh@example.com",
+      "contact_no": "9345678901",
+      "education": "Diploma in Computer Engineering",
+      "profession": "Software Tester",
+      "skills": ["Selenium", "Jest", "Cypress", "Manual Testing", "SQL"],
+      "cover_letter": "Focused on delivering high-quality software.",
+      "availability": "Available",
+      "resume_link": "#",
+      "cv_link": "#"
+    },
+    {
+      "name": "Priya Agarwal",
+      "email": "priyaagarwal@example.com",
+      "contact_no": "9456789012",
+      "education": "Masters in Data Science",
+      "profession": "Data Scientist",
+      "skills": ["Python", "Machine Learning", "Data Analysis", "TensorFlow", "SQL"],
+      "cover_letter": "Passionate about data-driven decision making.",
+      "availability": "Available",
+      "resume_link": "#",
+      "cv_link": "#"
+    },
+    {
+      "name": "Aman Verma",
+      "email": "amanverma@example.com",
+      "contact_no": "9567890123",
+      "education": "Bachelor's in Computer Applications",
+      "profession": "Mobile App Developer",
+      "skills": ["Kotlin", "Java", "Flutter", "Firebase"],
+      "cover_letter": "I specialize in Android and cross-platform mobile development.",
+      "availability": "Available",
+      "resume_link": "#",
+      "cv_link": "#"
+    },
+    {
+      "name": "Neha Gupta",
+      "email": "nehagupta@example.com",
+      "contact_no": "9678901234",
+      "education": "Masters in Business Analytics",
+      "profession": "Business Analyst",
+      "skills": ["SQL", "Excel", "Power BI", "Tableau", "Data Analysis"],
+      "cover_letter": "Keen on improving business efficiency through analytics.",
+      "availability": "Available",
+      "resume_link": "#",
+      "cv_link": "#"
+    },
+    {
+      "name": "Vikas Yadav",
+      "email": "vikasyadav@example.com",
+      "contact_no": "9789012345",
+      "education": "Bachelor's in Electronics",
+      "profession": "Embedded Systems Engineer",
+      "skills": ["C", "C++", "Microcontrollers", "IoT", "PCB Design"],
+      "cover_letter": "I enjoy designing efficient embedded systems.",
+      "availability": "Available",
+      "resume_link": "#",
+      "cv_link": "#"
+    },
+    {
+      "name": "Divya Joshi",
+      "email": "divyajoshi@example.com",
+      "contact_no": "9890123456",
+      "education": "PhD in AI",
+      "profession": "AI Researcher",
+      "skills": ["Python", "Deep Learning", "TensorFlow", "PyTorch", "NLP"],
+      "cover_letter": "Committed to advancing AI research.",
+      "availability": "Available",
+      "resume_link": "#",
+      "cv_link": "#"
+    }
+  ]
+  
