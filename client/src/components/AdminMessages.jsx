@@ -2,13 +2,22 @@ import React, { useEffect, useState } from 'react';
 import SupportTicket from './SupportTicket';
 import Pagination from './Pagination';
 import TicketDetails from './TicketDetails';
+import { useLocation } from 'react-router-dom';
+
 
 const AdminMessages = () => {
+  const location = useLocation();
   const [tickets, setTickets] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedTicket, setSelectedTicket] = useState(null);
+  const [selectedTicket, setSelectedTicket] = useState(location.state?.selectedTicket || null);
   const [isMobileView, setIsMobileView] = useState(false); // State to track if it's mobile view
   const ticketsPerPage = 6;
+    useEffect(() => {
+        if (location.state?.selectedTicket) {
+            setSelectedTicket(location.state.selectedTicket);
+        }
+    }, [location]);
+
 
   useEffect(() => {
     fetch('/tickets.json')

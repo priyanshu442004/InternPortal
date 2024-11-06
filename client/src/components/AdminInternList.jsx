@@ -14,15 +14,18 @@ const InternsDashboard = () => {
   useEffect(() => {
     const fetchInterns = async () => {
       try {
-        const response = await fetch("/interns.json"); // Assuming the JSON is served from the public folder
-        const data = await response.json();
-        setInterns(data.interns);
-        setLoading(false); // Data is loaded
+        const response = await fetch('http://localhost:8080/api/v1/internList');
+        const result = await response.json();
+        if (result.success) {
+          setInterns(result.data);
+        }
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching intern data:", error);
+        setLoading(false);
       }
     };
-
+  
     fetchInterns();
   }, []);
 
@@ -30,6 +33,11 @@ const InternsDashboard = () => {
   const indexOfLastIntern = currentPage * internsPerPage;
   const indexOfFirstIntern = indexOfLastIntern - internsPerPage;
   const currentInterns = interns.slice(indexOfFirstIntern, indexOfLastIntern);
+
+  const formatDate = (date) => {
+    const d = new Date(date);
+    return `${d.getDate().toString().padStart(2, '0')}/${(d.getMonth() + 1).toString().padStart(2, '0')}/${d.getFullYear()}`;
+  }
 
   // Handle page change
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -190,7 +198,7 @@ const InternsDashboard = () => {
       <tbody>
         {currentInterns.map((intern, index) => (
           <tr key={index} className="border-b">
-            <td className="px-4 font-mukta font-normal text-black py-2">{intern.name}</td>
+            <td className="px-4 font-mukta font-normal text-black py-2">{intern.forename}</td>
             <td className="px-4 font-mukta py-2">{intern.role}</td>
             <td className="px-4 font-mukta py-2">
               <span
@@ -201,8 +209,8 @@ const InternsDashboard = () => {
                 {intern.status}
               </span>
             </td>
-            <td className="px-4 font-mukta py-2">{intern.joiningDate}</td>
-            <td className="px-4 font-mukta py-2">{intern.completionDate}</td>
+            <td className="px-4 font-mukta py-2">{formatDate(intern.dateOfJoining)}</td>
+            <td className="px-4 font-mukta py-2">{intern.completionDate||'NA'}</td>
             <td className="px-4 font-mukta py-2">
               <button className="px-2 py-1 font-mukta text-lg rounded-lg">...</button>
             </td>

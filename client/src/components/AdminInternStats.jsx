@@ -10,25 +10,26 @@ const AdminInternStats = () => {
     const activeInterns = interns.filter(i => i.status === 'Working' || i.status === 'On Leave').length;
     const inactiveInterns = interns.filter(i => i.status === 'Left' || i.status === 'Terminated').length;
     const recentJoiners = interns
-      .filter(i => new Date(i.joiningDate) > new Date(new Date().setMonth(new Date().getMonth() - 1)))
+      .filter(i => new Date(i.dateOfJoining) > new Date(new Date().setMonth(new Date().getMonth() - 1)))
       .length;
   
-    useEffect(() => {
-      const fetchInterns = async () => {
-        try {
-          const response = await fetch("/interns.json"); // Assuming the JSON is served from the public folder
-          const data = await response.json();
-          setInterns(data.interns);
-          setLoading(false); // Data is loaded
-        } catch (error) {
-          console.error("Error fetching intern data:", error);
-        }
-      };
-  
-      fetchInterns();
-    }, []);
-
-    if (loading) return <div>Loading interns data...</div>;
+      useEffect(() => {
+        const fetchInterns = async () => {
+          try {
+            const response = await fetch('http://localhost:8080/api/v1/internList');
+            const result = await response.json();
+            if (result.success) {
+              setInterns(result.data);
+            }
+            setLoading(false);
+          } catch (error) {
+            console.error("Error fetching intern data:", error);
+            setLoading(false);
+          }
+        };
+      
+        fetchInterns();
+      }, []);
 
   return (
     <div className="grid grid-cols-4 w-max gap-2">

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import totalGraph from "@/assets/totalTickets.png";
 import solved from "@/assets/solved.png"
 import pending from "@/assets/pending.png"
@@ -6,31 +7,57 @@ import ticketprofile from "@/assets/ticketprofile.png"
 import chatBubble from "@/assets/chat_bubble.png"
 
 const AdminSupportTickets = () => {
+    const navigate = useNavigate();
+
+    const handleTicketClick = (ticket) => {
+      navigate('/admin/messages', { state: { selectedTicket: ticket } });
+    };
+
     const [tickets, setTickets] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [ticketsPerPage] = useState(7); // Number of tickets per page
     const [loading, setLoading] = useState(true); // Track loading state
-    const totalTickets = tickets.length;
-    const solvedTickets = tickets.filter(i => i.status === "Solved").length;
-    const pendingTickets = tickets.filter(i => i.status === "Pending").length;
+    
+    const totalTickets = tickets?.length || 0;
+    const solvedTickets = tickets?.filter(i => i.resolved === true)?.length || 0;
+    const pendingTickets = tickets?.filter(i => i.resolved === false)?.length || 0;
 
   useEffect(() => {
     const fetchTickets = async () => {
         try {
-          const response = await fetch("/tickets.json"); // Assuming the JSON is served from the public folder
+          const response = await fetch("http://localhost:8080/api/v1/supporttickets"); // Assuming the JSON is served from the public folder
           const data = await response.json();
-          setTickets(data.tickets);
-          setLoading(false); // Data is loaded
+          console.log('API Response:', data);
+          setTickets(data.data || []);
         } catch (error) {
-          console.error("Error fetching intern data:", error);
-        }
+          console.error("Error fetching ticket data:", error);
+        } finally {
+          setLoading(false);
+      }
       };
       fetchTickets();
   }, []);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    });
+};
+
+const formatTime = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+};
+
   const indexOfLastTicket = currentPage * ticketsPerPage;
   const indexOfFirstTicket = indexOfLastTicket - ticketsPerPage;
-  const currentTickets = tickets.slice(indexOfFirstTicket, indexOfLastTicket);
+  const currentTickets = tickets?.slice(indexOfFirstTicket, indexOfLastTicket) || [];
 
   // Handle page change
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -184,21 +211,22 @@ const AdminSupportTickets = () => {
         </div>
         <ul className="mt-4 ml-4 space-y-2 flex flex-col gap-4 justify-start">
             {currentTickets.map((ticket, idx) => (
-                <div key={ticket.ticketId}>
+                <div key={ticket.ticketId} onClick={() => handleTicketClick(ticket)}
+                className="cursor-pointer hover:bg-gray-50" >
                     <div className='flex flex-row justify-between'>
                         <div className='flex flex-row'>
                             <img src={ticketprofile} height={30} width={30} className='rounded-full' alt="" />
                             <div className='flex flex-col justify-center'>
-                                <h1 className='ml-2 font-mukta font-semibold text-xs'> Ticket {ticket.ticketId}</h1>
-                                <h1 className='ml-2 text-slate-400 font-mukta font-normal text-[7px]'>{ticket.issue}</h1>
+                                <h1 className='ml-2 font-mukta font-semibold text-xs'> Ticket #{ticket.ticketId}</h1>
+                                <h1 className='ml-2 text-slate-400 font-mukta font-normal text-[7px]'>{ticket.subject}</h1>
                             </div>
                         </div>
-                        <div className='flex flex-row gap-5 mr-4'>
+                        <div className='flex flex-row my-auto gap-5 mr-4'>
                             <div>
                                 <img src={chatBubble} height={12} width={12} alt="" />
                             </div>
-                            <h1 className='font-normal text-[4px] font-inter'>{ticket.date}</h1>
-                            <h1 className='font-normal text-[4px] font-inter'>{ticket.time}</h1>
+                            <h1 className='font-normal text-[4px] my-auto font-inter'>{formatDate(ticket.date)}</h1>
+                            <h1 className='font-normal text-[4px] my-auto font-inter'>{formatTime(ticket.date)}</h1>
                         </div>
                     </div>
                 </div>
