@@ -62,10 +62,12 @@ const AdminMembersList = () => {
   
   return (
     <div className="bg-white shadow-md p-4 h-auto rounded-lg w-full">
-        <div className='flex flex-row gap-[6.7vw]'>
-            <h3 className="text-lg font-bold font-mukta">Doc-Q Team Members List</h3>
-            <h3 className='text-lg font-bold font-mukta'>Role</h3>
-            <div className='flex flex-row justify-end gap-3'>
+        <div className='flex flex-row justify-between'>
+          <div className="flex flex-row gap-[6.7vw]">
+          <h3 className="text-lg font-bold font-mukta">Doc-Q Team Members List</h3>
+          <h3 className='text-lg font-bold font-mukta'>Role</h3>
+          </div>
+            <div className='flex flex-row justify-end gap-3 mr-10'>
               <button>
                 <img src={add} alt="add member icon" />
               </button>

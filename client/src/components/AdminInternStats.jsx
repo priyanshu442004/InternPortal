@@ -7,8 +7,8 @@ const AdminInternStats = () => {
     const [interns, setInterns] = useState([]);
     const [loading, setLoading] = useState(true); // Track loading state
     const totalInterns = interns.length;
-    const activeInterns = interns.filter(i => i.status === 'Working' || i.status === 'On Leave').length;
-    const inactiveInterns = interns.filter(i => i.status === 'Left' || i.status === 'Terminated').length;
+    const activeInterns = interns.filter(i => i.status === 'Working' || i.status === 'On Leave' || i.status === 'working' || i.status === 'On leave' || i.status === 'n leave').length;
+    const inactiveInterns = interns.filter(i => i.status === 'Left' || i.status === 'Terminated' || i.status === 'left' || i.status === 'terminated').length;
     const recentJoiners = interns
       .filter(i => new Date(i.dateOfJoining) > new Date(new Date().setMonth(new Date().getMonth() - 1)))
       .length;
