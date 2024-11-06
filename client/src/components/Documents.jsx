@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import offerLetterImg from '../assets/offerLetterImg.jpg';
 import lorImg from '../assets/LOR.jpg'
 import { useNavigate } from 'react-router-dom';
 
 const Documents = () => {
     const navigate=useNavigate();
+
+    const [internID,setInternID]=useState(null)
+    useEffect(() => {
+  const storedInternID = localStorage.getItem('internID'); // Corrected variable name here
+  if (storedInternID) {
+    setInternID(storedInternID);
+  }
+}, []);
 
   return (
     <div className='w-screen text-center flex flex-col justify-center items-center p-4'>
@@ -23,7 +31,7 @@ in one place for quick reference and verification."
                 </div>
         </div>
 
-        <div className='flex flex-col md:flex-row justify-center items-center mt-[7%] gap-6 md:gap-[7%] ml-[5%] mr-[5%]'>
+        {internID?(<div className='flex flex-col md:flex-row justify-center items-center mt-[7%] gap-6 md:gap-[7%] ml-[5%] mr-[5%]'>
         {/* {First div} */}
             <div className='bg-[#186cec] p-4 pr-10 pl-6 pb-6 rounded-[25px] border border-black md:w-[25%]'>
                 <div className='flex flex-col '>
@@ -105,7 +113,9 @@ Letter Of Recommendation
                
             </div>
             
-        </div>
+        </div>):(<div className='h-[10vw] flex justify-center items-center text-4xl'>
+            Please login first to access the documents
+        </div>)}
         <div className='text-gray-500 text-md flex text-start flex-col pl-[10%] mt-[10%] md:mt-[5%]'>
             <p>
                 Note

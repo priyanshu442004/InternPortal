@@ -19,6 +19,11 @@ const Navbar = () => {
     year: "numeric",
   });
 
+  const logout=()=>{
+    localStorage.removeItem('admin')
+    navigate('./')
+  }
+
   return (
     
     <nav className="flex items-center justify-between px-6 py-2 bg-white border w-full">
@@ -60,6 +65,7 @@ const Navbar = () => {
           <FaBell className="text-gray-600 hover:cursor-pointer" />
           <img
             src={logoutIcon}
+            onClick={logout}
             alt="Logout"
             className="h-6 w-6 hover:cursor-pointer"
           />
@@ -90,10 +96,12 @@ const Navbar = () => {
               <FaBell className="text-gray-600 hover:cursor-pointer" />
               <span>Notifications</span>
             </div>
-            <div className="flex items-center space-x-2">
+            <div
+            onClick={logout} className="flex items-center space-x-2">
               <img
                 src={logoutIcon}
                 alt="Logout"
+                
                 className="h-6 w-6 hover:cursor-pointer"
               />
               <span>Logout</span>

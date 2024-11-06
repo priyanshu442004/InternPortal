@@ -62,10 +62,10 @@ const AdminMembersList = () => {
   
   return (
     <div className="bg-white shadow-md p-4 h-auto rounded-lg w-full">
-        <div className='flex flex-row justify-between'>
+        <div className='flex flex-row gap-[6.7vw]'>
             <h3 className="text-lg font-bold font-mukta">Doc-Q Team Members List</h3>
             <h3 className='text-lg font-bold font-mukta'>Role</h3>
-            <div className='flex flex-row justify-end gap-6'>
+            <div className='flex flex-row justify-end gap-3'>
               <button>
                 <img src={add} alt="add member icon" />
               </button>
@@ -83,7 +83,7 @@ const AdminMembersList = () => {
       <ul className="mt-4 space-y-2">
         {members.map((member, idx) => (
           <li key={member.id} className="flex justify-start">
-            <div className="w-1/2 align-middle">
+            <div className="w-[20vw] align-middle">
             <input
                   type="checkbox"
                   checked={selectedMembers.includes(member.id)}

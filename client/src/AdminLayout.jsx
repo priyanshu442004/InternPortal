@@ -9,11 +9,13 @@ import AdminSidebar from './components/AdminSideBar'
 import Settings from './components/AdminSettings'
 import AdminEditIntern from './components/AdminEditIntern'
 import AdminMessages from './components/AdminMessages'
+import AdminCareer from './components/AdminCareer'
 
 const AdminLayout = () => {
   const location = useLocation();
 
-  const isLoginPage = location.pathname === "/admin";
+  const isLoginPage = location.pathname === "/admin" ||location.pathname === "/admin/";
+
 
 
   return (
@@ -30,6 +32,7 @@ const AdminLayout = () => {
         <Route path="/Settings" element={<Settings />} />
         <Route path="/Messages" element={<AdminMessages />} />
         <Route path="/Edit-Interns" element={<AdminEditIntern />} />
+        <Route path="/Career" element={<AdminCareer />} />
       </Routes>
       </div>
     </div>

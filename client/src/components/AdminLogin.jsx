@@ -27,6 +27,7 @@ const AdminLogin = () => {
         password:password
       })
         if(response.data.success){
+          localStorage.setItem('admin',username)
           toast.success(response.data.message)
           localStorage.setItem('isAdmin', 'true');
           navigate('./dashboard');
@@ -99,7 +100,7 @@ const AdminLogin = () => {
             Only Admins Can Login
           </p>
           <p className="text-center text-sm mt-2">
-          <Link to="/#" className="text-gray-500 text-sm underline">
+          <Link to="/login" className="text-gray-500 text-sm underline">
             Not An Admin?
           </Link>
         </p>

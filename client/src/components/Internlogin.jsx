@@ -1,5 +1,7 @@
 // src/components/Login.jsx
+import axios from 'axios';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -7,9 +9,30 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log('Intern ID:', internID, 'Password:', password);
+
+    try {
+      const response=await axios.post('http://localhost:8080/api/v1/internLogin',{
+        internID:internID,
+        password:password
+      });
+
+      if(response.data.success){
+        localStorage.setItem('internID',internID);
+        localStorage.setItem('internName',response.data.internName);
+        toast.success("Login success")
+        navigate(`../`);
+      }
+      else{
+          toast.error("There is some error")
+      }
+    } catch (error) {
+      toast.error(error.response.data.message)
+    }
+    
+
+    
   };
 
   const handleAdminRedirect = () => {

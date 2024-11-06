@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import profile from '../assets/profile.png'
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Profile = () => {
+  const internName=localStorage.getItem('internName')
+
+  const [internID,setInternID]=useState(null)
+  useEffect(() => {
+    const storedInternID = localStorage.getItem('internID');
+    if (storedInternID) {
+      setInternID(storedInternID);
+    }
+  }, []);
+
   const [formData, setFormData] = useState({
-    name: '',
+    forename: '',
     email: '',
-    phoneNumber: '',
+    contactNo: '',
     alternateNumber: '',
     role: '',
     language: '',
@@ -26,9 +38,9 @@ const Profile = () => {
 
   const handleReset = () => {
     setFormData({
-      name: '',
+      forename: '',
       email: '',
-      phoneNumber: '',
+      contactNo: '',
       alternateNumber: '',
       role: '',
       language: '',
@@ -40,9 +52,26 @@ const Profile = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('Form Data:', formData);
+
+    try {
+      
+
+      // Update the intern data via the editIntern endpoint
+      const response = await axios.post(`http://localhost:8080/api/v1/editIntern/${internID}`, formData);
+
+      if (response.status !== 200) {
+        toast.error("Failed to update details")
+      }
+
+      toast.success("Intern edited successfully")
+    } catch (error) {
+      console.error('Error saving intern data:', error);
+      toast.error("Internal error")
+    }
+    
   };
 
   return (
@@ -60,14 +89,11 @@ const Profile = () => {
             />
             <p>
                 <span className='font-bold'>
-                Jhon Doe
+                {internName?`${internName}`:"Login to edit"}
                 </span>
                 <br />
                 <span>
-                    <span className='text-blue-400 hover:underline hover:cursor-pointer'>
-                    Click here 
-                    </span>{' '}
-                 to change your Profile Picture
+                    Fill this below to edit your details
                 </span>
             </p>
           </div>
@@ -80,8 +106,8 @@ const Profile = () => {
               <label className="block text-gray-600">Name</label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
+                name="forename"
+                value={formData.forename}
                 onChange={handleInputChange}
                 className="w-full border border-gray-300 rounded-md p-3"
                 placeholder="Value"
@@ -103,9 +129,9 @@ const Profile = () => {
             <div>
               <label className="block text-gray-600">Phone Number</label>
               <input
-                type="text"
-                name="phoneNumber"
-                value={formData.phoneNumber}
+                type="number"
+                name="contactNo"
+                value={formData.contactNo}
                 onChange={handleInputChange}
                 className="w-full border border-gray-300 rounded-md p-3"
                 placeholder="Value"
@@ -115,7 +141,7 @@ const Profile = () => {
             <div>
               <label className="block text-gray-600">Alternate Number</label>
               <input
-                type="text"
+                type="number"
                 name="alternateNumber"
                 value={formData.alternateNumber}
                 onChange={handleInputChange}
@@ -131,10 +157,10 @@ const Profile = () => {
                 value={formData.role}
                 onChange={handleInputChange}
                 className="w-full border border-gray-300 rounded-md p-3"
-              >
+              > 
                 <option value="">Select Role</option>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
+                <option value="Web developer">Web developer</option>
+                <option value="App developer">App developer</option>
               </select>
             </div>
 

@@ -26,7 +26,7 @@ const ToggleCheckbox = () => {
       >
         {/* Outer Circle */}
         <div
-          className={`absolute top-[1.1vw] left-[2.4vw] transform  -translate-y-[1.6vw] w-9 h-9 bg-blue-300 opacity-20 rounded-full transition-all duration-300 ${
+          className={`absolute top-[1.1vw] left-[2vw] transform  -translate-y-[1.6vw] w-9 h-9 bg-blue-300 opacity-20 rounded-full transition-all duration-300 ${
             isChecked ? "-translate-x-[0.1vw] scale-125 bg-purple-300 opacity-75" : "-translate-x-2/3"
           }`}
         ></div>

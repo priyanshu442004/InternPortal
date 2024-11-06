@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import ToggleCheckbox from '../ToggleCheckbox';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Settings = () => {
+
+  const internID=localStorage.getItem('internID');
+
+  const [passMatch,setPassMatch]=useState(true)
+
+  
+
   const [passwordData, setPasswordData] = useState({
     currentPassword: '',
     newPassword: '',
@@ -20,7 +29,11 @@ const Settings = () => {
       ...passwordData,
       [name]: value,
     });
+
+    setPassMatch(true) 
   };
+
+  
 
   const handleToggle = (e) => {
     setIsChecked(!isChecked);
@@ -32,9 +45,28 @@ const Settings = () => {
     console.log({name})
   };
 
-  const handlePasswordSave = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log('Password Data:', passwordData);
+
+    if(passwordData.confirmPassword!=passwordData.newPassword){
+      setPassMatch(false)
+    }else{
+      setPassMatch(true)
+    }
+    
+    try {
+      const response =await axios.post(`http://localhost:8080/api/v1/changePassword/${internID}`,passwordData);
+
+      if(response.data.success){
+          toast.success("Password changed successfully")
+      }
+      else{
+        toast.error("Please check the details again")
+      }
+    } catch (error) {
+      toast.error(error.response.data.message)
+    }
+
   };
 
   const handleNotificationsSave = (e) => {
@@ -63,7 +95,7 @@ const Settings = () => {
         {/* Change Password Section */}
         <div className="bg-[#76a2f8] p-6 rounded-[50px] shadow-lg">
           <h3 className="text-2xl  font-semibold text-center mb-4">Change Password</h3>
-          <form onSubmit={handlePasswordSave} className="space-y-4 text-gray-600">
+          <form onSubmit={handleSubmit} className="space-y-4 text-gray-600">
             <p>
             Current Password
             </p>
@@ -95,6 +127,11 @@ const Settings = () => {
               placeholder=""
               className="w-full p-2 border border-gray-300 rounded-md"
             />
+            <div>
+              <p className={`${passMatch?"hidden":""} text-xl text-red-900 font-bold`}>
+              Password & Confirm Password do not match
+              </p>
+            </div>
             <div className='w-full flex justify-center items-center'>
             <button
               type="submit"
@@ -103,6 +140,7 @@ const Settings = () => {
               Save
             </button>
             </div>
+            
             
           </form>
         </div>
