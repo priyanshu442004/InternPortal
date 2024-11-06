@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Download } from 'lucide-react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 
 const EditIntern = () => {
@@ -121,13 +122,13 @@ const handleSearch = async () => {
       const response = await axios.post(`http://localhost:8080/api/v1/editIntern/${internID}`, formData);
 
       if (response.status !== 200) {
-        throw new Error('Failed to update intern data');
+        toast.error("Failed to update details")
       }
 
-      alert('Intern data updated successfully');
+      toast.success("Intern edited successfully")
     } catch (error) {
       console.error('Error saving intern data:', error);
-      alert('Failed to update intern data. Please try again.');
+      toast.error("Internal error")
     }
   };
 

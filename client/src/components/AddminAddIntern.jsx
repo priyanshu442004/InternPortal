@@ -1,6 +1,7 @@
 import { Calendar, X, Upload, Check, AlertCircle } from 'lucide-react';
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const AddminAddIntern = () => {
   const [formData, setFormData] = useState({
@@ -107,15 +108,21 @@ const handleSubmit = async (e) => {
     try {
       
       const response = await axios.post('http://localhost:8080/api/v1/addIntern', formData);
-      
-      console.log('Form submitted:', response.data);
+      if(response.data.success){
+
+        toast.success("Intern added successfully")
+        resetForm()
+      }
+      else{
+        toast.error("Failed to add intern")
+      }
 
       
       setErrors({});
      
 
     } catch (error) {
-      console.error('Error submitting form:', error);
+      toast.error(error.response.data.message)
       setErrors((prev) => ({ ...prev, api: 'Failed to submit form. Please try again later.' }));
     }
   } else {
