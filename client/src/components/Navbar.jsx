@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../assets/Logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -6,7 +6,14 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false); // Add a state for the profile dropdown
   const navigate = useNavigate();
-  const internName=localStorage.getItem('internName')
+
+  const [internName,setInternName]=useState(null)
+  useEffect(() => {
+    const storedInternID = localStorage.getItem('internName');
+    if (storedInternID) {
+      setInternName(storedInternID);
+    }
+  }, []);
 
   const goToHome = () => {
     navigate('./');

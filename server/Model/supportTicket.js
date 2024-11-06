@@ -2,6 +2,10 @@ import mongoose, { Mongoose } from "mongoose";
 
 
 const supportSchema=new mongoose.Schema({
+    ticketID:{
+        type:String,
+        require:true
+    },
     name:{
         type:String,
         require:true

@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import profile from '../assets/profile.png'
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
 const Profile = () => {
   const internName=localStorage.getItem('internName')
-  const internID=localStorage.getItem('internID')
+
+  const [internID,setInternID]=useState(null)
+  useEffect(() => {
+    const storedInternID = localStorage.getItem('internID');
+    if (storedInternID) {
+      setInternID(storedInternID);
+    }
+  }, []);
 
   const [formData, setFormData] = useState({
     forename: '',

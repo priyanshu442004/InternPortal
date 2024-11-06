@@ -1,10 +1,18 @@
 import { Ticket } from "../Model/supportTicket.js";
+import { Counter } from "../Model/counter.js";
 
 export const createSupportTicket = async (req, res) => {
     try {
       const { name, surname, email, subject, message } = req.body;
+
+      const counter = await Counter.findOneAndUpdate(
+        { id: "ticketID" },
+        { $inc: { seq: 1 } },
+        { new: true, upsert: true } // Create if doesn't exist
+      );
   
       const newTicket = new Ticket({
+        ticketID: counter.seq.toString().padStart(3, "0"),
         name,
         surname,
         email,
