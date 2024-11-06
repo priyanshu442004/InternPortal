@@ -36,13 +36,8 @@ const InternSchema = new mongoose.Schema({
     performance: {
       type: String,
       required: false
-    },
-    documents: {
-      certificate: { type: String, required: false },
-      LOR: { type: String, required: false },
-      offerLetter: { type: String, required: false }
     }
   }, { timestamps: true });
   
   
-  export const Intern = mongoose.model('Intern', InternSchema);
+  export const Intern = mongoose.models.Intern || mongoose.model('Intern', InternSchema);

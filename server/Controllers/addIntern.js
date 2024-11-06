@@ -1,4 +1,4 @@
-import { Intern } from "../model/Intern.js";
+import { Intern } from "../Model/Intern.js";
 
 export const addIntern=async(req,res)=>{
 

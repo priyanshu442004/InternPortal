@@ -6,6 +6,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false); // Add a state for the profile dropdown
   const navigate = useNavigate();
+  const internName=localStorage.getItem('internName')
 
   const goToHome = () => {
     navigate('./');
@@ -22,6 +23,12 @@ const Navbar = () => {
       setProfileOpen(false);
     }
   };
+
+  const logout=()=>{
+    localStorage.removeItem("internID");
+    localStorage.removeItem("internName");
+    navigate('../login')
+  }
 
   React.useEffect(() => {
     document.addEventListener('click', handleOutsideClick);
@@ -96,7 +103,7 @@ const Navbar = () => {
           {/* Dropdown Menu */}
           {profileOpen && (
             <div className="absolute top-14 right-0 w-48 bg-white shadow-lg rounded-lg py-4 z-50">
-              <p className="text-center text-sm mb-4">Signed in as <br /><strong>Jhon Doe</strong></p>
+              <p className="text-center text-sm mb-4">Signed in as <br /><strong>{internName?`${internName}`:"No one"}</strong></p>
               <hr />
               <ul className="flex flex-col space-y-3 px-[20%] py-3 font-semibold text-black">
                 <li className="flex items-center space-x-2">
@@ -117,7 +124,9 @@ const Navbar = () => {
                 </li>
               </ul>
               <div className="text-center mt-2 flex-start">
-                <Link to="../login" className="bg-gray-200 text-gray-700 px-1 rounded hover:bg-gray-300">Login/Signout</Link>
+                <button
+                onClick={logout} 
+                className="bg-gray-200 text-gray-700 px-1 rounded hover:bg-gray-300">Login/Signout</button>
               </div>
             </div>
           )}
@@ -177,7 +186,7 @@ const Navbar = () => {
           {/* Dropdown Menu */}
           {profileOpen && (
             <div className="absolute top-14 right-0 w-48 bg-white shadow-lg rounded-lg py-4 z-50">
-              <p className="text-center text-sm mb-4">Signed in as <br /><strong>Jhon Doe</strong></p>
+              <p className="text-center text-sm mb-4">Signed in as <br /><strong>{internName?`${internName}`:"No one"}</strong></p>
               <hr />
               <ul className="flex flex-col space-y-3 px-[20%] py-3 font-semibold text-black">
                 <li className="flex items-center space-x-2">
@@ -198,7 +207,9 @@ const Navbar = () => {
                 </li>
               </ul>
               <div className="text-center mt-2 flex-start">
-                <Link to="../login" className="bg-gray-200 text-gray-700 px-1 rounded hover:bg-gray-300">Login/Signout</Link>
+                <button 
+                onClick={logout} 
+                className="bg-gray-200 text-gray-700 px-1 rounded hover:bg-gray-300">Login/Signout</button>
               </div>
             </div>
           )}

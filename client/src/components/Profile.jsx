@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import profile from '../assets/profile.png'
 
 const Profile = () => {
+  const internName=localStorage.getItem('internName')
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -60,14 +62,11 @@ const Profile = () => {
             />
             <p>
                 <span className='font-bold'>
-                Jhon Doe
+                {internName?`${internName}`:"Login to edit"}
                 </span>
                 <br />
                 <span>
-                    <span className='text-blue-400 hover:underline hover:cursor-pointer'>
-                    Click here 
-                    </span>{' '}
-                 to change your Profile Picture
+                    Fill this below to edit your details
                 </span>
             </p>
           </div>
