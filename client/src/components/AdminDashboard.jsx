@@ -17,7 +17,7 @@ function AdminDashboard() {
         </h2>
       </div>
       <div className="flex flex-row h-auto justify-end shadow-2xl bg-white mb-4">
-        <div className='flex flex-col mt-8 ml-6  w-3/4'>
+        <div className='flex flex-col mt-8 ml-6 w-3/4'>
             <div>
                 <AdminInternStats/>
             </div>

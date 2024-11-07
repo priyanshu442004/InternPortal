@@ -3,8 +3,8 @@ import { Counter } from "../Model/counter.js";
 
 export const createSupportTicket = async (req, res) => {
     try {
-      const { name, surname, email, subject, message } = req.body;
-
+      const { name, surname, email, subject, message, gender } = req.body;
+      console.log(gender)
       const counter = await Counter.findOneAndUpdate(
         { id: "ticketID" },
         { $inc: { seq: 1 } },
@@ -18,7 +18,8 @@ export const createSupportTicket = async (req, res) => {
         email,
         subject,
         message,
-        response: "",     
+        response: "",   
+        gender,  
         resolved: false   
       });
   

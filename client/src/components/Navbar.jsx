@@ -3,13 +3,20 @@ import Logo from '../assets/Logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const malePic="https://i.pinimg.com/originals/22/f8/1f/22f81f5c4011da6a803d997260b2c772.jpg"
+  const femalePic="https://png.pngtree.com/png-clipart/20190904/original/pngtree-user-cartoon-girl-avatar-png-image_4492903.jpg"
+
+  
   const [isOpen, setIsOpen] = useState(false);
-  const [profileOpen, setProfileOpen] = useState(false); // Add a state for the profile dropdown
+  const [profileOpen, setProfileOpen] = useState(false); 
   const navigate = useNavigate();
+  const gender=localStorage.getItem('gender')
 
   const [internName,setInternName]=useState(null)
   useEffect(() => {
     const storedInternID = localStorage.getItem('internName');
+    
+    
     if (storedInternID) {
       setInternName(storedInternID);
     }
@@ -101,7 +108,7 @@ const Navbar = () => {
             onClick={toggleProfileMenu}
           >
             <img
-              src="https://via.placeholder.com/40"
+              src={gender=='male'?`${malePic}`:`${femalePic}`}
               alt="Profile"
               className="w-full h-full object-cover"
             />
@@ -184,7 +191,7 @@ const Navbar = () => {
             onClick={toggleProfileMenu}
           >
             <img
-              src="https://via.placeholder.com/40"
+              src={gender=='male'?`${malePic}`:`${femalePic}`}
               alt="Profile"
               className="w-full h-full object-cover"
             />

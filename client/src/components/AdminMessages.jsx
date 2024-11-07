@@ -53,7 +53,7 @@ const AdminMessages = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center bg-slate-50 w-full">
+    <div className="flex flex-col  items-center bg-slate-50 w-full">
       <div className="w-full flex justify-start p-4">
         <p className="w-full font-semibold text-gray-900 text-md text-left">
           Messages
@@ -73,6 +73,7 @@ const AdminMessages = () => {
                     key={ticket.ticketId}
                     name={ticket.name}
                     issue={ticket.issue}
+                    gender={ticket.gender}
                     status={ticket.status}
                     onClick={() => handleTicketClick(ticket)}
                   />
@@ -127,7 +128,7 @@ const AdminMessages = () => {
                   selectTicket={setSelectedTicket}
                 />
               ) : (
-                <p className="text-gray-500 mt-[25vw]">Click on a ticket to view details</p>
+                <p className="text-gray-500 mt-auto">Click on a ticket to view details</p>
               )}
             </div>
           </>

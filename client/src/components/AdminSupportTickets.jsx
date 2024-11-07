@@ -217,7 +217,7 @@ const formatTime = (dateString) => {
                         <div className='flex flex-row'>
                             <img src={ticketprofile} height={30} width={30} className='rounded-full' alt="" />
                             <div className='flex flex-col justify-center'>
-                                <h1 className='ml-2 font-mukta font-semibold text-xs'> Ticket #{ticket.ticketId}</h1>
+                                <h1 className='ml-2 font-mukta font-semibold text-xs'> Ticket #{ticket.ticketID}</h1>
                                 <h1 className='ml-2 text-slate-400 font-mukta font-normal text-[7px]'>{ticket.subject}</h1>
                             </div>
                         </div>

@@ -4,8 +4,8 @@ import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import SlideToReply from './SlideToReply';
 
 const TicketDetails = ({ ticket, selectTicket }) => {
-  const [isSlid, setIsSlid] = useState(false); 
-  const [position, setPosition] = useState(0);
+  const malePic="https://i.pinimg.com/originals/22/f8/1f/22f81f5c4011da6a803d997260b2c772.jpg"
+  const femalePic="https://png.pngtree.com/png-clipart/20190904/original/pngtree-user-cartoon-girl-avatar-png-image_4492903.jpg"
   
   const formatDate = (isoString) => {
     const date = new Date(isoString);
@@ -32,7 +32,7 @@ const TicketDetails = ({ ticket, selectTicket }) => {
           <div className='flex justify-between space-x-3'>
           <p className='text-2xl hover:cursor-pointer' onClick={goBack}>{'<'}</p>
           <img
-            src="" 
+            src={ticket.gender=='male'?`${malePic}`:`${femalePic}`}
             alt={ticket.name}
             className="w-12 h-12 rounded-full mr-4"
           />
@@ -71,7 +71,7 @@ const TicketDetails = ({ ticket, selectTicket }) => {
       {/* Slide to Reply Section */}
       <div className='w-full flex justify-center items-center'>
 
-      <SlideToReply />
+      <SlideToReply ticket={ticket.ticketID}/>
       </div>
 
      
@@ -87,7 +87,7 @@ const TicketDetails = ({ ticket, selectTicket }) => {
         <p className="text-sm text-gray-600 mt-3">
       The ticket has been raised by {ticket.name} from the email address <span className='text-black'>
       {ticket.email}
-        </span>.{' '}
+        </span>.{' '}They have concerns regarding{' '}
       {ticket.subject} and are seeking a resolution.
       Please address the issue accordingly.
     </p>
