@@ -3,6 +3,7 @@ import plusicon from "@/assets/plusicon.png"
 import searchicon from "@/assets/searchicon.png"
 import filtericon from "@/assets/filtericon.png"
 import questionicon from "@/assets/questionicon.png"
+import { useNavigate } from "react-router-dom";
 
 
 const InternsDashboard = () => {
@@ -10,6 +11,7 @@ const InternsDashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [internsPerPage] = useState(8); // Number of interns per page
   const [loading, setLoading] = useState(true); // Track loading state
+  const navigate=useNavigate();
 
   useEffect(() => {
     const fetchInterns = async () => {
@@ -156,6 +158,10 @@ const InternsDashboard = () => {
     return paginationButtons;
   };  
 
+  const addIntern=()=>{
+    navigate('../add-intern')
+  }
+
   if (loading) return <div>Loading interns data...</div>;
 
   return (
@@ -168,7 +174,8 @@ const InternsDashboard = () => {
         </h2>
         <div className="md:mt-0 mt-4 md:mb-0 mb-4 flex space-x-4 mr-5">
           <button>
-          <img src={plusicon} alt="Add Icon" className="" />
+          <img
+          onClick={addIntern} src={plusicon} alt="Add Icon" className="" />
           </button>
           <button>
           <img src={searchicon} alt="Search Icon" className="" />
