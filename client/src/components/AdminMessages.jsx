@@ -12,28 +12,27 @@ const AdminMessages = () => {
   const [selectedTicket, setSelectedTicket] = useState(location.state?.selectedTicket || null);
   const [isMobileView, setIsMobileView] = useState(false); // State to track if it's mobile view
   const ticketsPerPage = 6;
-    useEffect(() => {
-        if (location.state?.selectedTicket) {
-            setSelectedTicket(location.state.selectedTicket);
-        }
-    }, [location]);
 
+    useEffect(() => {
+    if (location.state?.selectedTicket) {
+      setSelectedTicket(location.state.selectedTicket);
+    }
+  }, [location]);
 
   useEffect(() => {
-    fetch('/tickets.json')
+    // Fetch tickets from the backend API
+    fetch('http://localhost:8080/api/v1/tickets')  // Adjust this if you need to specify the full URL or add a port number
       .then((response) => response.json())
-      .then((data) => setTickets(data.tickets));
+      .then((data) => setTickets(data.tickets))
+      .catch((error) => console.error("Error fetching tickets:", error));
 
-    // Event listener to handle window resize for mobile view detection
+    // Event listener for resizing
     const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 768); // Mobile if screen width is 768px or less
+      setIsMobileView(window.innerWidth <= 768);
     };
 
-    // Initial check and event listener for window resize
     handleResize();
     window.addEventListener('resize', handleResize);
-
-    // Cleanup event listener on component unmount
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -104,10 +103,10 @@ const AdminMessages = () => {
               <h2 className="text-3xl font-bold mt-4 mb-4">Support Tickets</h2>
               {currentTickets.map((ticket) => (
                 <SupportTicket
-                  key={ticket.ticketId}
+                  key={ticket.ticketID}
                   name={ticket.name}
-                  issue={ticket.issue}
-                  status={ticket.status}
+                  issue={ticket.message}
+                  status={ticket.resolved}
                   onClick={() => handleTicketClick(ticket)}
                 />
               ))}
