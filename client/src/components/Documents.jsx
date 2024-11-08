@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import offerLetterImg from '../assets/offerLetterImg.jpg';
 import lorImg from '../assets/LOR.jpg'
-import { useNavigate } from 'react-router-dom';
+import certificateImg from '../assets/certificate.png'
+import { useNavigate, Link } from 'react-router-dom';
 
 const Documents = () => {
     const navigate=useNavigate();
 
     const [internID,setInternID]=useState(null)
     useEffect(() => {
-  const storedInternID = localStorage.getItem('internID'); // Corrected variable name here
+  const storedInternID = localStorage.getItem('internID'); 
   if (storedInternID) {
     setInternID(storedInternID);
   }
@@ -91,21 +92,21 @@ Letter Of Recommendation
             <div className='bg-[#186cec] p-4 pr-10 pl-6 pb-6 rounded-[25px] border border-black md:w-[25%]'>
                 <div className='flex flex-col '>
                 <h1 className='text-white font-bold text-2xl text-start w-[70%]'>
-                Your Offer 
-                Letter
+                Your Internship
+Certificate
                 </h1>
                 <p className='text-white mt-[4%] text-start'>
                 Click Below to View Or Download
-                Your Offer Letter
+InternShip Certificate
                 </p>
                 <div className='hidden md:flex justify-center items-center mt-4'>
-                    <img src={offerLetterImg} alt="" className='w-[20vw] h-[20vw]'/>
+                    <img src={certificateImg} alt="" className='w-[20vw] h-[17vw]'/>
                 </div>
                 </div>
                 <div className='mt-[4%] flex flex-row gap-[30%] ml-[4%]'>
-                    <button className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
+                    <Link to="/view-certificate" className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
                         View
-                    </button>
+                    </Link>
                     <button className='bg-white border border-black p-2 rounded-lg text-lg text-gray-800 font-semibold text-lg'>
                         Download
                     </button>

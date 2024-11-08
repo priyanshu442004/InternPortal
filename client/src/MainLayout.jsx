@@ -11,6 +11,7 @@ import Settings from "./components/Settings";
 import Performance from "./components/Performance";
 import PerformanceLoginMessage from "./components/PerformanceLoginMessage";
 import Login from "./components/Internlogin";
+import Certificate from "./components/Certificate";
 
 const MainLayout = () => {
   const location = useLocation();
@@ -30,6 +31,7 @@ const MainLayout = () => {
         <Route path="/Contact-us" element={<ContactUs />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Settings" element={<Settings />} />
+        <Route path="/view-Certificate" element={<Certificate />} />
         <Route path="/not-login" element={<PerformanceLoginMessage />} />
       </Routes>
 
