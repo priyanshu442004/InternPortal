@@ -107,9 +107,12 @@ InternShip Certificate
                     <Link to="/view-certificate" className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
                         View
                     </Link>
-                    <button className='bg-white border border-black p-2 rounded-lg text-lg text-gray-800 font-semibold text-lg'>
+                    <Link to='/view-certificate?download=true'
+                    target="_blank" 
+                    
+                    className='bg-white border border-black p-2 rounded-lg text-lg text-gray-800 font-semibold text-lg'>
                         Download
-                    </button>
+                    </Link>
                 </div>
                
             </div>

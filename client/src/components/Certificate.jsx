@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import domtoimage from "dom-to-image-more";
 import logo from '../assets/Logo.png'
 import signature from '../assets/signature.png'
+import { useLocation } from "react-router-dom";
 
 const Certificate = () => {
   const internName = localStorage.getItem("internName");
+  const location = useLocation();
   const currentDate = new Date().toLocaleDateString();
 
   useEffect(() => {
@@ -14,6 +16,11 @@ const Certificate = () => {
     if (nameElement && dateElement) {
       nameElement.textContent = internName;
       dateElement.textContent = currentDate;
+    }
+
+    const params = new URLSearchParams(location.search);
+    if (params.get("download") === "true") {
+      handleDownload();
     }
   }, [internName, currentDate]);
 
@@ -37,10 +44,12 @@ const Certificate = () => {
           border: "none",
         },
       });
+      window.close()
       const link = document.createElement("a");
       link.href = dataUrl;
       link.download = "Intern-certificate.jpg";
       link.click();
+      
     } catch (error) {
       console.error("Error capturing element:", error);
     }

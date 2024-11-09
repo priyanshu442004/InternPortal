@@ -72,9 +72,9 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <a href="/intern-performance" className="text-black font-semibold hover:underline">
+              <Link to="/intern-performance" className="text-black font-semibold hover:underline">
                 Performance
-              </a>
+              </Link>
             </li>
             <li>
               <Link to="/Validate-certificate" className="text-black font-semibold hover:underline">
