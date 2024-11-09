@@ -13,7 +13,12 @@ export const internLogin =async(req,res)=>{
            return res.status(400).json({success:false,message:"Incorrect ID or password"})
         }
 
-       return res.status(200).json({success:true,internName:(isInternExist.forename),gender:(isInternExist.gender)})
+       return res.status(200).json({success:true,
+         internName:(isInternExist.forename),
+         gender:(isInternExist.gender),
+         dateOfJoining:(isInternExist.dateOfJoining),
+         role:(isInternExist.role)
+      })
     } catch (error) {
        return res.status(500).json({success:false,message:"Internal server error"})
     }

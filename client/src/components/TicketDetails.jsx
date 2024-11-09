@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { BsArrowRight } from 'react-icons/bs';
+import React from 'react';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import SlideToReply from './SlideToReply';
 

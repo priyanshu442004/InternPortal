@@ -6,14 +6,26 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const Documents = () => {
     const navigate=useNavigate();
+    
+    const [offerLetterPath,setOfferLetterPath]=useState("");
+    var role=""
 
     const [internID,setInternID]=useState(null)
     useEffect(() => {
+         role = localStorage.getItem('role')
+        if (role == "Web Developer") {
+            console.log(role)
+            setOfferLetterPath("/view-OfferLetter-Web-Developer");
+          } else if (role == "App Developer") {
+            setOfferLetterPath("/view-OfferLetter");
+          } else if (role == "Python Developer") {
+            setOfferLetterPath("/view-OfferLetter-Python-Developer");
+          } 
   const storedInternID = localStorage.getItem('internID'); 
   if (storedInternID) {
     setInternID(storedInternID);
   }
-}, []);
+}, [role]);
 
   return (
     <div className='w-screen text-center flex flex-col justify-center items-center p-4'>
@@ -49,12 +61,14 @@ in one place for quick reference and verification."
                 </div>
                 </div>
                 <div className='mt-[4%] flex flex-row gap-[30%] ml-[4%]'>
-                    <button className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
+                    <Link to={offerLetterPath} className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
                         View
-                    </button>
-                    <button className='bg-white border border-black p-2 rounded-lg text-lg text-gray-800 font-semibold text-lg'>
+                    </Link>
+                    <Link to={`${offerLetterPath}?download=true`}  
+                    target='_blank'
+                    className='bg-white border border-black p-2 rounded-lg text-lg text-gray-800 font-semibold text-lg'>
                         Download
-                    </button>
+                    </Link>
                 </div>
                
             </div>

@@ -12,6 +12,9 @@ import Performance from "./components/Performance";
 import PerformanceLoginMessage from "./components/PerformanceLoginMessage";
 import Login from "./components/Internlogin";
 import Certificate from "./components/Certificate";
+import OfferLetterAppDeveloper from "./components/OfferLetterAppDeveloper";
+import OfferLetterPythonDeveloper from "./components/OfferLetterPythonDeveloper";
+import OfferLetterWebDeveloper from "./components/OfferLetterWebDeveloper";
 
 const MainLayout = () => {
   const location = useLocation();
@@ -32,6 +35,9 @@ const MainLayout = () => {
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Settings" element={<Settings />} />
         <Route path="/view-Certificate" element={<Certificate />} />
+        <Route path="/view-OfferLetter" element={<OfferLetterAppDeveloper />} />
+        <Route path="/view-OfferLetter-Python-Developer" element={<OfferLetterPythonDeveloper />} />
+        <Route path="/view-OfferLetter-Web-Developer" element={<OfferLetterWebDeveloper />} />
         <Route path="/not-login" element={<PerformanceLoginMessage />} />
       </Routes>
 
