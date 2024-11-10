@@ -212,7 +212,7 @@ const AdminMembersList = () => {
   if (loading) return <div>Loading Members data...</div>;
   
   return (
-    <div className="bg-white shadow-md p-4 h-auto rounded-lg w-full">
+    <div className="bg-white p-4 h-auto rounded-lg w-full">
         <div className='flex flex-row justify-between'>
           <div className="flex flex-row gap-[6.7vw]">
           <h3 className="text-lg font-bold font-mukta">Doc-Q Team Members List</h3>
