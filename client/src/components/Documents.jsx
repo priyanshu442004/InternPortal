@@ -5,27 +5,40 @@ import certificateImg from '../assets/certificate.png'
 import { useNavigate, Link } from 'react-router-dom';
 
 const Documents = () => {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     
-    const [offerLetterPath,setOfferLetterPath]=useState("");
-    var role=""
+    const [offerLetterPath, setOfferLetterPath] = useState("");
+    const [role, setRole] = useState(""); // Use state for role
+    const [internID, setInternID] = useState(null);
 
-    const [internID,setInternID]=useState(null)
     useEffect(() => {
-         role = localStorage.getItem('role')
-        if (role == "Web Developer") {
-            console.log(role)
+        console.log(localStorage.getItem('role'));
+        // Retrieve role and intern ID from localStorage
+        const storedRole = localStorage.getItem('role').trim().toLowerCase();
+        const storedInternID = localStorage.getItem('internID');
+
+        if (storedRole) {
+            setRole(storedRole); // Set role from localStorage
+        }
+
+        if (storedInternID) {
+            setInternID(storedInternID);
+        }
+
+        // Set the offer letter path based on the role
+        if (storedRole === "web developer") {
+            console.log("Role:", storedRole);
             setOfferLetterPath("/view-OfferLetter-Web-Developer");
-          } else if (role == "App Developer") {
+        } else if (storedRole === "app developer") {
+            console.log("Role:", storedRole);
             setOfferLetterPath("/view-OfferLetter");
-          } else if (role == "Python Developer") {
+        } else if (storedRole === "python developer") {
+            console.log("Role:", storedRole);
             setOfferLetterPath("/view-OfferLetter-Python-Developer");
-          } 
-  const storedInternID = localStorage.getItem('internID'); 
-  if (storedInternID) {
-    setInternID(storedInternID);
-  }
-}, [role]);
+        }else{
+            console.log("The code isnt working")
+        }
+    }, []);
 
   return (
     <div className='w-screen text-center flex flex-col justify-center items-center p-4'>
