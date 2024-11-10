@@ -180,7 +180,7 @@ const formatTime = (dateString) => {
 
   return (
     <div className="p-4 rounded-lg w-max">
-        <div className='flex flex-row ml-7 gap-5'> 
+        <div className='flex flex-row  ml-7 gap-5'> 
             <div className='h-[107px] w-[90px] bg-[#E7E9F6] rounded-xl'>
                 <div className='flex-col flex'>
                     <h1 className='text-xs mt-2 ml-2 font-mukta font-semibold'>Total Support Tickets <span className='text-slate-700'> ({totalTickets}) </span> </h1>
@@ -211,7 +211,7 @@ const formatTime = (dateString) => {
         </div>
         <ul className="mt-4 ml-4 space-y-2 flex flex-col gap-4 justify-start">
             {currentTickets.map((ticket, idx) => (
-                <div key={ticket.ticketId} onClick={() => handleTicketClick(ticket)}
+                <div key={ticket.ticketID} onClick={() => handleTicketClick(ticket)}
                 className="cursor-pointer hover:bg-gray-50" >
                     <div className='flex flex-row justify-between'>
                         <div className='flex flex-row'>

@@ -31,27 +31,30 @@ const AdminInternStats = () => {
         fetchInterns();
       }, []);
 
+      if (loading) return <div>Loading Stats...</div>;
+
+
   return (
-    <div className="grid grid-cols-4 w-max gap-2">
-      <div className="bg-[#b8c0e3] w-[135px] h-[170px] p-2 rounded-lg text-center">
+    <div className="grid w-full grid-cols-4 gap-2">
+      <div className="bg-[#b8c0e3] content-center justify-center flex h-[170px] p-2 rounded-lg text-center">
             <div className='flex-col flex'>
                 <h1 className='text-[15px] px-1 text-left font-mukta font-bold'>Total Interns <br /> {totalInterns} </h1>
                 <img src={graph1} height={98} width={102} alt=""/>
             </div>
       </div>
-      <div className="bg-[#F6A997] w-[135px] h-[170px] p-2 rounded-lg text-center">
+      <div className="bg-[#F6A997] content-center justify-center flex h-[170px] p-2 rounded-lg text-center">
             <div className='flex-col flex'>
                 <h1 className='text-[15px] px-1 text-left font-mukta font-bold'>Active Interns<br /> {activeInterns} </h1>
                 <img src={graph23} height={98} width={102} alt=""/>
             </div>
       </div>
-      <div className="bg-[#FCE0BB] w-[135px] h-[170px] p-2 rounded-lg text-center">
+      <div className="bg-[#FCE0BB] content-center justify-center flex h-[170px] p-2 rounded-lg text-center">
             <div className='flex-col flex'>
                 <h1 className='text-[15px] px-1 text-left font-mukta font-bold'>In-Active Interns<br /> {inactiveInterns} </h1>
                 <img src={graph23} height={98} width={102} className="mt-2" alt=""/>
             </div>
       </div>
-      <div className="bg-blue-200 w-[135px] h-[170px] p-2 rounded-lg text-center">
+      <div className="bg-blue-200  h-[170px] content-center justify-center flex p-2 rounded-lg text-center">
             <div className='flex-col flex'>
                 <h1 className='text-[15px] px-1 text-left font-mukta font-bold'>Recent Joiners<br /> {recentJoiners} </h1>
                 <img src={graph4} height={98} width={102} className="mt-2" alt=""/>

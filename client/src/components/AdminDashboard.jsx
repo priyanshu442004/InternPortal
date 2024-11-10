@@ -4,9 +4,6 @@ import AdminMembersList from './AdminMembersList';
 import AdminSupportTickets from './AdminSupportTickets';
 
 function AdminDashboard() {
-  const [interns, setInterns] = useState([]);
-  const [members, setMembers] = useState([]);
-  const [tickets, setTickets] = useState([]);
 
   return (
     <div className="p-6 w-full bg-slate-50 rounded-lg shadow-md">
@@ -16,7 +13,7 @@ function AdminDashboard() {
           {`Dashboard>Overview`}
         </h2>
       </div>
-      <div className="flex flex-row h-auto justify-end shadow-2xl bg-white mb-4">
+      <div className="flex flex-row w-[85%] mx-auto h-auto justify-end shadow-2xl bg-white mb-4">
         <div className='flex flex-col mt-8 ml-6 w-3/4'>
             <div>
                 <AdminInternStats/>
@@ -25,7 +22,7 @@ function AdminDashboard() {
                 <AdminMembersList/>
             </div> 
         </div>
-          <div className='w-1/4 mr-28 mt-4 mb-4'>
+          <div className='w-1/4 mr-24 mt-4 mb-4'>
               <AdminSupportTickets/>
           </div>
         
