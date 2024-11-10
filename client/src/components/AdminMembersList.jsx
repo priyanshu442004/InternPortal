@@ -237,7 +237,7 @@ const AdminMembersList = () => {
         <div className="mt-4 mb-2">
           <input
             type="text"
-            placeholder="Search by name, ID or role..."
+            placeholder="Search by name or role..."
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
