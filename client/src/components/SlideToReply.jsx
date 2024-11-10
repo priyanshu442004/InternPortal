@@ -64,7 +64,7 @@ const SlideToReply = ({ ticket }) => {
 
       {/* Sliding arrow */}
       <div
-        className={`absolute top-[0.2vw] left-[0.2VW] w-[2.6vw] h-[2.6vw] bg-[#0c1ae0] rounded-full flex items-center justify-center cursor-pointer shadow-lg transition-transform duration-200 ease-in-out `}
+        className={`absolute top-[0.3vw] left-[0.3VW] w-[2.9vw] h-[2.9vw] bg-[#0c1ae0] rounded-full flex items-center justify-center cursor-pointer shadow-lg transition-transform duration-200 ease-in-out `}
         onMouseDown={handleMouseDown}
         style={{ transform: `translateX(${position}vw)` }}
       >
