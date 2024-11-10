@@ -38,6 +38,10 @@ const supportSchema=new mongoose.Schema({
     resolved: {
         type: Boolean,
         default: false 
+    },
+    gender:{
+        type:String,
+        default:"male"
     }
 
 });

@@ -1,23 +1,32 @@
 import React, { useState, useEffect } from "react";
-import plusicon from "@/assets/plusicon.png"
-import searchicon from "@/assets/searchicon.png"
-import filtericon from "@/assets/filtericon.png"
-import questionicon from "@/assets/questionicon.png"
+import plusicon from "@/assets/plusicon.png";
+import searchicon from "@/assets/searchicon.png";
+import filtericon from "@/assets/filtericon.png";
+import questionicon from "@/assets/questionicon.png";
+import { useNavigate } from "react-router-dom";
+import { FaTimes } from "react-icons/fa";
 
 
 const InternsDashboard = () => {
   const [interns, setInterns] = useState([]);
+  const [filteredInterns, setFilteredInterns] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [internsPerPage] = useState(8); // Number of interns per page
-  const [loading, setLoading] = useState(true); // Track loading state
+  const [internsPerPage] = useState(8);
+  const [allInterns, setAllInterns] = useState([]); 
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showBar,setShowBar]=useState(false)
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchInterns = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/v1/internList');
+        const response = await fetch("http://localhost:8080/api/v1/internList");
         const result = await response.json();
         if (result.success) {
           setInterns(result.data);
+          setAllInterns(interns);
+          setFilteredInterns(result.data);
         }
         setLoading(false);
       } catch (error) {
@@ -25,20 +34,43 @@ const InternsDashboard = () => {
         setLoading(false);
       }
     };
-  
+    
+
     fetchInterns();
   }, []);
 
-  // Get current interns for the current page
+  const showSearchbar=()=>{
+    setShowBar(true)
+  }
+
+  const handleSearch = (e) => {
+    const term = e.target.value;
+    setSearchTerm(term);
+
+    
+    const filtered = interns.filter((intern) =>
+      intern.forename.toLowerCase().includes(term.toLowerCase())
+    );
+    setFilteredInterns(filtered);
+    setCurrentPage(1); // Reset to the first page when a search is made
+  };
+
+  const clearSearch = () => {
+    setSearchTerm("");
+    setFilteredInterns(allInterns);
+    // Reset the filtered results or any other state if needed
+  };
+
   const indexOfLastIntern = currentPage * internsPerPage;
   const indexOfFirstIntern = indexOfLastIntern - internsPerPage;
-  const currentInterns = interns.slice(indexOfFirstIntern, indexOfLastIntern);
+  const currentInterns = filteredInterns.slice(indexOfFirstIntern, indexOfLastIntern);
 
   const formatDate = (date) => {
     const d = new Date(date);
-    return `${d.getDate().toString().padStart(2, '0')}/${(d.getMonth() + 1).toString().padStart(2, '0')}/${d.getFullYear()}`;
-  }
-
+    return `${d.getDate().toString().padStart(2, "0")}/${(d.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}/${d.getFullYear()}`;
+  };
   // Handle page change
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -77,7 +109,7 @@ const InternsDashboard = () => {
           <h1 key={totalPages} className="page-font-mukta number py-2 px-3 hover:cursor-pointer" onClick={() => paginate(totalPages)}>
             {totalPages}
           </h1>
-        );
+        );  
       }
     } else if (currentPage === 2) {
       // On the second page, show pages 1, 2 (bold), and 3
@@ -156,6 +188,10 @@ const InternsDashboard = () => {
     return paginationButtons;
   };  
 
+  const addIntern=()=>{
+    navigate('../add-intern')
+  }
+
   if (loading) return <div>Loading interns data...</div>;
 
   return (
@@ -164,14 +200,37 @@ const InternsDashboard = () => {
 
       <div className="flex md:flex-row flex-col h-auto md:h-16 justify-between bg-white items-center mb-4">
         <h2 className="font-mukta text-xl font-medium ml-5 md:mt-0 mt-5">
-          Total Interns <span className="font-mukta text-slate-500">({interns.length})</span>
+          Total Interns <span className="font-mukta text-slate-500">({filteredInterns.length})</span>
         </h2>
+        
+           {/* Search bar */}
         <div className="md:mt-0 mt-4 md:mb-0 mb-4 flex space-x-4 mr-5">
+          {showBar && <div className="relative w-52">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={handleSearch}
+            placeholder="Search interns..."
+            className="border border-gray-300 rounded-md py-2 px-3 w-52 font-mukta"
+          />
+          {searchTerm && (
+        <button
+          onClick={clearSearch}
+          className="absolute right-2 top-3 text-gray-500"
+          aria-label="Clear search"
+        >
+          <FaTimes />
+        </button>
+      )}
+          </div>}
+          
           <button>
-          <img src={plusicon} alt="Add Icon" className="" />
+          <img
+          onClick={addIntern} src={plusicon} alt="Add Icon" className="" />
           </button>
           <button>
-          <img src={searchicon} alt="Search Icon" className="" />
+          <img
+          onClick={showSearchbar} src={searchicon} alt="Search Icon" className="" />
           </button>
           <button>
           <img src={filtericon} alt="Filter Icon" className="" />

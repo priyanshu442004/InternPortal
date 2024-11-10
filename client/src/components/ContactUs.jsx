@@ -4,12 +4,14 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 
 const ContactUs = () => {
+  const gender=localStorage.getItem('gender')
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
     email: '',
     subject:'',
-    message: ''
+    message: '',
+    gender:gender
   });
 
   const [responseMessage, setResponseMessage] = useState('');
@@ -41,6 +43,7 @@ const ContactUs = () => {
         email: '',
         subject: '',
         message: '',
+        gender:'male'
       });
     } catch (error) {
       toast.error("Error. Please try again")

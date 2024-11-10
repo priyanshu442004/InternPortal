@@ -20,7 +20,10 @@ const Login = () => {
 
       if(response.data.success){
         localStorage.setItem('internID',internID);
+        localStorage.setItem('gender',response.data.gender);
         localStorage.setItem('internName',response.data.internName);
+        localStorage.setItem('dateOfJoining',response.data.dateOfJoining);
+        localStorage.setItem('role',response.data.role);
         toast.success("Login success")
         navigate(`../`);
       }

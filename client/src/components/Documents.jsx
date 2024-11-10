@@ -1,18 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import offerLetterImg from '../assets/offerLetterImg.jpg';
 import lorImg from '../assets/LOR.jpg'
-import { useNavigate } from 'react-router-dom';
+import certificateImg from '../assets/certificate.png'
+import { useNavigate, Link } from 'react-router-dom';
 
 const Documents = () => {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
+    
+    const [offerLetterPath, setOfferLetterPath] = useState("");
+    const [role, setRole] = useState(""); // Use state for role
+    const [internID, setInternID] = useState(null);
 
-    const [internID,setInternID]=useState(null)
     useEffect(() => {
-  const storedInternID = localStorage.getItem('internID'); // Corrected variable name here
-  if (storedInternID) {
-    setInternID(storedInternID);
-  }
-}, []);
+        console.log(localStorage.getItem('role'));
+        // Retrieve role and intern ID from localStorage
+        const storedRole = localStorage.getItem('role').trim().toLowerCase();
+        const storedInternID = localStorage.getItem('internID');
+
+        if (storedRole) {
+            setRole(storedRole); // Set role from localStorage
+        }
+
+        if (storedInternID) {
+            setInternID(storedInternID);
+        }
+
+        // Set the offer letter path based on the role
+        if (storedRole === "web developer") {
+            console.log("Role:", storedRole);
+            setOfferLetterPath("/view-OfferLetter-Web-Developer");
+        } else if (storedRole === "app developer") {
+            console.log("Role:", storedRole);
+            setOfferLetterPath("/view-OfferLetter");
+        } else if (storedRole === "python developer") {
+            console.log("Role:", storedRole);
+            setOfferLetterPath("/view-OfferLetter-Python-Developer");
+        }else{
+            console.log("The code isnt working")
+        }
+    }, []);
 
   return (
     <div className='w-screen text-center flex flex-col justify-center items-center p-4'>
@@ -48,12 +74,14 @@ in one place for quick reference and verification."
                 </div>
                 </div>
                 <div className='mt-[4%] flex flex-row gap-[30%] ml-[4%]'>
-                    <button className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
+                    <Link to={offerLetterPath} className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
                         View
-                    </button>
-                    <button className='bg-white border border-black p-2 rounded-lg text-lg text-gray-800 font-semibold text-lg'>
+                    </Link>
+                    <Link to={`${offerLetterPath}?download=true`}  
+                    target='_blank'
+                    className='bg-white border border-black p-2 rounded-lg text-lg text-gray-800 font-semibold text-lg'>
                         Download
-                    </button>
+                    </Link>
                 </div>
                
             </div>
@@ -91,24 +119,27 @@ Letter Of Recommendation
             <div className='bg-[#186cec] p-4 pr-10 pl-6 pb-6 rounded-[25px] border border-black md:w-[25%]'>
                 <div className='flex flex-col '>
                 <h1 className='text-white font-bold text-2xl text-start w-[70%]'>
-                Your Offer 
-                Letter
+                Your Internship
+Certificate
                 </h1>
                 <p className='text-white mt-[4%] text-start'>
                 Click Below to View Or Download
-                Your Offer Letter
+InternShip Certificate
                 </p>
                 <div className='hidden md:flex justify-center items-center mt-4'>
-                    <img src={offerLetterImg} alt="" className='w-[20vw] h-[20vw]'/>
+                    <img src={certificateImg} alt="" className='w-[20vw] h-[17vw]'/>
                 </div>
                 </div>
                 <div className='mt-[4%] flex flex-row gap-[30%] ml-[4%]'>
-                    <button className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
+                    <Link to="/view-certificate" className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
                         View
-                    </button>
-                    <button className='bg-white border border-black p-2 rounded-lg text-lg text-gray-800 font-semibold text-lg'>
+                    </Link>
+                    <Link to='/view-certificate?download=true'
+                    target="_blank" 
+                    
+                    className='bg-white border border-black p-2 rounded-lg text-lg text-gray-800 font-semibold text-lg'>
                         Download
-                    </button>
+                    </Link>
                 </div>
                
             </div>

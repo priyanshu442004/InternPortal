@@ -1,13 +1,32 @@
 import React, { useState } from 'react';
 import maintenanceImg from '../assets/Maintenance.png'
+import toast from 'react-hot-toast'
+import axios from 'axios'
 
 const Settings = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const username=localStorage.getItem('admin')
 
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = async(e) => {
     e.preventDefault();
-    console.log('Password changed');
+    
+    try {
+      
+      const response= await axios.post(`http://localhost:8080/api/v1/changeAdminPassword/${username}`, {
+        currentPassword:currentPassword,
+        newPassword:newPassword
+      })
+  
+      if(response.data.success){
+        toast.success("Password changed successfully")
+      }else{
+        toast.error("There was some problem please try again")
+      }
+    } catch (error) {
+      toast.error(error.response.data.message)
+    }
+    
   };
 
   return (

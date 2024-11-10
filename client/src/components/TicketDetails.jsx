@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
-import { BsArrowRight } from 'react-icons/bs';
+import React from 'react';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import SlideToReply from './SlideToReply';
 
 const TicketDetails = ({ ticket, selectTicket }) => {
-  const [isSlid, setIsSlid] = useState(false); // Track if the button is fully slid
-  const [position, setPosition] = useState(0);
+  const malePic="https://i.pinimg.com/originals/22/f8/1f/22f81f5c4011da6a803d997260b2c772.jpg"
+  const femalePic="https://png.pngtree.com/png-clipart/20190904/original/pngtree-user-cartoon-girl-avatar-png-image_4492903.jpg"
   
-
-  // Reset the slider (optional)
-  const handleReset = () => {
-    setPosition(0);
-    setIsSlid(false);
+  const formatDate = (isoString) => {
+    const date = new Date(isoString);
+    return date.toLocaleDateString(); 
   };
+  
+  const formatTime = (isoString) => {
+    const date = new Date(isoString);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); 
+  };
+  
+  
 
   const goBack=()=>{
     selectTicket(null)
@@ -27,7 +31,7 @@ const TicketDetails = ({ ticket, selectTicket }) => {
           <div className='flex justify-between space-x-3'>
           <p className='text-2xl hover:cursor-pointer' onClick={goBack}>{'<'}</p>
           <img
-            src="" 
+            src={ticket.gender=='male'?`${malePic}`:`${femalePic}`}
             alt={ticket.name}
             className="w-12 h-12 rounded-full mr-4"
           />
@@ -46,24 +50,16 @@ const TicketDetails = ({ ticket, selectTicket }) => {
 
       {/* Conversation Section */}
       <div className="mb-6">
-            <p className="text-xl text-black font-semibold">Ticket #{ticket.ticketId}</p>
+            <p className="text-xl text-black font-semibold">Ticket #{ticket.ticketID}</p>
     <div className='w-full flex items-center justify-center flex-col'>
 
-            <p className="text-sm text-blue-400">{ticket.date}</p>
-          <p className="text-sm text-blue-400">{ticket.time}</p>
+    <p className="text-sm text-blue-400">{formatDate(ticket.date)}</p> 
+    <p className="text-sm text-blue-400">{formatTime(ticket.date)}</p>
     </div>
 
         <div className="mt-[1vw] flex flex-col space-y-[2vw]">
           <div className="bg-gray-200 p-4 rounded-md text-sm text-gray-800 w-max">
-             Great, when can we have the meeting?
-          </div>
-          <div className="bg-gray-200 p-4 rounded-md text-sm text-gray-800 w-max">
-             I have a discrepancy in my offer letter.
-          </div>
-          <div className="bg-gray-200 p-4 rounded-md text-sm text-gray-800 w-max">
-           Can we connect on Meet?
-            <br />
-            I have queries regarding the internship.
+             {ticket.message}
           </div>
          {/* { <div className="bg-blue-100 p-3 rounded-md text-sm text-gray-800 w-max self-end">
             Support: 
@@ -74,7 +70,7 @@ const TicketDetails = ({ ticket, selectTicket }) => {
       {/* Slide to Reply Section */}
       <div className='w-full flex justify-center items-center'>
 
-      <SlideToReply />
+      <SlideToReply ticket={ticket.ticketID}/>
       </div>
 
      
@@ -85,11 +81,13 @@ const TicketDetails = ({ ticket, selectTicket }) => {
     <div className="bg-gray-50 pt-5 pl-6 pr-6 pb-5 rounded-md w-full bg-white shadow-lg">
     <div className="flex justify-between items-center mb-2 space-x-6">
       <div className='w-[80%]'>
-        <p className="font-semibold text-lg">Ticket #{ticket.ticketId}</p>
+        <p className="font-semibold text-lg">Ticket #{ticket.ticketID}</p>
         <p className="text-sm text-gray-500 mt-1">Details:</p>
         <p className="text-sm text-gray-600 mt-3">
-      The ticket has been raised by {ticket.name} from the email address {ticket.email}.
-      It states that they have discrepancies in their offer letter and are seeking a resolution.
+      The ticket has been raised by {ticket.name} from the email address <span className='text-black'>
+      {ticket.email}
+        </span>.{' '}They have concerns regarding{' '}
+      {ticket.subject} and are seeking a resolution.
       Please address the issue accordingly.
     </p>
       </div>
@@ -98,15 +96,15 @@ const TicketDetails = ({ ticket, selectTicket }) => {
           Option
         </p>
         <button
-          className={`px-1 py-1 rounded-full text-black ${
-            ticket.status === 'Solved' ? 'bg-green-500' : 'bg-gray-300'
+          className={`text-sm px-1 py-1 rounded-full text-black ${
+            ticket.resolved? 'bg-green-500' : 'bg-gray-300'
           }`}
         >
           Solved
         </button>
         <button
-          className={`px-1 py-1 rounded-full text-black ${
-            ticket.status === 'Pending' ? 'bg-red-500' : 'bg-gray-300'
+          className={`text-sm px-1 py-1 rounded-full text-black ${
+            !(ticket.resolved)? 'bg-red-500' : 'bg-gray-300'
           }`}
         >
           Pending

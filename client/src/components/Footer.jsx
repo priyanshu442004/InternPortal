@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from '../assets/Logo.png';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -19,9 +20,9 @@ const Footer = () => {
             <h4 className="font-bold text-gray-600 mb-3">Quick Links</h4>
             <ul className="space-y-2">
               <li><a href="#" className="text-black hover:text-blue-500">Career</a></li>
-              <li><a href="#" className="text-black hover:text-blue-500">Support</a></li>
+              <li><Link to="/contact-us" className="text-black hover:text-blue-500">Support</Link></li>
               <li><a href="#" className="text-black hover:text-blue-500">About</a></li>
-              <li><a href="#" className="text-black hover:text-blue-500">Admin Login</a></li>
+              <li><Link to="/admin" className="text-black hover:text-blue-500">Admin Login</Link></li>
             </ul>
           </div>
           
@@ -38,8 +39,8 @@ const Footer = () => {
           <div>
             <h4 className="font-bold text-gray-600 mb-3">Explore</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-black hover:text-blue-500">Validation</a></li>
-              <li><a href="#" className="text-black hover:text-blue-500">Profile</a></li>
+              <li><Link to="/validate-certificate" className="text-black hover:text-blue-500">Validation</Link></li>
+              <li><Link to="/profile" className="text-black hover:text-blue-500">Profile</Link></li>
               <li><a href="#" className="text-black hover:text-blue-500">Attendance & Leave</a></li>
               <li><a href="#" className="text-black hover:text-blue-500">Learning & Development</a></li>
             </ul>

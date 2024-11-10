@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import profile from '../assets/profile.png'
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
 const Profile = () => {
-  const internName=localStorage.getItem('internName')
+  const internName=localStorage.getItem('internName');
+  const malePic="https://i.pinimg.com/originals/22/f8/1f/22f81f5c4011da6a803d997260b2c772.jpg"
+  const femalePic="https://png.pngtree.com/png-clipart/20190904/original/pngtree-user-cartoon-girl-avatar-png-image_4492903.jpg";
+  const gender=localStorage.getItem('gender')
 
   const [internID,setInternID]=useState(null)
   useEffect(() => {
@@ -83,7 +85,7 @@ const Profile = () => {
         <div className="flex justify-center mb-10">
           <div className="flex items-center gap-3 flex-row relative w-[90%] bg-gray-200 p-3 rounded-[25px]">
             <img
-              src={profile}
+              src={gender=='male'?`${malePic}`:`${femalePic}`}
               alt="Profile"
               className="w-12 h-12 rounded-full object-cover hover:cursor-pointer"
             />
