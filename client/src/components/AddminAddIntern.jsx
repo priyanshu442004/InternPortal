@@ -1,4 +1,4 @@
-import { Calendar, X, Upload, Check, AlertCircle } from 'lucide-react';
+import { Calendar, X, Upload, AlertCircle } from 'lucide-react';
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
