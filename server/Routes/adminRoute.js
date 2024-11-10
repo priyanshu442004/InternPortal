@@ -2,10 +2,6 @@ import express from 'express';
 import { adminLogin } from '../Controllers/adminLogin.js';
 import { Interns } from '../Controllers/AdminInternList.js';
 import {tickets} from '../Controllers/AdminSupportTickets.js'
-
-import { Members } from '../Controllers/AdminMembersList.js';
-import { deleteMembers } from '../Controllers/AdminDeleteMembers.js';
-
 import { adminChangePass } from '../Controllers/adminChangePass.js';
 import { Members } from '../Controllers/AdminMembersList.js';
 import { deleteMembers } from '../Controllers/AdminDeleteMembers.js';
