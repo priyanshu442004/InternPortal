@@ -13,12 +13,23 @@ const EditIntern = () => {
     gender: '',
     status: '',
     performance: '',
+    canDownloadCertificate: false,
+    canDownloadLOR: false,
   });
   const [documents, setDocuments] = useState({
     offerLetter: null,
     certificate: null,
     letterOfRecommendation: null
   });
+
+  const roleOptions = [
+    { value: 'web-developer', label: 'Web Developer' },
+    { value: 'python-developer', label: 'Python Developer' },
+    { value: 'app-developer', label: 'App Developer' },
+    { value: 'marketing', label: 'Marketing' },
+    { value: 'hr', label: 'HR' },
+    { value: 'ux-designer', label: 'UX Designer' }
+  ];
 
   // Handler for searching intern by ID
 
@@ -86,6 +97,31 @@ const handleSearch = async () => {
     }));
   };
 
+  const handleRoleChange = (e) => {
+    const value = e.target.value;
+    setFormData(prev => ({ ...prev, role: value }));
+    if (!value) {
+      setErrors(prev => ({ ...prev, role: 'Role selection is required' }));
+    } else {
+      setErrors(prev => ({ ...prev, role: '' }));
+    }
+  };
+
+  const handleCertificateIdChange = (e) => {
+    const value = e.target.value;
+    setFormData(prev => ({ ...prev, certificateId: value }));
+    if (!value) {
+      setErrors(prev => ({ ...prev, certificateId: 'Certificate ID is required' }));
+    } else {
+      setErrors(prev => ({ ...prev, certificateId: '' }));
+    }
+  };
+
+  const handleDownloadPermissionChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+
   // Handler for file uploads
   const handleFileUpload = (documentType) => (e) => {
     const file = e.target.files?.[0];
@@ -143,31 +179,51 @@ const handleSearch = async () => {
       gender: '',
       status: '',
       performance: '',
+      role: '',
+      canDownloadCertificate: false,
+      canDownloadLOR: false,
     });
-    setDocuments({
-      offerLetter: null,
-      certificate: null,
-      letterOfRecommendation: null
-    });
+    
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isEmailValid = validateEmail(formData.email);
+    const isPasswordValid = Object.values(passwordStrength).every(Boolean);
+    const isRoleValid = !!formData.role;
+    const isCertificateIdValid = !!formData.certificateId;
+    
+    if (!isRoleValid) {
+      setErrors(prev => ({ ...prev, role: 'Role selection is required' }));
+    }
+    if (!isCertificateIdValid) {
+      setErrors(prev => ({ ...prev, certificateId: 'Certificate ID is required' }));
+    }
+    
+    if (isEmailValid && isPasswordValid && isRoleValid && isCertificateIdValid) {
+      console.log('Form submitted:', formData);
+    } else {
+      console.log('Form has errors');
+    }
   };
 
   return (
-    <form className="w-[210mm] min-h-[297mm] mx-auto bg-white p-8 shadow-lg">
+    <form className="w-[210mm] min-h-[297mm] mx-auto bg-white p-8 shadow-lg"  >
       {/* Header with Title and Buttons */}
-      <div className="flex justify-between items-center border-b pb-4 mb-8">
-        <h1 className="text-xl font-medium">Add New Intern</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-xl font-semibold">Add New Intern</h1>
         <div className="space-x-2">
-          <button
-            type="button"
-            onClick={handleCancel}
-            className="px-4 py-2 border rounded text-sm hover:bg-gray-50"
+          <button 
+            type="button" 
+            className="px-4 py-2 border rounded hover:bg-gray-50"
+            onClick={resetForm}
           >
             Cancel
           </button>
-          <button
+          <button 
             type="button"
-            onClick={handleSave}
-            className="px-4 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
+            className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800"
+            onClick={handleSubmit}
           >
             Save
           </button>
@@ -291,33 +347,75 @@ const handleSearch = async () => {
           </div>
         </div>
 
-        {/* Upload Documents Section */}
-        <div>
-          <h2 className="text-blue-800 text-sm font-medium mb-6">Upload Documents</h2>
-          <div className="space-y-4">
-            {[
-              { key: 'offerLetter', label: 'Offer Letter' },
-              { key: 'certificate', label: 'Certificate' },
-              { key: 'letterOfRecommendation', label: 'Letter Of Recommendation' }
-            ].map(({ key, label }) => (
-              <div key={key} className="flex items-center">
-                <label className="w-48 text-sm">{label}</label>
-                <div className="flex items-center gap-2">
-                  <label className="cursor-pointer">
-                    <span className="px-4 py-1 border rounded text-sm text-gray-500 hover:bg-gray-50">
-                      {documents[key] ? documents[key].name : 'Upload Documents'}
-                    </span>
-                    <input
-                      type="file"
-                      className="hidden"
-                      onChange={handleFileUpload(key)}
-                      accept=".pdf,.doc,.docx"
-                    />
-                  </label>
-                  <Download className="w-4 h-4 text-gray-500" />
-                </div>
+       {/* Role Selection */}
+       <div className="flex items-center space-x-4">
+          <label className="text-sm font-medium w-32">Role</label>
+          <div className="flex-1">
+            <select
+              value={formData.role}
+              onChange={handleRoleChange}
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">Select Role</option>
+              {roleOptions.map(({ value, label }) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+            </select>
+            {errors.role && (
+              <div className="text-red-500 text-sm mt-1 flex items-center">
+                <AlertCircle size={16} className="mr-1" />
+                {errors.role}
               </div>
-            ))}
+            )}
+          </div>
+        </div>
+
+        {/* Download Permissions  */}
+        <div className="flex items-center space-x-4">
+          <label className="text-sm font-medium w-32">Certificate Download</label>
+          <div className="flex space-x-4">
+            <label className="flex items-center">
+              <input
+                type="radio"
+                checked={formData.canDownloadCertificate}
+                onChange={() => handleDownloadPermissionChange('canDownloadCertificate', true)}
+                className="mr-2"
+              />
+              Yes
+            </label>
+            <label className="flex items-center">
+              <input
+                type="radio"
+                checked={!formData.canDownloadCertificate}
+                onChange={() => handleDownloadPermissionChange('canDownloadCertificate', false)}
+                className="mr-2"
+              />
+              No
+            </label>
+          </div>
+        </div>
+
+        <div className="flex items-center space-x-4">
+          <label className="text-sm font-medium w-32">LOR Download</label>
+          <div className="flex space-x-4">
+            <label className="flex items-center">
+              <input
+                type="radio"
+                checked={formData.canDownloadLOR}
+                onChange={() => handleDownloadPermissionChange('canDownloadLOR', true)}
+                className="mr-2"
+              />
+              Yes
+            </label>
+            <label className="flex items-center">
+              <input
+                type="radio"
+                checked={!formData.canDownloadLOR}
+                onChange={() => handleDownloadPermissionChange('canDownloadLOR', false)}
+                className="mr-2"
+              />
+              No
+            </label>
           </div>
         </div>
       </div>
