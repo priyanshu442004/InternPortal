@@ -13,6 +13,7 @@ const EditIntern = () => {
     gender: '',
     status: '',
     performance: '',
+    role:'',
     canDownloadCertificate: false,
     canDownloadLOR: false,
   });
@@ -50,7 +51,10 @@ const handleSearch = async () => {
       email: response.data.email || '',
       gender: response.data.gender || '',
       status: response.data.status || '',
+      role:response.data.role ||'',
       performance: response.data.performance || '',
+      canDownloadCertificate: response.data.canDownloadCertificate,
+      canDownloadLOR: response.data.canDownloadLOR,
     });
     
     // Update documents if they exist

@@ -17,7 +17,8 @@ export const internLogin =async(req,res)=>{
          internName:(isInternExist.forename),
          gender:(isInternExist.gender),
          dateOfJoining:(isInternExist.dateOfJoining),
-         role:(isInternExist.role)
+         role:(isInternExist.role),
+         certificateId:(isInternExist.certificateId)
       })
     } catch (error) {
        return res.status(500).json({success:false,message:"Internal server error"})

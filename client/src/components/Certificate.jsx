@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 
 const Certificate = () => {
   const internName = localStorage.getItem("internName");
+  const certificateId = localStorage.getItem("certificateId");
   const location = useLocation();
   const currentDate = new Date().toLocaleDateString();
 
@@ -36,7 +37,7 @@ const Certificate = () => {
       const dataUrl = await domtoimage.toJpeg(element, {
         quality: 0.95,
         width: 595,
-        height: 842,
+        height: 900,
         scale: 2,
         bgcolor: "#ffffff",
         style: {
@@ -59,7 +60,7 @@ const Certificate = () => {
     <div className="flex justify-center items-center flex-col p-6 mt-[5%]">
       <div
         id="certificate-div"
-        className="w-[595px] h-[842px] bg-white p-6 border-white"
+        className="w-[595px] h-[900px] bg-white p-6 border-white"
         style={{
           overflow: "hidden",
           border: "none", 
@@ -73,7 +74,7 @@ const Certificate = () => {
             alt="docq logo"
             className="mx-auto w-[17vw] border-white"
           />
-        <h4 className="text-center text-lg font-semibold border-white">(Certificate No. )</h4>
+        <h4 className="text-center text-lg font-semibold border-white">(Certificate No. {certificateId})</h4>
         </div>
 
 

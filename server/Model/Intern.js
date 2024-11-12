@@ -60,6 +60,18 @@ const InternSchema = new mongoose.Schema({
   },
   pincode: {
     type: String,
+  },
+  certificateId: {
+    type: String,
+  },
+  canDownloadCertificate: {
+    type: String,
+  },
+  canDownloadLOR: {
+    type: String,
+  },
+  leaveDate:{
+    type:String
   }
 }, { timestamps: true, strict: false }); 
 

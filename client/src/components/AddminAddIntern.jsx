@@ -1,5 +1,5 @@
-import { Calendar, X, Upload, Check, AlertCircle } from 'lucide-react';
-import React, { useState, useRef } from 'react';
+import { Calendar, X, AlertCircle } from 'lucide-react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
@@ -28,9 +28,9 @@ const AddminAddIntern = () => {
 
 
   const roleOptions = [
-    { value: 'web-developer', label: 'Web Developer' },
-    { value: 'python-developer', label: 'Python Developer' },
-    { value: 'app-developer', label: 'App Developer' },
+    { value: 'web developer', label: 'Web Developer' },
+    { value: 'python developer', label: 'Python Developer' },
+    { value: 'app developer', label: 'App Developer' },
     { value: 'marketing', label: 'Marketing' },
     { value: 'hr', label: 'HR' },
     { value: 'ux-designer', label: 'UX Designer' }
@@ -94,26 +94,7 @@ const AddminAddIntern = () => {
     }
   };
 
-  const handleFileUpload = (type, e) => {
-    const file = e.target.files[0];
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        alert('File size should not exceed 5MB');
-        return;
-      }
-      setFormData(prev => ({
-        ...prev,
-        documents: {
-          ...prev.documents,
-          [type]: file
-        }
-      }));
-      setUploadedFiles(prev => ({
-        ...prev,
-        [type]: file.name
-      }));
-    }
-  };
+  
 
 
 
@@ -292,7 +273,7 @@ const AddminAddIntern = () => {
         </div>
 
         {/* Email */}
-        <div className="flex items-center space-x-4  "  onClick={handleSubmit} >
+        <div className="flex items-center space-x-4 ">
           <label className="w-24 text-sm font-medium">Email</label>
           <div className="flex-1">
             <input
@@ -379,7 +360,7 @@ const AddminAddIntern = () => {
         </div>
 
         {/* Role Selection */}
-        <div className="flex items-center space-x-4" onClick={handleSubmit}>
+        <div className="flex items-center space-x-4">
           <label className="text-sm font-medium w-32">Role</label>
           <div className="flex-1">
             <select
@@ -402,7 +383,7 @@ const AddminAddIntern = () => {
         </div>
 
         {/* Certificate ID  */}
-        <div className="flex items-center space-x-4" onClick={handleSubmit}>
+        <div className="flex items-center space-x-4">
           <label className="text-sm font-medium w-32">Certificate ID</label>
           <div className="flex-1">
             <input

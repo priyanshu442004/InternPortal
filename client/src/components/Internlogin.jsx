@@ -22,6 +22,7 @@ const Login = () => {
         localStorage.setItem('internID',internID);
         localStorage.setItem('gender',response.data.gender);
         localStorage.setItem('internName',response.data.internName);
+        localStorage.setItem('certificateId',response.data.certificateId);
         localStorage.setItem('dateOfJoining',response.data.dateOfJoining);
         localStorage.setItem('role',response.data.role);
         toast.success("Login success")
