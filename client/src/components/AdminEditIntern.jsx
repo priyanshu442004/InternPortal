@@ -442,7 +442,6 @@ const EditIntern = () => {
             ))}
           </div>
         </div>
-
           
         <div className="flex items-start">
           <label className="w-48 text-sm pt-2">Projects</label>
