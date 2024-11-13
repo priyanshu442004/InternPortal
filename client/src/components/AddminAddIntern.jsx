@@ -174,10 +174,10 @@ const AddminAddIntern = () => {
 
 
   return (
-    <div className="w-screen mx-auto p-6 bg-slate-50 flex justify-center items-center flex-col">
-      <div className="flex justify-between items-center mb-6 w-[90%] bg-white p-2">
+    <div className="w-full mx-auto p-6 bg-slate-50 flex justify-center items-center flex-col">
+      <div className="flex justify-between items-center mb-6 gap-2 md:w-[90%] bg-white p-2">
         <h1 className="text-xl font-semibold">Add New Intern</h1>
-        <div className="space-x-2">
+        <div className="space-x-2 space-y-2">
           <button
             type="button"
             className="px-4 py-2 border rounded hover:bg-gray-50"
@@ -195,10 +195,10 @@ const AddminAddIntern = () => {
         </div>
       </div>
 
-      <form className="space-y-6 bg-white rounded-lg p-6 shadow-sm" onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 gap-6">
+      <form className="w-[110%] md:w-[80%] space-y-6 bg-white rounded-lg p-6 shadow-sm" onSubmit={handleSubmit}>
+        <div className="md:grid grid-cols-2 gap-6">
           {/* Intern ID */}
-          <div className="flex items-center space-x-4">
+          <div className="md:flex items-center space-x-4">
             <label className="w-24 text-sm font-medium">Intern ID</label>
             <input
               type="text"
@@ -209,12 +209,12 @@ const AddminAddIntern = () => {
           </div>
 
           {/* Password */}
-          <div className="flex items-center space-x-4">
+          <div className="md:flex items-center space-x-4">
             <label className="w-24 text-sm font-medium">Password</label>
             <div className="flex-1">
               <input
                 type="password"
-                className={`w-full border rounded p-2 ${errors.password ? 'border-red-500' : ''}`}
+                className={`md:w-full border rounded p-2 ${errors.password ? 'border-red-500' : ''}`}
                 value={formData.password}
                 onChange={(e) => {
                   setFormData({ ...formData, password: e.target.value });
@@ -226,7 +226,7 @@ const AddminAddIntern = () => {
         </div>
 
         {/* Forename */}
-        <div className="flex items-center space-x-4">
+        <div className="md:flex items-center space-x-4">
           <label className="w-24 text-sm font-medium">Forename</label>
           <div className="flex-1 relative">
             <input
@@ -248,7 +248,7 @@ const AddminAddIntern = () => {
         </div>
 
         {/* Contact No */}
-        <div className="flex items-center space-x-4">
+        <div className="md:flex items-center space-x-4">
           <label className="w-24 text-sm font-medium">Contact No</label>
           <div className="flex-1 relative">
             <input
@@ -270,7 +270,7 @@ const AddminAddIntern = () => {
         </div>
 
         {/* Email */}
-        <div className="flex items-center space-x-4 ">
+        <div className="md:flex items-center space-x-4 ">
           <label className="w-24 text-sm font-medium">Email</label>
           <div className="flex-1">
             <input
@@ -293,21 +293,21 @@ const AddminAddIntern = () => {
         </div>
 
         {/* Date of Joining */}
-        <div className="flex items-center space-x-4">
+        <div className="md:flex items-center space-x-4">
           <label className="w-24 text-sm font-medium">Date of Joining</label>
           <div className="flex-1 relative">
             <input
               type="date"
-              className="w-full border rounded p-2 cursor-pointer"
+              className="md:w-full border rounded p-2 cursor-pointer"
               value={formData.dateOfJoining}
               onChange={(e) => setFormData({ ...formData, dateOfJoining: e.target.value })}
             />
-            <Calendar className="absolute right-2 top-2.5 text-gray-400 pointer-events-none" size={20} />
+            <Calendar className="absolute right-[110px] md:right-2 top-[10px] md:top-2.5 text-gray-400 pointer-events-none" size={20} />
           </div>
         </div>
 
         {/* Gender */}
-        <div className="flex items-center space-x-4">
+        <div className="md:flex items-center space-x-4">
           <label className="w-24 text-sm font-medium">Gender</label>
           <div className="flex-1">
             <div className="space-x-2">
@@ -329,10 +329,10 @@ const AddminAddIntern = () => {
         </div>
 
         {/* Performance Rating */}
-        <div className="flex items-center space-x-4">
+        <div className="md:flex items-center space-x-4">
           <label className="w-24 text-sm font-medium">Performance</label>
           <div className="flex-1">
-            <div className="flex space-x-2">
+            <div className="grid grid-cols-2 w-[230px] md:flex space-x-2">
               {performanceOptions.map(({ value, label, bgColor }) => (
                 <button
                   key={value}
@@ -357,13 +357,13 @@ const AddminAddIntern = () => {
         </div>
 
         {/* Role Selection */}
-        <div className="flex items-center space-x-4">
+        <div className="md:flex items-center space-x-4">
           <label className="text-sm font-medium w-32">Role</label>
           <div className="flex-1">
             <select
               value={formData.role}
               onChange={handleRoleChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="md:w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select Role</option>
               {roleOptions.map(({ value, label }) => (
@@ -380,14 +380,14 @@ const AddminAddIntern = () => {
         </div>
 
         {/* Certificate ID  */}
-        <div className="flex items-center space-x-4">
+        <div className="md:flex items-center space-x-4">
           <label className="text-sm font-medium w-32">Certificate ID</label>
           <div className="flex-1">
             <input
               type="text"
               value={formData.certificateId}
               onChange={handleCertificateIdChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="md:w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter certificate ID"
             />
             {errors.certificateId && (

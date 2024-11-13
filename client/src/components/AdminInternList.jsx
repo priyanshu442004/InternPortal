@@ -57,7 +57,7 @@ const InternsDashboard = () => {
 
   const clearSearch = () => {
     setSearchTerm("");
-    setFilteredInterns(allInterns);
+    setFilteredInterns(interns);
     // Reset the filtered results or any other state if needed
   };
 
@@ -204,14 +204,14 @@ const InternsDashboard = () => {
         </h2>
         
            {/* Search bar */}
-        <div className="md:mt-0 mt-4 md:mb-0 mb-4 flex space-x-4 mr-5">
-          {showBar && <div className="relative w-52">
+        <div className="md:mt-0 mt-4 md:mb-0 mb-4 flex flex-col md:flex-row space-x-4 mr-5">
+          {showBar && <div className="relative md:w-52">
           <input
             type="text"
             value={searchTerm}
             onChange={handleSearch}
             placeholder="Search interns..."
-            className="border border-gray-300 rounded-md py-2 px-3 w-52 font-mukta"
+            className="border border-gray-300 rounded-md py-1 md:py-2 px-1 md:px-3 md:w-52 font-mukta"
           />
           {searchTerm && (
         <button
@@ -223,7 +223,7 @@ const InternsDashboard = () => {
         </button>
       )}
           </div>}
-          
+          <div className="md:space-x-4 mr-5 flex items-center justify-center">
           <button>
           <img
           onClick={addIntern} src={plusicon} alt="Add Icon" className="" />
@@ -238,46 +238,62 @@ const InternsDashboard = () => {
           <button>
           <img src={questionicon} alt="More Info" className="" />
           </button>
+          </div>
         </div>
       </div>
 
       {/* Interns Table */}
       <div className="overflow-x-auto md:mt-0 mt-10">
-    <table className="min-w-full table-auto border-collapse bg-white">
-      <thead>
-        <tr>
-          <th className="text-left font-mukta font-normal text-gray-500 px-4 py-2">Name</th>
-          <th className="text-left font-mukta font-normal text-gray-500 px-4 py-2">Role</th>
-          <th className="text-left font-mukta font-normal text-gray-500 px-4 py-2">Status</th>
-          <th className="text-left font-mukta font-normal text-gray-500 px-4 py-2">Year Of Joining</th>
-          <th className="text-left font-mukta font-normal text-gray-500 px-4 py-2">Completion Date</th>
-          <th className="text-left font-mukta font-normal text-gray-500 px-4 py-2">Options</th>
+  <table className="min-w-full table-auto border-collapse bg-white hidden md:table">
+    <thead>
+      <tr>
+        <th className="text-left font-mukta font-normal text-gray-500 px-4 py-2">Name</th>
+        <th className="text-left font-mukta font-normal text-gray-500 px-4 py-2">Role</th>
+        <th className="text-left font-mukta font-normal text-gray-500 px-4 py-2">Status</th>
+        <th className="text-left font-mukta font-normal text-gray-500 px-4 py-2">Year Of Joining</th>
+        <th className="text-left font-mukta font-normal text-gray-500 px-4 py-2">Completion Date</th>
+        <th className="text-left font-mukta font-normal text-gray-500 px-4 py-2">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      {currentInterns.map((intern, index) => (
+        <tr key={index} className="border-b">
+          <td className="px-4 font-mukta font-normal text-black py-2">{intern.forename}</td>
+          <td className="px-4 font-mukta py-2">{intern.role}</td>
+          <td className="px-4 font-mukta py-2">
+            <span className={`w-[90px] font-mukta inline-flex items-center justify-center px-3 py-1 rounded-full text-sm ${getStatusClass(intern.status)}`}>
+              {intern.status}
+            </span>
+          </td>
+          <td className="px-4 font-mukta py-2">{formatDate(intern.dateOfJoining)}</td>
+          <td className="px-4 font-mukta py-2">{intern.completionDate || 'NA'}</td>
+          <td className="px-4 font-mukta py-2">
+            <button className="px-2 py-1 font-mukta text-lg rounded-lg">...</button>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        {currentInterns.map((intern, index) => (
-          <tr key={index} className="border-b">
-            <td className="px-4 font-mukta font-normal text-black py-2">{intern.forename}</td>
-            <td className="px-4 font-mukta py-2">{intern.role}</td>
-            <td className="px-4 font-mukta py-2">
-              <span
-                className={`w-[90px] font-mukta inline-flex items-center justify-center px-3 py-1 rounded-full text-sm ${getStatusClass(
-                  intern.status
-                )}`}
-              >
-                {intern.status}
-              </span>
-            </td>
-            <td className="px-4 font-mukta py-2">{formatDate(intern.dateOfJoining)}</td>
-            <td className="px-4 font-mukta py-2">{intern.completionDate||'NA'}</td>
-            <td className="px-4 font-mukta py-2">
-              <button className="px-2 py-1 font-mukta text-lg rounded-lg">...</button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+      ))}
+    </tbody>
+  </table>
+
+  {/* Mobile View */}
+  <div className="md:hidden">
+    {currentInterns.map((intern, index) => (
+      <div key={index} className="bg-white border rounded-lg p-4 mb-4 shadow-sm">
+        <p className="font-mukta text-sm text-gray-500 mb-1"><strong>Name:</strong> {intern.forename}</p>
+        <p className="font-mukta text-sm text-gray-500 mb-1"><strong>Role:</strong> {intern.role}</p>
+        <p className="font-mukta text-sm text-gray-500 mb-1"><strong>Status:</strong>
+          <span className={`w-[90px] font-mukta inline-flex items-center justify-center px-3 py-1 rounded-full text-sm ${getStatusClass(intern.status)}`}>
+            {intern.status}
+          </span>
+        </p>
+        <p className="font-mukta text-sm text-gray-500 mb-1"><strong>Year Of Joining:</strong> {formatDate(intern.dateOfJoining)}</p>
+        <p className="font-mukta text-sm text-gray-500 mb-1"><strong>Completion Date:</strong> {intern.completionDate || 'NA'}</p>
+        <button className="px-2 py-1 font-mukta text-lg rounded-lg">...</button>
+      </div>
+    ))}
   </div>
+</div>
+
 
       {/* Pagination */}
       <div className="flex justify-end mt-4">

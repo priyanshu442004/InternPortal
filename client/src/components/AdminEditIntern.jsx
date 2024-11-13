@@ -179,10 +179,10 @@ const EditIntern = () => {
 
 
   return (
-    <div className='w-full mx-auto bg-slate-50 flex items-center justify-center flex-col'>
-      <div className="md:w-[85%] flex justify-between bg-white items-center mb-6 p-2 mt-4">
+    <div className='w-full mx-auto md:bg-slate-50 flex items-center justify-center flex-col'>
+      <div className="md:w-[85%] flex justify-between bg-white items-center md:mb-6 p-2 mt-4">
         <h1 className="text-xl font-semibold">Add New Intern</h1>
-        <div className="space-x-2">
+        <div className="flex flex-col md:flex-row gap-2 md:space-x-2">
           <button
             type="button"
             className="px-4 py-2 border rounded hover:bg-gray-50"
@@ -199,11 +199,11 @@ const EditIntern = () => {
           </button>
         </div>
       </div>
-    <form className="w-[210mm] min-h-[297mm] mx-auto p-8 bg-white shadow-lg"  >
+    <form className="w-[210mm] min-h-[297mm] mx-auto md:p-8 bg-white md:shadow-lg"  >
       {/* Header with Title and Buttons */}
 
       {/* Search Section */}
-      <div className="flex flex-col items-center mb-8">
+      <div className="flex flex-col md:items-center mb-8">
         <p className="text-sm text-gray-600 mb-2">Enter Intern ID to Update Details</p>
         <div className="flex items-center gap-2">
           <input
@@ -224,7 +224,7 @@ const EditIntern = () => {
       </div>
 
       {/* Main Form Content */}
-      <div className="max-w-3xl mx-auto space-y-8">
+      <div className="md:max-w-3xl mx-auto space-y-8">
         {/* Personal Details Section */}
         <div>
           <h2 className="text-blue-800 text-sm font-medium mb-6">Personal Details:</h2>
@@ -235,19 +235,19 @@ const EditIntern = () => {
               { label: 'Email', name: 'email', type: 'email' }, 
               { label: 'Position/Opportunity Pursuing', name: 'position', type: 'text' }
             ].map(field => (
-              <div key={field.name} className="flex items-center">
+              <div key={field.name} className="flex md:items-center flex-col md:flex-row">
                 <label className="w-48 text-sm">{field.label}</label>
                 <input
                   type={field.type}
                   name={field.name}
                   value={formData[field.name]}
                   onChange={handleInputChange}
-                  className="flex-1 border rounded px-2 py-1"
+                  className="w-[70vw] flex-1 border rounded px-2 py-1"
                 />
               </div>
             ))}
 
-            <div className="flex items-center">
+            <div className="md:flex items-center">
               <label className="w-48 text-sm">Gender</label>
               <div className="flex gap-2">
                 {['Male', 'Female'].map((gender) => (
@@ -267,9 +267,9 @@ const EditIntern = () => {
               </div>
             </div>
 
-            <div className="flex items-center">
+            <div className="md:flex items-center">
               <label className="w-48 text-sm">Status</label>
-              <div className="flex gap-2">
+              <div className="grid grid-cols-2 w-1/4 md:flex gap-2">
                 {[
                   { label: 'Working', value: 'working', bgColor: 'green' },
                   { label: 'Left', value: 'left', bgColor: 'blue' },
@@ -292,9 +292,9 @@ const EditIntern = () => {
               </div>
             </div>
 
-            <div className="flex items-center">
+            <div className="md:flex items-center">
               <label className="w-48 text-sm">Performance</label>
-              <div className="flex gap-2">
+              <div className="grid grid-cols-2 w-1/4 md:flex gap-2">
                 {[
                   { label: 'NA', value: 'na', bgColor: 'gray' },
                   { label: 'Bad', value: 'bad', bgColor: 'red' },
@@ -321,13 +321,13 @@ const EditIntern = () => {
         </div>
 
         {/* Role Selection */}
-        <div className="flex items-center space-x-4">
+        <div className="md:flex items-center space-x-4">
           <label className="text-sm font-medium w-32">Role</label>
           <div className="flex-1">
             <select
               value={formData.role}
               onChange={handleRoleChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="md:w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select Role</option>
               {roleOptions.map(({ value, label }) => (
@@ -392,9 +392,9 @@ const EditIntern = () => {
           </div>
         </div>
 
-        <div className="flex items-center">
+        <div className="md:flex items-center">
           <label className="w-48 text-sm">Working Department</label>
-          <div className="flex gap-2">
+          <div className="grid grid-cols-2 w-1/3 md:flex gap-2">
             {['Web Development', 'Marketing', 'Business Development'].map((dept) => (
               <button
                 type="button"
@@ -412,17 +412,21 @@ const EditIntern = () => {
           </div>
         </div>
           
-        <div className="flex items-start">
+        <div className="md:flex items-start">
+          <div>
+
           <label className="w-48 text-sm pt-2">Projects</label>
+          <p className="w-[70vw] md:w-[15vw] text-xs text-gray-500">Enter the projects done by intern, and separate them with a comma</p>
+          </div>
           <div className="flex-1 space-y-1">
             <textarea
               name="projects"
               value={formData.projects}
               onChange={handleInputChange}
-              className="w-full border rounded px-2 py-1 h-24 resize-none"
+              className=" md:w-full border rounded px-2 py-1 h-24 resize-none"
               placeholder="Enter projects separated by commas"
             />
-            <p className="text-xs text-gray-500">Enter the projects done by intern, and separate them with a comma</p>
+           
           </div>
         </div>
 
