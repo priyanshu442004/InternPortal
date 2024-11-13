@@ -443,6 +443,7 @@ const EditIntern = () => {
           </div>
         </div>
 
+          
         <div className="flex items-start">
           <label className="w-48 text-sm pt-2">Projects</label>
           <div className="flex-1 space-y-1">
@@ -456,7 +457,6 @@ const EditIntern = () => {
             <p className="text-xs text-gray-500">Enter the projects done by intern, and separate them with a comma</p>
           </div>
         </div>
-
 
       </div>
     </form>
