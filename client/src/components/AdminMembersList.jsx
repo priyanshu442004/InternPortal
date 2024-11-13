@@ -212,13 +212,13 @@ const AdminMembersList = () => {
   if (loading) return <div>Loading Members data...</div>;
   
   return (
-    <div className="bg-white p-4 h-auto rounded-lg w-full">
-        <div className='flex flex-row justify-between'>
-          <div className="flex flex-row gap-[6.7vw]">
+    <div className="bg-white md:p-4 h-auto rounded-lg w-full">
+        <div className='flex flex-row md:justify-between'>
+          <div className="flex flex-row md:gap-[6.7vw]">
           <h3 className="text-lg font-bold font-mukta">Doc-Q Team Members List</h3>
           <h3 className='text-lg font-bold font-mukta'>Role</h3>
           </div>
-            <div className='flex flex-row justify-end gap-3'>
+            <div className='flex flex-row justify-end md:gap-3'>
               <button onClick={handleAddMemberClick}>
                 <IoMdAdd size={20}/>
               </button>
@@ -244,10 +244,10 @@ const AdminMembersList = () => {
           />
         </div>
       )}
-      <ul className="mt-4 space-y-2">
+      <ul className="mt-4 md:space-y-2">
         {filteredMembers?.map((member, idx) => (
           <li key={member.memberID} className="flex justify-start">
-            <div className="w-[20vw] align-middle">
+            <div className="w-[40vw] md:w-[20vw] align-middle">
             <input
                   type="checkbox"
                   checked={selectedMembers.includes(member.memberID)}
@@ -256,8 +256,8 @@ const AdminMembersList = () => {
                 />
             <span className=''>{member.name}</span>
             </div>
-            <span className='w-1/3'>{member.role}</span>
-            <div className="w-1/5 flex flex-row justify-around ml"> 
+            <span className='md:w-1/3'>{member.role}</span>
+            <div className="md:w-1/5 hidden md:flex flex-row justify-around ml"> 
               <button onClick={() => handleCallClick(member)}>
                 <MdWifiCalling3 size={20}/>
               </button>

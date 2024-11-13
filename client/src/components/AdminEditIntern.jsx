@@ -180,7 +180,7 @@ const EditIntern = () => {
 
   return (
     <div className='w-full mx-auto bg-slate-50 flex items-center justify-center flex-col'>
-      <div className="w-[85%] flex justify-between bg-white items-center mb-6 p-2 mt-4">
+      <div className="md:w-[85%] flex justify-between bg-white items-center mb-6 p-2 mt-4">
         <h1 className="text-xl font-semibold">Add New Intern</h1>
         <div className="space-x-2">
           <button

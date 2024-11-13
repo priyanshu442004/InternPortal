@@ -35,7 +35,7 @@ const AdminInternStats = () => {
 
 
   return (
-    <div className="grid w-full grid-cols-4 gap-2">
+    <div className="grid w-full grid-cols-2 md:grid-cols-4 gap-2">
       <div className="bg-[#b8c0e3] content-center justify-center flex h-[170px] p-2 rounded-lg text-center">
             <div className='flex-col flex'>
                 <h1 className='text-[15px] px-1 text-left font-mukta font-bold'>Total Interns <br /> {totalInterns} </h1>

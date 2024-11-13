@@ -203,7 +203,7 @@ const formatTime = (dateString) => {
                 </div>
             </div>
         </div>
-    <div className='border-black min-h-[450px] h-auto w-[300px] mt-4 border-solid border-[1px] rounded-xl overflow-x-auto'> 
+    <div className='border-black min-h-[450px] h-auto md:w-[300px] mt-4 border-solid border-[1px] rounded-xl overflow-x-auto'> 
         <h3 className="text-lg font-semibold mt-4 ml-4">Support Tickets</h3>
         <div className='flex flex-row mr-3 gap-5 justify-end'>
             <div className='bg-[#a0ccff] rounded-full w-[22px] h-[10px] text-center text-white text-[6px]'> Date </div>
