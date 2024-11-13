@@ -15,6 +15,7 @@ import Certificate from "./components/Certificate";
 import OfferLetterAppDeveloper from "./components/OfferLetterAppDeveloper";
 import OfferLetterPythonDeveloper from "./components/OfferLetterPythonDeveloper";
 import OfferLetterWebDeveloper from "./components/OfferLetterWebDeveloper";
+import LOR from "./components/LOR";
 
 const MainLayout = () => {
   const location = useLocation();
@@ -35,6 +36,7 @@ const MainLayout = () => {
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Settings" element={<Settings />} />
         <Route path="/view-Certificate" element={<Certificate />} />
+        <Route path="/Letter-Of-Recommendation" element={<LOR />} />
         <Route path="/view-OfferLetter" element={<OfferLetterAppDeveloper />} />
         <Route path="/view-OfferLetter-Python-Developer" element={<OfferLetterPythonDeveloper />} />
         <Route path="/view-OfferLetter-Web-Developer" element={<OfferLetterWebDeveloper />} />

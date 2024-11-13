@@ -172,9 +172,6 @@ const AddminAddIntern = () => {
     });
   };
 
-  const triggerFileInput = (ref) => {
-    ref.current.click();
-  };
 
   return (
     <div className="w-screen mx-auto p-6 bg-slate-50 flex jstify-center items-center flex-col">
