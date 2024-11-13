@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import AdminLogin from './components/AdminLogin'
 import AddminAddIntern from './components/AddminAddIntern'
 import AdminInternList from './components/AdminInternList'
@@ -16,24 +16,31 @@ const AdminLayout = () => {
 
   const isLoginPage = location.pathname === "/admin" ||location.pathname === "/admin/";
 
-
+  const isAdmin = localStorage.getItem('isAdmin') === 'true';
 
   return (
     <div className='flex flex-col'>
       {!isLoginPage && <Navbar />}
       <div className='flex flex-row'>
-
-      {!isLoginPage && <AdminSidebar />}
-      <Routes>
-        <Route path="/" element={<AdminLogin />} />
-        <Route path="/add-intern" element={<AddminAddIntern />} />
-        <Route path="/interns-list" element={<AdminInternList />} />
-        <Route path="/dashboard" element={<AdminDashboard />} />
-        <Route path="/Settings" element={<Settings />} />
-        <Route path="/Messages" element={<AdminMessages />} />
-        <Route path="/Edit-Interns" element={<AdminEditIntern />} />
-        <Route path="/Career" element={<AdminCareer />} />
-      </Routes>
+        {!isLoginPage && <AdminSidebar />}
+        <Routes>
+          <Route path="/" element={<AdminLogin />} />
+          {/* Restrict access to the other routes based on isAdmin */}
+          {isAdmin ? (
+            <>
+              <Route path="/add-intern" element={<AddminAddIntern />} />
+              <Route path="/interns-list" element={<AdminInternList />} />
+              <Route path="/dashboard" element={<AdminDashboard />} />
+              <Route path="/Settings" element={<Settings />} />
+              <Route path="/Messages" element={<AdminMessages />} />
+              <Route path="/Edit-Interns" element={<AdminEditIntern />} />
+              <Route path="/Career" element={<AdminCareer />} />
+            </>
+          ) : (
+            // Redirect to login if not admin
+            <Route path="*" element={<Navigate to="/admin" replace />} />
+          )}
+        </Routes>
       </div>
     </div>
   )

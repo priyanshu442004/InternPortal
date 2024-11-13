@@ -3,6 +3,7 @@ import offerLetterImg from '../assets/offerLetterImg.jpg';
 import lorImg from '../assets/LOR.jpg'
 import certificateImg from '../assets/certificate.png'
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Documents = () => {
     const navigate = useNavigate();
@@ -10,22 +11,46 @@ const Documents = () => {
     const [offerLetterPath, setOfferLetterPath] = useState("");
     const [role, setRole] = useState(""); // Use state for role
     const [internID, setInternID] = useState(null);
+    const [downloadCertificate, setDownloadCertificate] = useState(false);
+    const [downloadLOR, setDownloadLOR] = useState(false);
 
     useEffect(() => {
         console.log(localStorage.getItem('role'));
         // Retrieve role and intern ID from localStorage
         const storedRole = localStorage.getItem('role').trim().toLowerCase();
-        const storedInternID = localStorage.getItem('internID');
+        const internID = localStorage.getItem('internID');
 
         if (storedRole) {
-            setRole(storedRole); // Set role from localStorage
+            setRole(storedRole); 
         }
 
-        if (storedInternID) {
-            setInternID(storedInternID);
+        if (internID) {
+            setInternID(internID);
         }
 
-        // Set the offer letter path based on the role
+        const fetchDownloadPermissions = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/api/v1/interns/${internID}`);
+                
+                if (response.data.canDownloadCertificate === "true") {
+                    setDownloadCertificate(true);
+                } else {
+                    setDownloadCertificate(false);
+                }
+                
+                if (response.data.canDownloadLOR === "true") {
+                    setDownloadLOR(true);
+                } else {
+                    setDownloadLOR(false);
+                }
+            } catch (error) {
+                console.error('Error fetching download permissions:', error);
+            }
+        };
+
+        fetchDownloadPermissions();
+
+        
         if (storedRole === "web developer") {
             console.log("Role:", storedRole);
             setOfferLetterPath("/view-OfferLetter-Web-Developer");
@@ -104,14 +129,14 @@ Letter Of Recommendation
                     </p>
                 </div>
                 </div>
-                <div className='mt-[2.3vw] flex flex-row gap-[30%] ml-[4%]'>
-                    <button className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
+                {downloadLOR && <div className='mt-[2.3vw] flex flex-row gap-[30%] ml-[4%]'>
+                    <Link to="/Letter-Of-Recommendation" className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
                         View
-                    </button>
-                    <button className='bg-white border border-black p-2 rounded-lg text-lg text-gray-800 font-semibold text-lg'>
+                    </Link>
+                    <Link to="/Letter-Of-Recommendation?download=true" className='bg-white border border-black p-2 rounded-lg text-lg text-gray-800 font-semibold text-lg'>
                         Download
-                    </button>
-                </div>
+                    </Link>
+                </div>}
                
             </div>
 
@@ -130,7 +155,7 @@ InternShip Certificate
                     <img src={certificateImg} alt="" className='w-[20vw] h-[17vw]'/>
                 </div>
                 </div>
-                <div className='mt-[4%] flex flex-row gap-[30%] ml-[4%]'>
+                {downloadCertificate && <div className='mt-[4%] flex flex-row gap-[30%] ml-[4%]'>
                     <Link to="/view-certificate" className='bg-transparent text-lg text-gray-800 font-semibold text-lg'>
                         View
                     </Link>
@@ -140,7 +165,7 @@ InternShip Certificate
                     className='bg-white border border-black p-2 rounded-lg text-lg text-gray-800 font-semibold text-lg'>
                         Download
                     </Link>
-                </div>
+                </div>}
                
             </div>
             

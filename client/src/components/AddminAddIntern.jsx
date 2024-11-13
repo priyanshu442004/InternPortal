@@ -174,7 +174,7 @@ const AddminAddIntern = () => {
 
 
   return (
-    <div className="w-screen mx-auto p-6 bg-slate-50 flex jstify-center items-center flex-col">
+    <div className="w-screen mx-auto p-6 bg-slate-50 flex justify-center items-center flex-col">
       <div className="flex justify-between items-center mb-6 w-[90%] bg-white p-2">
         <h1 className="text-xl font-semibold">Add New Intern</h1>
         <div className="space-x-2">
