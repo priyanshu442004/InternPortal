@@ -1,18 +1,66 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import graph from "@/assets/performance_graph.jpg";
 import Bottom1 from '@/assets/bottom1.png'  
 import Bottom2 from "@/assets/bottom2.png"
 import Bottom3 from "@/assets/bottom3.png"
-import GradientChart from "@/components/GradientChart";
-import StackedAreaChart from "./StackedAreaChart";
-import LineChart from "./LineChart";
-import CandleStickChart from "./CandleStickChart";
-import PerformanceBarChart from "./PerformanceBarGraph";
 import GradientLineChart from "./GradientLineChart";
+import PerformanceLoginMessage from "./PerformanceLoginMessage";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+
 
 const Performance = () => {
   const navigate=useNavigate();
+  const [timeframe, setTimeframe] = useState('Weekly');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [performanceData, setPerformanceData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Update the login check in useEffect
+  useEffect(() => {
+    // Add event listener for localStorage changes
+    const handleStorageChange = () => {
+      const internId = localStorage.getItem('internID');
+      console.log('Fetching data for intern:', internId);
+      setIsLoggedIn(!!internId);
+    };
+
+    // Initial check
+    const internId = localStorage.getItem('internID');
+    setIsLoggedIn(!!internId);
+
+    // Listen for changes
+    window.addEventListener('storage', handleStorageChange);
+
+    // Fetch data if logged in
+    if (internId) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`http://localhost:8080/api/v1/interns/${internId}/performance`);
+          console.log('API Response:', response.data);
+          setPerformanceData(response.data);
+        } catch (error) {
+          console.error('Error fetching performance:', error);
+        }
+        setLoading(false);
+      };
+      fetchData();
+    } 
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+
+  if (!isLoggedIn) {
+    return <PerformanceLoginMessage />;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+
 
     return (
       <div className="flex items-center justify-center min-w-screen flex-col overflow-x-hidden mt-[23px] md:mt-0">
@@ -68,15 +116,30 @@ const Performance = () => {
 
             
             <div className="flex justify-center sm:justify-start space-x-2 mt-4 sm:mt-0">
-              <button className="bg-gray-300 text-black px-4 py-2 rounded-[100px]">Weekly</button>
-              <button className="bg-gray-300 text-black px-4 py-2 rounded-[100px]">Monthly</button>
-              <button className="bg-gray-300 text-black px-4 py-2 rounded-[100px]">Overall</button>
+              <button 
+                className={`px-4 py-2 rounded-[100px] ${timeframe === 'Weekly' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
+                onClick={() => setTimeframe('Weekly')}
+              >
+                Weekly
+              </button>
+              <button 
+                className={`px-4 py-2 rounded-[100px] ${timeframe === 'Monthly' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
+                onClick={() => setTimeframe('Monthly')}
+              >
+                Monthly
+              </button>
+              <button 
+                className={`px-4 py-2 rounded-[100px] ${timeframe === 'Overall' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
+                onClick={() => setTimeframe('Overall')}
+              >
+                Overall
+              </button>
             </div>
           </div>
 
           
           <div className="w-full h-auto bg-gray-200 p-4">
-            <GradientLineChart />
+            <GradientLineChart timeframe={timeframe} performanceData={performanceData}/>
           </div>
         </div>
         <div className=" text-xs font-kantumruy md:text-xs mt-2 md:mt-10 md:leading-6 md:font-bold md:font-kantumruy font-bold text-black justify-center text-center">
@@ -92,14 +155,14 @@ const Performance = () => {
               </button>
         </div>
 
-        <div class=" w-[80%] mt-12 mb-8 md:mt-16 mx-auto flex justify-center space-x-6 md:space-x-16">
-          <div class="w-1/3">
+        <div className=" w-[80%] mt-12 mb-8 md:mt-16 mx-auto flex justify-center space-x-6 md:space-x-16">
+          <div className="w-1/3">
             <img src={Bottom1} alt="Image 1" className="w-full h-auto object-cover" />
           </div>
-          <div class="w-1/3">
+          <div className="w-1/3">
             <img src={Bottom2} alt="Image 2" className="w-full h-auto object-cover" />
           </div>
-          <div class="w-1/3">
+          <div className="w-1/3">
             <img src={Bottom3} alt="Image 3" className="w-full h-auto object-cover" />
           </div>
         </div>

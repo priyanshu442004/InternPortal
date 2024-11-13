@@ -11,6 +11,7 @@ const supportTicketSchema = new mongoose.Schema({
   subject: String,
   message: String,
   response: String,
+  gender: String,
   resolved: {
     type: Boolean,
     default: false
