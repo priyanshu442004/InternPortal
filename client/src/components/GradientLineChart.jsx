@@ -5,45 +5,86 @@ import { CategoryScale } from 'chart.js';
 
 Chart.register(CategoryScale);
 
-const PerformanceChart = () => {
+const performancePoints = {
+  'Perfect': 10,
+  'Good': 7.5,
+  'Average': 5,
+  'Bad': 2.5,
+  'perfect': 10,
+  'good': 7.5,
+  'average': 5,
+  'bad': 2.5
+};
+
+const PerformanceChart = ({ timeframe, performanceData }) => {
   const chartRef = useRef(null);
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
-    // Fetch the JSON data
-    const fetchData = async () => {
-      const response = await fetch('/data.json'); // Adjust path if needed
-      const data = await response.json();
+    if (!performanceData || !performanceData.performance) return;
+  
+    const performanceArray = performanceData.performance.split(',').map(item => item.trim());
+    let relevantPerformance = [];
+    let labels = [];
+  
+    switch(timeframe) {
+      case 'Weekly':
+        relevantPerformance = performanceArray.slice(-1);
+        break;
+      case 'Monthly':
+        relevantPerformance = performanceArray.slice(-4);
+        break;
+      case 'Overall':
+        relevantPerformance = performanceArray;
+        break;
+    }
+  
+    // Create expanded visualization for single data point
+    const isSingleDataPoint = relevantPerformance.length === 1;
+    if (isSingleDataPoint) {
+      labels = ['Start', 'Current', 'End'];
+      const performanceValue = performancePoints[relevantPerformance[0]];
       setChartData({
-        labels: data.internsPerformance.map((entry) => entry.month),
-        datasets: [
-          {
-            label: 'Intern Performance',
-            data: data.internsPerformance.map((entry) => entry.performance),
-            fill: true,
-            backgroundColor: 'rgba(255, 165, 0, 0.5)', // Placeholder, gradient will be applied
-            borderColor: 'rgba(255, 165, 0, 1)', // Orange line
-            borderWidth: 2,
-            tension: 0.4, // Smooth line
-            pointRadius: 4,
-            pointBackgroundColor: 'rgba(255, 165, 0, 1)',
-          },
-        ],
+        labels: labels,
+        datasets: [{
+          label: 'Performance Trend',
+          data: Array(3).fill(performanceValue),
+          fill: true,
+          backgroundColor: 'rgba(255, 165, 0, 0.5)',
+          borderColor: 'rgba(255, 165, 0, 1)',
+          borderWidth: 2,
+          tension: 0.4,
+          pointRadius: 6,
+          pointBackgroundColor: 'rgba(255, 165, 0, 1)',
+        }],
       });
-    };
-
-    fetchData();
-  }, []);
+    } else {
+      setChartData({
+        labels: relevantPerformance.map((_, index) => `Week ${index + 1}`),
+        datasets: [{
+          label: 'Performance Trend',
+          data: relevantPerformance.map(perf => performancePoints[perf]),
+          fill: true,
+          backgroundColor: 'rgba(255, 165, 0, 0.5)',
+          borderColor: 'rgba(255, 165, 0, 1)',
+          borderWidth: 2,
+          tension: 0.4,
+          pointRadius: 4,
+          pointBackgroundColor: 'rgba(255, 165, 0, 1)',
+        }],
+      });
+    }
+  }, [timeframe, performanceData]);
+  
+  
 
   useEffect(() => {
     if (chartRef.current && chartData) {
       const chart = chartRef.current;
-
-      // Create gradient for the chart background with fade-out effect
       const gradient = chart.ctx.createLinearGradient(0, 0, 0, chart.height);
-      gradient.addColorStop(0, 'rgba(255, 165, 0, 0.6)'); // Stronger orange at the top
-      gradient.addColorStop(0.5, 'rgba(255, 165, 0, 0.3)'); // Fading in the middle
-      gradient.addColorStop(1, 'rgba(255, 165, 0, 0)');   // Fully transparent at the bottom
+      gradient.addColorStop(0, 'rgba(255, 165, 0, 0.6)');
+      gradient.addColorStop(0.5, 'rgba(255, 165, 0, 0.3)');
+      gradient.addColorStop(1, 'rgba(255, 165, 0, 0)');
 
       chart.data.datasets[0].backgroundColor = gradient;
       chart.update();
@@ -56,32 +97,49 @@ const PerformanceChart = () => {
     scales: {
       y: {
         beginAtZero: true,
+        max: 12,
         ticks: {
-          color: '#6b7280', // Tailwind gray-500
+          color: '#6b7280',
+          callback: (value) => `${value} points`
         },
         grid: {
-          color: '#e5e7eb', // Tailwind gray-200
+          color: '#e5e7eb',
         },
       },
       x: {
         ticks: {
-          color: '#6b7280', // Tailwind gray-500
+          color: '#6b7280',
         },
         grid: {
-          color: '#e5e7eb', // Tailwind gray-200
+          color: '#e5e7eb',
         },
       },
     },
     plugins: {
       legend: {
-        display: true, // Shows the legend for the line
+        display: true,
       },
+      title: {
+        display: true,
+        text: `Performance Analysis (${timeframe==='weekly'?"This Week":timeframe==='monthly'?"This Month":timeframe})`,
+        color: '#374151',
+        font: {
+          size: 16,
+          weight: 'bold'
+        }
+      }
     },
   };
 
   return (
     <div className="w-full h-[400px] bg-gray-100 rounded-md p-4 shadow-md">
-      {chartData ? <Line ref={chartRef} data={chartData} options={options} /> : <p>Loading chart...</p>}
+      {chartData ? (
+        <Line ref={chartRef} data={chartData} options={options} />
+      ) : (
+        <div className="flex items-center justify-center h-full">
+          <p>Loading chart data...</p>
+        </div>
+      )}
     </div>
   );
 };

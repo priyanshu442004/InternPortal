@@ -22,6 +22,9 @@ const AdminSupportTickets = () => {
     const solvedTickets = tickets?.filter(i => i.resolved === true)?.length || 0;
     const pendingTickets = tickets?.filter(i => i.resolved === false)?.length || 0;
 
+    const malePic="https://i.pinimg.com/originals/22/f8/1f/22f81f5c4011da6a803d997260b2c772.jpg"
+    const femalePic="https://png.pngtree.com/png-clipart/20190904/original/pngtree-user-cartoon-girl-avatar-png-image_4492903.jpg"
+
   useEffect(() => {
     const fetchTickets = async () => {
         try {
@@ -215,7 +218,7 @@ const formatTime = (dateString) => {
                 className="cursor-pointer hover:bg-gray-50" >
                     <div className='flex flex-row justify-between'>
                         <div className='flex flex-row'>
-                            <img src={ticketprofile} height={30} width={30} className='rounded-full' alt="" />
+                            <img src={ticket.gender=='male'?`${malePic}`:`${femalePic}`} height={30} width={30} className='rounded-full' alt="" />
                             <div className='flex flex-col justify-center'>
                                 <h1 className='ml-2 font-mukta font-semibold text-xs'> Ticket #{ticket.ticketID}</h1>
                                 <h1 className='ml-2 text-slate-400 font-mukta font-normal text-[7px]'>{ticket.subject}</h1>
