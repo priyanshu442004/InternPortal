@@ -40,8 +40,9 @@ const Navbar = () => {
 
   const logout=()=>{
     localStorage.removeItem("internID");
-    localStorage.removeItem("internName");
     localStorage.removeItem("gender");
+    localStorage.removeItem("internName");
+    localStorage.removeItem("certificateId");
     localStorage.removeItem("dateOfJoining");
     localStorage.removeItem("role");
     navigate('../login')

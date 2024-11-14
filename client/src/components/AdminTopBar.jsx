@@ -21,6 +21,7 @@ const Navbar = () => {
 
   const logout=()=>{
     localStorage.removeItem('admin')
+    localStorage.removeItem('isAdmin')
     navigate('./')
   }
 
