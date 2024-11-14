@@ -6,7 +6,18 @@ export const editIntern = async (req, res) => {
     const { internID } = req.params; 
     const updatedData = req.body; 
 
-    
+    const currentIntern = await Intern.findOne({ internID });
+
+    if (!currentIntern) {
+      return res.status(404).json({ message: 'Intern not found' });
+    }
+    // Append the new performance value if provided
+    if (updatedData.performance) {
+      updatedData.performance = currentIntern.performance
+        ? `${currentIntern.performance},${updatedData.performance}`
+        : updatedData.performance;
+    }
+
     const updatedIntern = await Intern.findOneAndUpdate(
       { internID },
       { ...updatedData },
